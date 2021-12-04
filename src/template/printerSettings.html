@@ -1,47 +1,53 @@
 <div class="w3-row-padding">
+  <div class="w3-card-4 w3-col w3-margin-top" style="padding: 0px">
+    <header class="w3-container w3-custom-teal">
+      <h3 class="w3-center">
+        <strong>Invoice Settings</strong>
+      </h3>
+    </header>
 
+    <div class="w3-container w3-padding">
+      <form name="tempalte_form">
+        <input
+          type="text"
+          name="name"
+          class="w3-input w3-border w3-margin-top"
+          placeholder="Templates Name"
+          ng-model="newTemplateName"
+        />
+        <span
+          ng-show="tempalte_form.name.$invalid"
+          style="color: rgba(255, 0, 0, 0.63)"
+        >
+          <small>Please enter valid name also it's required.</small>
+        </span>
+        <button
+          class="w3-button w3-custom-teal-btn w3-margin-top"
+          ng-click="clickAddTemplate()"
+        >
+          Add Templates
+        </button>
+        &nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;
+        <button
+          class="w3-button w3-custom-teal-btn w3-margin-top"
+          ng-click="clickAddTemplateResource()"
+        >
+          Add Templates Resource
+        </button>
 
-    <div class="w3-card-4 w3-col w3-margin-top" style="padding: 0px;">
-
-        <header class="w3-container w3-custom-teal">
-            <h3 class="w3-center">
-                <strong>Invoice Settings</strong>
-            </h3>
-        </header>
-
-        <div class="w3-container w3-padding">
-
-            <form name="tempalte_form">
-
-                <input type="text" name="name" class="w3-input  w3-border w3-margin-top " placeholder="Templates Name" ng-model="newTemplateName"
-                />
-                <span ng-show="tempalte_form.name.$invalid" style="color:rgba(255, 0, 0, 0.63);">
-                    <small>Please enter valid name also it's required.</small>
-                </span>
-                <button class="w3-button w3-custom-teal-btn w3-margin-top " ng-click="clickAddTemplate()">Add Templates</button>
-                &nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;
-                <button class="w3-button w3-custom-teal-btn w3-margin-top " ng-click="clickAddTemplateResource()">Add Templates
-                    Resource
-                </button>
-
-                <div class="w3-panel ">
-                    <div class="error w3-panel " ng-if='InvoiceTempResError != null'>
-                        <small> {{InvoiceTempResError}}</small>
-                    </div>
-                </div>
-
-
-          
-                <div class="w3-panel w3-center">
-                    <div class="error">
-                        for more beautiful template visit www.spyhunter272.in and download it.
-                    </div>
-                </div>
-            </form>
+        <div class="w3-panel">
+          <div class="error w3-panel" ng-if="InvoiceTempResError != null">
+            <small> {{InvoiceTempResError}}</small>
+          </div>
         </div>
 
-
-
+        <div class="w3-panel w3-center">
+          <div class="error">
+            for more beautiful template visit spyhunteritsolution.in and
+            download it.
+          </div>
+        </div>
+      </form>
     </div>
-
+  </div>
 </div>
