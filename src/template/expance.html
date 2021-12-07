@@ -286,8 +286,27 @@
         </div>
 
 
+        <div class="w3-col w3-margin-top">
+            <ul class="w3-ul">
+                <li class="w3-card-4">
+                    <div class="w3-panel">
+                        <div class="w3-row">
+                            <div class="w3-third">
+                             Import CSV
+                            </div>
+                            <div class="w3-w3-twothird w3-right-align">
+                                <input type="file" ng-model="csvFile" style="display: none;" onchange="angular.element(this).scope().importCSVFile()" id="csvFile" accept=".csv" />
+                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal"
+                                        >Import</label>
+                                    <button class="w3-button w3-circle w3-custom-teal"
+                                    ng-click="exportCSV()">Show CSV Demo</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-
 </div>
 
 

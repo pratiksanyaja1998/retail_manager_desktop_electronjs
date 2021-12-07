@@ -1,7 +1,9 @@
 <div class="customerblock">
 
     <div class="w3-row" ng-hide="isEditingCustomerSetting">
-        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-click="isEditingCustomer = true" ng-hide="isEditingCustomer">New Customer&nbsp;&nbsp; <small class="w3-right"><small>(ctrl+n)</small></small></button>
+        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-click="isEditingCustomer = true"
+            ng-hide="isEditingCustomer">New Customer&nbsp;&nbsp; <small
+                class="w3-right"><small>(ctrl+n)</small></small></button>
         <button class="  w3-margin-bottom  setting-btn w3-right" ng-click="isEditingCustomerSetting = true">
             <i class="fa fa-cog fa-fw"></i>
             </a>
@@ -19,7 +21,8 @@
                 <h3 class="w3-center">
                     <strong>Customer</strong>
                 </h3>
-                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px" ng-click="clickClearCustomer()">
+                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px"
+                    ng-click="clickClearCustomer()">
                     <i class="fa fa-refresh" style="font-size:24px"></i>
                 </button>
             </header>
@@ -28,41 +31,66 @@
                 <form name="customer_form">
 
                     <!-- in invoice -->
-                    <div class="w3-col ">
+                    <div class="w3-col">
+                        <table width="100%;" style="padding-top:15px">
+                            <tr>
+                                <td width="50%">
+                                    <label class="w3-text-gray">
+                                        <b>Customer Name</b>
+                                        <span class="w3-text-red" style="font-size: 30px">*</span>
+                                    </label>
+                                    <input class="w3-input w3-border" ng-disabled='newCustomer.isUpdate'
+                                        focus-me="focusFrist" ng-model="newCustomer.name" name="cname" type="text"
+                                        pattern="[a-zA-Z\s]+" />
+                                    <span ng-show="customer_form.cname.$invalid">
+                                        <input-error>Please enter valid name also it's required.</input-error>
+                                    </span>
+                                </td>
+                                <td>
+                                    <label class="w3-text-gray">
+                                        <b>Customer Email</b>
+                                        <span class="w3-text-red" style="font-size: 30px">&nbsp;</span>
+                                    </label>
+                                    <input class="w3-input w3-border" focus-me="focusFrist" ng-model="newCustomer.email"
+                                        name="email" type="email" />
+                                    <span ng-show="customer_form.email.$invalid">
+                                        <input-error>Please enter valid email</input-error>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="w3-half">
 
-                        <label class="w3-text-gray">
-                            <b>Customer Name</b>
-                            <span class="w3-text-red" style="font-size: 30px">*</span>
-                        </label>
-                        <input class="w3-input w3-border" ng-disabled = 'newCustomer.isUpdate' focus-me="focusFrist" ng-model="newCustomer.name" name="cname" 
-                        type="text" pattern="[a-zA-Z\s]+"    />
-                        <span ng-show="customer_form.cname.$invalid">
-                            <input-error>Please enter valid name also it's required.</input-error>
-                        </span>
+                        </div>
+                        <div class="w3-half">
+
+                        </div>
                         <p>
-                            <table width="100%">
-                                <tr>
-                                    <td width="40%" ng-show="settings.phno">
-                                        <label class="w3-text-gray">
-                                            <b>Customer Mobile Number</b>
-                                        </label>
-                                        <input class="w3-input w3-border" ng-model="newCustomer.phno" pattern="[0-9]{10}" type="text" name="phno" />
-                                        <span ng-show="customer_form.phno.$invalid">
-                                            <input-error>please enter valid phone number</input-error>
-                                        </span>
-                                    </td>
-                                    <td ng-show="settings.gstin">
-                                        <label class="w3-text-gray">
-                                            <b>GSTIN</b>
-                                        </label>
-                                        <input class="w3-input w3-border" ng-model="newCustomer.gstin" type="text" style="text-transform:uppercase" maxlength="15"
-                                            pattern="[a-zA-Z0-9]{15}" name="gstin" />
-                                        <span ng-show="customer_form.gstin.$invalid">
-                                            <input-error>Please enter valid gstin number.</input-error>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
+                        <table width="100%;" style="padding-top:15px">
+                            <tr>
+                                <td width="40%" ng-show="settings.phno">
+                                    <label class="w3-text-gray">
+                                        <b>Customer Mobile Number</b>
+                                    </label>
+                                    <input class="w3-input w3-border" ng-model="newCustomer.phno" pattern="[0-9]{10}"
+                                        type="text" name="phno" />
+                                    <span ng-show="customer_form.phno.$invalid">
+                                        <input-error>please enter valid phone number</input-error>
+                                    </span>
+                                </td>
+                                <td ng-show="settings.gstin">
+                                    <label class="w3-text-gray">
+                                        <b>GSTIN</b>
+                                    </label>
+                                    <input class="w3-input w3-border" ng-model="newCustomer.gstin" type="text"
+                                        style="text-transform:uppercase" maxlength="15" pattern="[a-zA-Z0-9]{15}"
+                                        name="gstin" />
+                                    <span ng-show="customer_form.gstin.$invalid">
+                                        <input-error>Please enter valid gstin number.</input-error>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
                         </p>
                     </div>
 
@@ -77,27 +105,30 @@
                                         <b>Billing Address</b>
 
                                     </label>
-                                    <input class="w3-input w3-border" placeholder="Area" ng-model="newCustomer.barea" type="text" name="cbarea" id="cbarea">
+                                    <input class="w3-input w3-border" placeholder="Area" ng-model="newCustomer.barea"
+                                        type="text" name="cbarea" id="cbarea">
                                 </td>
 
                                 <td>
-                                    <br/>
-                                    <input class="w3-input w3-border" placeholder="City" ng-model="newCustomer.bcity" type="text" name="cbcity" id="cbcity" pattern="[a-zA-Z]+">
+                                    <br />
+                                    <input class="w3-input w3-border" placeholder="City" ng-model="newCustomer.bcity"
+                                        type="text" name="cbcity" id="cbcity" pattern="[a-zA-Z]+">
                                     <span ng-show="customer_form.cbcity.$invalid">
                                         <input-error> must have only character.</input-error>
                                     </span>
                                 </td>
                                 <td>
-                                    <br/>
-                                    <input class="w3-input w3-border" placeholder="State" ng-model="newCustomer.bstate" type="text" name="cbstate" id="cbstate"
-                                        pattern="[a-zA-Z]+">
+                                    <br />
+                                    <input class="w3-input w3-border" placeholder="State" ng-model="newCustomer.bstate"
+                                        type="text" name="cbstate" id="cbstate" pattern="[a-zA-Z]+">
                                     <span ng-show="customer_form.cbstate.$invalid">
                                         <input-error>must have only character.</input-error>
                                     </span>
                                 </td>
                                 <td>
-                                    <br/>
-                                    <input class="w3-input w3-border" placeholder="Pincode" ng-model="newCustomer.bpincode" type="number" name="cbpincode" id="cbpincode"
+                                    <br />
+                                    <input class="w3-input w3-border" placeholder="Pincode"
+                                        ng-model="newCustomer.bpincode" type="number" name="cbpincode" id="cbpincode"
                                         pattern="[0-9]{6}">
                                     <span ng-show="customer_form.cbpincode.$invalid">
                                         <input-error>must have 6 digits.</input-error>
@@ -121,38 +152,42 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <span ng-show="settings.dadr && settings.badr">
 
-                                            <input type="checkbox" ng-change="clickSameBDAddr()" ng-model="newCustomer.isb_d" id="checkbox-16-1" class="regular-checkbox"
-                                            />
+                                            <input type="checkbox" ng-change="clickSameBDAddr()"
+                                                ng-model="newCustomer.isb_d" id="checkbox-16-1"
+                                                class="regular-checkbox" />
                                             <label for="checkbox-16-1"></label>
                                             <small> Same As Billing Address</small>
                                         </span>
 
                                     </label>
-                                    <input class="w3-input w3-border" placeholder="Area" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.darea"
-                                        name="cdarea" id="cdarea" id="cdarea">
+                                    <input class="w3-input w3-border" placeholder="Area" ng-disabled="newCustomer.isb_d"
+                                        type="text" ng-model="newCustomer.darea" name="cdarea" id="cdarea" id="cdarea">
 
                                 </td>
                                 <td>
-                                    <br/>
-                                    <input class="w3-input w3-border" placeholder="City" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.dcity"
-                                        name="cdcity" id="cdcity" pattern="[a-zA-Z]+">
+                                    <br />
+                                    <input class="w3-input w3-border" placeholder="City" ng-disabled="newCustomer.isb_d"
+                                        type="text" ng-model="newCustomer.dcity" name="cdcity" id="cdcity"
+                                        pattern="[a-zA-Z]+">
                                     <span ng-show="customer_form.cdcity.$invalid">
                                         <input-error>must have only character.</input-error>
                                     </span>
                                 </td>
                                 <td>
-                                    <br/>
+                                    <br />
 
-                                    <input class="w3-input w3-border" placeholder="State" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.dstate"
+                                    <input class="w3-input w3-border" placeholder="State"
+                                        ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.dstate"
                                         name="cdstate" id="cdstate" pattern="[a-zA-Z]+">
                                     <span ng-show="customer_form.cdstate.$invalid">
                                         <input-error>must have only character.</input-error>
                                     </span>
                                 </td>
                                 <td>
-                                    <br/>
+                                    <br />
 
-                                    <input class="w3-input w3-border" placeholder="Pincode" ng-disabled="newCustomer.isb_d" type="number" ng-model="newCustomer.dpincode"
+                                    <input class="w3-input w3-border" placeholder="Pincode"
+                                        ng-disabled="newCustomer.isb_d" type="number" ng-model="newCustomer.dpincode"
                                         name="cdpincode" id="cdpincode" pattern="[0-9]{6}">
                                     <span ng-show="customer_form.cdpincode.$invalid">
                                         <input-error>must have 6 digits.</input-error>
@@ -171,7 +206,8 @@
 
                     <div class="w3-col w3-left ">
                         <p>
-                            <button class="w3-button  w3-custom-teal-btn" ng-click="clickSaveCustomer()" ng-disabled="customer_form.$invalid" type="submit">UPDATE & SAVE</button>
+                            <button class="w3-button  w3-custom-teal-btn" ng-click="clickSaveCustomer()"
+                                ng-disabled="customer_form.$invalid" type="submit">UPDATE & SAVE</button>
                             <button class="w3-button  w3-grey " ng-click="clickCancelCustomer()">CANCEL</button>
                         </p>
                     </div>
@@ -187,29 +223,32 @@
 
             <!-- search bar -->
             <div class="w3-col l12">
-                <table width = '100%' style="margin-bottom:5px;margin-top:3px">
+                <table width='100%' style="margin-bottom:5px;margin-top:3px">
                     <tr>
                         <td width='100%'>
-                            <input type="text" class="w3-input w3-border searchbox-input " placeholder="Search Customer..." ng-change="searchCustomer()"
+                            <input type="text" class="w3-input w3-border searchbox-input "
+                                placeholder="Search Customer..." ng-change="searchCustomer()"
                                 ng-model="filter.searchInput" />
                         </td>
-                        <td >
+                        <td>
                             <strong>
-                                <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
-                            </strong>   
+                                <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0"
+                                    ng-click="clickPrev()">&lt;</button>
+                            </strong>
                         </td>
                         <td>
                             <strong>
                                 <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
-                            </strong>   
+                            </strong>
                         </td>
                         <td>
                             <strong>
-                                <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
-                            </strong>   
+                                <button class="w3-button w3-grey " ng-disabled='!filter.isNext'
+                                    ng-click="clickNext()">&gt;</button>
+                            </strong>
                         </td>
-                       
-             
+
+
                     </tr>
                 </table>
 
@@ -229,20 +268,22 @@
                         <th width="100px" class="w3-center">Delete</th>
                     </tr>
 
-                    <tr ng-repeat="customerRow in customer  track by $index " ng-if='customerRow' >
+                    <tr ng-repeat="customerRow in customer  track by $index " ng-if='customerRow'>
                         <td width="100px">{{$index+1}}</td>
                         <td class="tooltip nameCase">{{customerRow.name}}
-                            <br/>
+                            <br />
                             <span class="tooltiptext nameCase" ng-if="settings.badr || settings.dadr ">
                                 <small>
-                                    <span  ng-if="settings.badr">
+                                    <span ng-if="settings.badr">
                                         <strong>Billing Address</strong>
-                                        <br/> {{customerRow.barea + ", " +customerRow.bcity+", "+ customerRow.bstate+" -"+customerRow.bpincode}}
+                                        <br /> {{customerRow.barea + ", " +customerRow.bcity+", "+ customerRow.bstate+"
+                                        -"+customerRow.bpincode}}
                                     </span>
-                                    <br/>
+                                    <br />
                                     <span ng-if="settings.dadr">
                                         <strong>Delivery Address</strong>
-                                        <br/> {{customerRow.darea + ", " +customerRow.dcity+", "+ customerRow.dstate+" -"+customerRow.dpincode}}
+                                        <br /> {{customerRow.darea + ", " +customerRow.dcity+", "+ customerRow.dstate+"
+                                        -"+customerRow.dpincode}}
                                     </span>
                                 </small>
                             </span>
@@ -259,41 +300,33 @@
                             <i class="fa fa-trash fa-fw"></i>
                         </td>
                     </tr>
-
-
                 </table>
-
-
             </div>
-
             <div class=" w3-col w3-center i12 " style="margin-top: 5px">
-
                 <div ng-show="customer.length<=0" class="w3-center">
                     Customer is not found. please add ...
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 
 
     <!-- settings -->
     <div class="setting-block w3-row" ng-show="isEditingCustomerSetting">
         <div class="w3-col w3-margin-bottom">
-            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingCustomerSetting = false">Back &nbsp;&nbsp; <small class="w3-right"><small>(Esc)</small></small></button>
+            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingCustomerSetting = false">Back &nbsp;&nbsp;
+                <small class="w3-right"><small>(Esc)</small></small></button>
         </div>
 
         <div class="w3-margin-top w3-card-4 w3-col l12">
             <ul class="w3-ul">
-              
+
                 <li>
                     <div class="w3-panel ">
                         <span class="settingTag w3-left" style="padding: 8px;">Mobile Number</span>
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.phno" id="checkbox-1-2" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.phno"
+                                id="checkbox-1-2" class="regular-checkbox" />
                             <label for="checkbox-1-2"></label>
                         </div>
                     </div>
@@ -303,8 +336,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">GSTIN</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gstin" id="checkbox-1-3" class="regular-checkbox"
-                            />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gstin"
+                                id="checkbox-1-3" class="regular-checkbox" />
                             <label for="checkbox-1-3"></label>
                         </div>
                     </div>
@@ -314,7 +347,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">Billing Address</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.badr" id="checkbox-1-4" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.badr"
+                                id="checkbox-1-4" class="regular-checkbox" />
                             <label for="checkbox-1-4"></label>
                         </div>
                     </div>
@@ -324,7 +358,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">Delivery Address</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.dadr" id="checkbox-1-5" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.dadr"
+                                id="checkbox-1-5" class="regular-checkbox" />
                             <label for="checkbox-1-5"></label>
                         </div>
                     </div>
@@ -332,8 +367,31 @@
             </ul>
         </div>
 
-    </div>
+        <div class="w3-col w3-margin-top">
 
+            <ul class="w3-ul">
+                <li class="w3-card-4">
+                    <div class="w3-panel">
+                        <div class="w3-row">
+                            <div class="w3-third">
+                                Import CSV
+                            </div>
+                            <div class="w3-w3-twothird w3-right-align">
+                                <input type="file" ng-model="csvFile" style="display: none;"
+                                    onchange="angular.element(this).scope().importCSVFile()" id="csvFile"
+                                    accept=".csv" />
+                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal">Import</label>
+                                <button class="w3-button w3-circle w3-custom-teal" ng-click="exportCSV()">Show CSV
+                                    Demo</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
 
 </div>
 

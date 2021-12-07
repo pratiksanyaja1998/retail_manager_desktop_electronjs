@@ -1,72 +1,98 @@
-var ProductModule = function () {
+var ProductModule = (function () {
+  const TABLENAME = "settings";
 
-    const TABLENAME = 'settings'
+  return {
+    getInvoiceSr: (callback) => {
+      knex
+        .select()
+        .from(TABLENAME)
+        .where("name", "insrno")
+        .orWhere("name", "insrpre")
+        .then((result) => {
+          callback(result);
+        });
+    },
 
-    return {
+    getEmailCred: (callback) => {
+      knex
+        .select()
+        .from(TABLENAME)
+        .where("name", "mailuser")
+        .orWhere("name", "mailpass")
+        .orWhere("name", "mailhost")
+        .orWhere("name", "mailport")
+        .then((result) => {
+          callback(result);
+        });
+    },
 
-        getInvoiceSr: (callback) => {
-            knex.select().from(TABLENAME).where("name", 'insrno').orWhere('name', 'insrpre')
-                .then((result) => {
-                    callback(result);
-                })
-        },
+    // after invoice create increments ++
+    updateInvoiceSr: (callback) => {
+      knex
+        .select()
+        .from(TABLENAME)
+        .where("name", "insrno")
+        .then((result) => {
+          no = Number(result[0].data);
+          no++;
+          console.log(no);
+          knex(TABLENAME)
+            .update({ data: no })
+            .where("name", "insrno")
+            .then((result) => {
+              callback(result);
+            });
+        });
+    },
 
+    getSetting: (name, callback) => {
+      knex
+        .select("data")
+        .from(TABLENAME)
+        .where("name", name)
+        .then((rows) => {
+          callback(JSON.parse(rows[0].data));
+        });
+    },
 
-        // after invoice create increments ++
-        updateInvoiceSr: (callback) => {
+    // insertSetting: (data, callback) => {
+    //   knex(TABLENAME)
+    //     .insert(data)
+    //     .then((result) => {
+    //       callback(result);
+    //     });
+    // },
 
-            knex.select().from(TABLENAME).where("name", 'insrno')
-                .then((result) => {
-                    no = Number(result[0].data);
-                    no++;
-                    console.log(no)
-                    knex(TABLENAME)
-                        .update({ data: no }).where('name', 'insrno').then((result) => {
-                            callback(result)
-                        })
-                })
-        },
+    getAllSettings: (name, callback) => {
+      knex
+        .select("*")
+        .from(TABLENAME)
+        .then((rows) => {
+          callback(rows);
+        });
+    },
 
+    // for json
+    updateSettingJson: (name, data, callback) => {
+      knex(TABLENAME)
+        .update({ data: JSON.stringify(data) })
+        .where("name", name)
+        .then((result) => {
+          callback(result);
+        });
+    },
 
-
-        getSetting: (name, callback) => {
-
-            knex.select("data").from(TABLENAME).where("name", name).then(
-
-                (rows) => {
-
-                    callback(JSON.parse(rows[0].data))
-
-                }
-
-            );
-
-        },
-
-        // for json
-        updateSettingJson: (name, data, callback) => {
-
-            knex(TABLENAME).update({ data: JSON.stringify(data) }).where("name", name).then((result) => {
-                callback(result);
-
-            })
-        },
-        
-
-        // no json
-        updateSettingData: (row, callback) => {
-
-
-            knex(TABLENAME)
-                .update({ data: row.data }).where('name', row.name).then((result) => {
-                    callback(result)
-                })
-
-        },
-
-
-    }
-}();
+    // no json
+    updateSettingData: (row, callback) => {
+      // console.log(row);
+      knex(TABLENAME)
+        .update({ data: row.data })
+        .where("name", row.name)
+        .then((result) => {
+          callback(result);
+        });
+    },
+  };
+})();
 
 module.exports = ProductModule;
-

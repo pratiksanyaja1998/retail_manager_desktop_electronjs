@@ -157,6 +157,30 @@
         </form>
     </div>
 
+    <div class="w3-card-4 w3-col l12 w3-margin-top">
+        <form name="invoice_sr_form">
+            <header class="w3-container w3-custom-teal">
+                <h3 class="w3-center">
+                    <strong>Email Settings</strong>
+                </h3>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditEmailCred()" style="margin-top: -49px;margin-right: 65px;" ng-hide="!emailcred_dis">edit</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveEmailCred()" style="margin-top: -49px;margin-right: 65px;" ng-hide="emailcred_dis">save</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="getEmailSettingsAndSet()" style="margin-top: -49px;">refresh</i>
+            </header>
+
+            <div class="w3-container w3-padding">
+                <span class="settingTag w3-left" style="padding: 8px;">Mail User</span>
+                <input class="w3-input w3-border" ng-model="mailuser" ng-disabled="emailcred_dis" />
+                <span class="settingTag w3-left" style="padding: 8px;">Mail Password</span>
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailpass" type="text" ng-disabled="emailcred_dis" />
+                <span class="settingTag w3-left" style="padding: 8px;">Mail Host</span>
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailhost" type="text" ng-disabled="emailcred_dis" />
+                <span class="settingTag w3-left" style="padding: 8px;">Mail Port</span>
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailport" type="text" ng-disabled="emailcred_dis" />
+            </div>
+        </form>
+    </div>
+
     <div class="w3-margin-top w3-card-4 w3-col l12">
         <ul class="w3-ul">
             <li>

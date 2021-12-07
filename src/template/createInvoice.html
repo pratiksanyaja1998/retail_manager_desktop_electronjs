@@ -14,8 +14,8 @@
     <!-- date -->
     <div class="w3-col w3-margin-bottom ">
       <input type="text" ng-model="srno" class="w3-input w3-left w3-border " style="width: 200px" disabled />
-      <input type="text" ng-model="billno" placeholder="Bill Number / Chalan Number ..." class="w3-input w3-margin-left w3-left w3-border"
-        style="width: 300px" />
+      <input type="text" ng-model="billno" placeholder="Bill Number / Chalan Number ..."
+        class="w3-input w3-margin-left w3-left w3-border" style="width: 300px" />
       <table class="w3-right">
         <tr>
 
@@ -23,22 +23,24 @@
             <label class="w3-text-gray">
               <b>Date :</b>
             </label>
-            <input class="w3-input w3-border" ng-model="dd" style="width: 65px ;" type="number" placeholder="DD" max="31" min="1" />
+            <input class="w3-input w3-border" ng-model="dd" style="width: 65px ;" type="number" placeholder="DD"
+              max="31" min="1" />
           </td>
 
           <td>
             <label class="w3-text-gray">
               <b>-</b>
             </label>
-            <input class="w3-input w3-border" ng-model="mm" style="width: 65px ;" type="number" placeholder="MM" max="12" min="1" />
+            <input class="w3-input w3-border" ng-model="mm" style="width: 65px ;" type="number" placeholder="MM"
+              max="12" min="1" />
           </td>
 
           <td>
             <label class="w3-text-gray">
               <b>-</b>
             </label>
-            <input class="w3-input w3-border" ng-model="yyyy" style="width: 80px;" type="number" min="1890" max="9999" placeholder="YYYY"
-            />
+            <input class="w3-input w3-border" ng-model="yyyy" style="width: 80px;" type="number" min="1890" max="9999"
+              placeholder="YYYY" />
           </td>
         </tr>
       </table>
@@ -57,7 +59,8 @@
             <strong>Add Customer . . .
             </strong>
           </h4>
-          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;" ng-click="clickNewCustomer()">
+          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;"
+            ng-click="clickNewCustomer()">
             <i class="fa fa-refresh" style="font-size:24px"></i>
           </button>
         </div>
@@ -68,15 +71,16 @@
           <table width='100%'>
             <tr>
               <td width="100%">
-                <input class="w3-input w3-border searchbox-input   " placeholder="Search Customer..." ng-change="chnageCustomerSearchData()"
-                  ng-model="CustomerFilter.searchInput" type="text" />
+                <input class="w3-input w3-border searchbox-input   " placeholder="Search Customer..."
+                  ng-change="chnageCustomerSearchData()" ng-model="CustomerFilter.searchInput" type="text" />
 
               </td>
 
 
               <td ng-if="isSearchingCustomer">
                 <strong>
-                  <button class="w3-margin-left w3-button w3-grey" ng-disabled="CustomerFilter.offset<=0" ng-click="clickPrevCustomer()">&lt;</button>
+                  <button class="w3-margin-left w3-button w3-grey" ng-disabled="CustomerFilter.offset<=0"
+                    ng-click="clickPrevCustomer()">&lt;</button>
                 </strong>
               </td>
               <td ng-if="isSearchingCustomer">
@@ -86,7 +90,8 @@
               </td>
               <td ng-if="isSearchingCustomer">
                 <strong>
-                  <button class="w3-button w3-grey " ng-disabled='!CustomerFilter.isNext' ng-click="clickNextCustomer()">&gt;</button>
+                  <button class="w3-button w3-grey " ng-disabled='!CustomerFilter.isNext'
+                    ng-click="clickNextCustomer()">&gt;</button>
                 </strong>
               </td>
             </tr>
@@ -99,7 +104,7 @@
           <div class="w3-col l3 w3-center" ng-repeat="customerRow in customer">
             <div class="block-serach-result" style="height: 66px;" ng-click="selectCustomerIntoSearchData(customerRow)">
               <span>{{customerRow.name}}</span>
-              <br/>
+              <br />
               <span>
                 <small>{{customerRow.phno}}</small>
               </span>
@@ -111,41 +116,62 @@
         <!-- customer form -->
         <div>
 
-          <div class="w3-col ">
-            <label class="w3-text-gray">
-              <b>Customer Name</b>
-              <span class="w3-text-red" style="font-size: 30px">*</span>
-            </label>
-            <input class="w3-input w3-border" ng-disabled=" newCustomer.customer" ng-model="newCustomer.name" ng-focus="invoice_form.cname.$invalid"
-              name="cname" type="text" pattern="[a-zA-Z\s]+" title="Enter only Text" />
-            <span ng-show="invoice_form.cname.$invalid">
-              <input-error>Please enter valid name also it's required.</input-error>
-            </span>
+          <div class="w3-col">
+            <table width="100%;" style="padding-top:15px">
+              <tr>
+                <td width="50%">
+                  <label class="w3-text-gray">
+                    <b>Customer Name</b>
+                    <span class="w3-text-red" style="font-size: 30px">*</span>
+                  </label>
+                  <input class="w3-input w3-border" ng-disabled="newCustomer.customer" ng-model="newCustomer.name"
+                    ng-focus="invoice_form.cname.$invalid" name="cname" type="text" pattern="[a-zA-Z\s]+"
+                    title="Enter only Text" />
+                  <span ng-show="invoice_form.cname.$invalid">
+                    <input-error>Please enter valid name also it's required.</input-error>
+                  </span>
+                </td>
+                <td width="50%">
+                  <label class="w3-text-gray">
+                    <b>Customer Email</b>
+                    <span class="w3-text-red" style="font-size: 30px">&nbsp;</span>
+                  </label>
+                  <input class="w3-input w3-border" focus-me="focusFrist" ng-model="newCustomer.email" name="email"
+                    type="email" />
+                  <span ng-show="customer_form.email.$invalid">
+                    <input-error>Please enter valid email</input-error>
+                  </span>
+                </td>
+              </tr>
+
+            </table>
+
             <p>
-              <table width="100%">
-                <tr>
-                  <td width="40%" ng-show="settings.phno">
-                    <label class="w3-text-gray">
-                      <b>Customer Mobile Number</b>
-                    </label>
-                    <input class="w3-input w3-border" ng-disabled=" newCustomer.customer" ng-model="newCustomer.phno" pattern="[0-9]{10}" type="text"
-                      name="phno" />
-                    <span ng-show="invoice_form.phno.$invalid">
-                      <input-error>please enter valid phone number</input-error>
-                    </span>
-                  </td>
-                  <td ng-show="settings.gstin">
-                    <label class="w3-text-gray">
-                      <b>GSTIN</b>
-                    </label>
-                    <input class="w3-input w3-border" ng-disabled=" newCustomer.customer" ng-model="newCustomer.gstin" type="text" style="text-transform:uppercase"
-                      maxlength="15" pattern="[a-zA-Z0-9]{15}" name="gstin" />
-                    <span ng-show="invoice_form.gstin.$invalid">
-                      <input-error>Please enter valid gstin number.</input-error>
-                    </span>
-                  </td>
-                </tr>
-              </table>
+            <table width="100%">
+              <tr>
+                <td width="40%" ng-show="settings.phno">
+                  <label class="w3-text-gray">
+                    <b>Customer Mobile Number</b>
+                  </label>
+                  <input class="w3-input w3-border" ng-disabled="newCustomer.customer" ng-model="newCustomer.phno"
+                    pattern="[0-9]{10}" type="text" name="phno" />
+                  <span ng-show="invoice_form.phno.$invalid">
+                    <input-error>please enter valid phone number</input-error>
+                  </span>
+                </td>
+                <td ng-show="settings.gstin">
+                  <label class="w3-text-gray">
+                    <b>GSTIN</b>
+                  </label>
+                  <input class="w3-input w3-border" ng-disabled="newCustomer.customer" ng-model="newCustomer.gstin"
+                    type="text" style="text-transform:uppercase" maxlength="15" pattern="[a-zA-Z0-9]{15}"
+                    name="gstin" />
+                  <span ng-show="invoice_form.gstin.$invalid">
+                    <input-error>Please enter valid gstin number.</input-error>
+                  </span>
+                </td>
+              </tr>
+            </table>
             </p>
           </div>
           <!-- billing addr -->
@@ -159,28 +185,30 @@
                     <b>Billing Address</b>
 
                   </label>
-                  <input class="w3-input w3-border" placeholder="Area" ng-model="newCustomer.barea" type="text" name="cbarea" id="cbarea">
+                  <input class="w3-input w3-border" placeholder="Area" ng-model="newCustomer.barea" type="text"
+                    name="cbarea" id="cbarea">
                 </td>
 
                 <td>
-                  <br/>
-                  <input class="w3-input w3-border" placeholder="City" ng-model="newCustomer.bcity" type="text" name="cbcity" id="cbcity" pattern="[a-zA-Z]+">
+                  <br />
+                  <input class="w3-input w3-border" placeholder="City" ng-model="newCustomer.bcity" type="text"
+                    name="cbcity" id="cbcity" pattern="[a-zA-Z]+">
                   <span ng-show="invoice_form.cbcity.$invalid">
                     <input-error> must have only character.</input-error>
                   </span>
                 </td>
                 <td>
-                  <br/>
-                  <input class="w3-input w3-border" placeholder="State" ng-model="newCustomer.bstate" type="text" name="cbstate" id="cbstate"
-                    pattern="[a-zA-Z]+">
+                  <br />
+                  <input class="w3-input w3-border" placeholder="State" ng-model="newCustomer.bstate" type="text"
+                    name="cbstate" id="cbstate" pattern="[a-zA-Z]+">
                   <span ng-show="invoice_form.cbstate.$invalid">
                     <input-error>must have only character.</input-error>
                   </span>
                 </td>
                 <td>
-                  <br/>
-                  <input class="w3-input w3-border" placeholder="Pincode" ng-model="newCustomer.bpincode" type="number" name="cbpincode" id="cbpincode"
-                    pattern="[0-9]{6}">
+                  <br />
+                  <input class="w3-input w3-border" placeholder="Pincode" ng-model="newCustomer.bpincode" type="number"
+                    name="cbpincode" id="cbpincode" pattern="[0-9]{6}">
                   <span ng-show="invoice_form.cbpincode.$invalid">
                     <input-error>must have 6 digits.</input-error>
                   </span>
@@ -203,39 +231,39 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <span ng-show="settings.dadr && settings.badr">
 
-                      <input type="checkbox" ng-change="clickSameBDAddr()" ng-model="newCustomer.isb_d" id="checkbox-16-1" class="regular-checkbox"
-                      />
+                      <input type="checkbox" ng-change="clickSameBDAddr()" ng-model="newCustomer.isb_d"
+                        id="checkbox-16-1" class="regular-checkbox" />
                       <label for="checkbox-16-1"></label>
                       <small> Same As Billing Address</small>
                     </span>
 
                   </label>
-                  <input class="w3-input w3-border" placeholder="Area" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.darea"
-                    name="cdarea" id="cdarea" id="cdarea">
+                  <input class="w3-input w3-border" placeholder="Area" ng-disabled="newCustomer.isb_d" type="text"
+                    ng-model="newCustomer.darea" name="cdarea" id="cdarea" id="cdarea">
 
                 </td>
                 <td>
-                  <br/>
-                  <input class="w3-input w3-border" placeholder="City" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.dcity"
-                    name="cdcity" id="cdcity" pattern="[a-zA-Z]+">
+                  <br />
+                  <input class="w3-input w3-border" placeholder="City" ng-disabled="newCustomer.isb_d" type="text"
+                    ng-model="newCustomer.dcity" name="cdcity" id="cdcity" pattern="[a-zA-Z]+">
                   <span ng-show="invoice_form.cdcity.$invalid">
                     <input-error>must have only character.</input-error>
                   </span>
                 </td>
                 <td>
-                  <br/>
+                  <br />
 
-                  <input class="w3-input w3-border" placeholder="State" ng-disabled="newCustomer.isb_d" type="text" ng-model="newCustomer.dstate"
-                    name="cdstate" id="cdstate" pattern="[a-zA-Z]+">
+                  <input class="w3-input w3-border" placeholder="State" ng-disabled="newCustomer.isb_d" type="text"
+                    ng-model="newCustomer.dstate" name="cdstate" id="cdstate" pattern="[a-zA-Z]+">
                   <span ng-show="invoice_form.cdstate.$invalid">
                     <input-error>must have only character.</input-error>
                   </span>
                 </td>
                 <td>
-                  <br/>
+                  <br />
 
-                  <input class="w3-input w3-border" placeholder="Pincode" ng-disabled="newCustomer.isb_d" type="number" ng-model="newCustomer.dpincode"
-                    name="cdpincode" id="cdpincode" pattern="[0-9]{6}">
+                  <input class="w3-input w3-border" placeholder="Pincode" ng-disabled="newCustomer.isb_d" type="number"
+                    ng-model="newCustomer.dpincode" name="cdpincode" id="cdpincode" pattern="[0-9]{6}">
                   <span ng-show="invoice_form.cdpincode.$invalid">
                     <input-error>must have 6 digits.</input-error>
                   </span>
@@ -257,7 +285,8 @@
             <strong>Add Products . . .
             </strong>
           </h4>
-          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;" ng-click="clickClearProducts()">
+          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;"
+            ng-click="clickClearProducts()">
             <i class="fa fa-refresh" style="font-size:24px"></i>
           </button>
         </div>
@@ -267,7 +296,8 @@
           <table width="100%">
             <tr>
               <td>
-                <select ng-model="ProductFilter.catagory" ng-change="changeProductFilterData()" ng-options="x for x in productCategory">
+                <select ng-model="ProductFilter.catagory" ng-change="changeProductFilterData()"
+                  ng-options="x for x in productCategory">
                   <option value="">Select Category</option>
                 </select>
               </td>
@@ -275,13 +305,14 @@
                 <span class="w3-margin-left w3-margin-right w3-center"> And </span>
               </td>
               <td width="100%">
-                <input class="w3-input w3-border searchbox-input " placeholder="Search Products..." ng-change="changeProductFilterData()"
-                  ng-model="ProductFilter.searchInput" type="text" />
+                <input class="w3-input w3-border searchbox-input " placeholder="Search Products..."
+                  ng-change="changeProductFilterData()" ng-model="ProductFilter.searchInput" type="text" />
               </td>
 
               <td ng-if="isSearchingProduct">
                 <strong>
-                  <button class="w3-margin-left w3-button w3-grey" ng-disabled="ProductFilter.offset<=0" ng-click="clickPrevProduct()">&lt;</button>
+                  <button class="w3-margin-left w3-button w3-grey" ng-disabled="ProductFilter.offset<=0"
+                    ng-click="clickPrevProduct()">&lt;</button>
                 </strong>
               </td>
               <td ng-if="isSearchingProduct">
@@ -291,7 +322,8 @@
               </td>
               <td ng-if="isSearchingProduct">
                 <strong>
-                  <button class="w3-button w3-grey " ng-disabled='!ProductFilter.isNext' ng-click="clickNextProduct()">&gt;</button>
+                  <button class="w3-button w3-grey " ng-disabled='!ProductFilter.isNext'
+                    ng-click="clickNextProduct()">&gt;</button>
                 </strong>
               </td>
             </tr>
@@ -304,9 +336,10 @@
           <div class="w3-col l3 w3-center" ng-repeat="productRow in products ">
             <div class="block-serach-result" ng-click="selectProducIntoSearchData(productRow)">
               <span>{{productRow.name}}</span>
-              <br/>
+              <br />
               <span>
-                <small ng-class="{ 'product-warnings': productRow.qty<=0 }">Rs. {{productRow.price}}/- &nbsp;&nbsp; qty :
+                <small ng-class="{ 'product-warnings': productRow.qty<=0 }">Rs. {{productRow.price}}/- &nbsp;&nbsp; qty
+                  :
                   <span>{{productRow.qty}} </span> </small>
               </span>
             </div>
@@ -349,33 +382,33 @@
             <tr ng-repeat="row in invoceProduct track by $index">
               <td width='50px'>{{$index+1}}</td>
               <td>
-                <input type="text" ng-disabled="invoceProduct[$index].products" name="pname{{$index}}" ng-model="invoceProduct[$index].name"
-                  required>
-                <br/>
+                <input type="text" ng-disabled="invoceProduct[$index].products" name="pname{{$index}}"
+                  ng-model="invoceProduct[$index].name" required>
+                <br />
                 <span class=" w3-margin-left" ng-show="invoice_form.pname{{$index}}.$invalid">
                   <input-error>name is required.</input-error>
                 </span>
               </td>
               <td ng-show="settings.hsn">
-                <input type="text" ng-disabled="invoceProduct[$index].products" ng-model="invoceProduct[$index].hsn" pattern="[0-9]{6}" style="width: 80px;"
-                  name="hsn{{$index}}" />
-                <br/>
+                <input type="text" ng-disabled="invoceProduct[$index].products" ng-model="invoceProduct[$index].hsn"
+                  pattern="[0-9]{6}" style="width: 80px;" name="hsn{{$index}}" />
+                <br />
                 <span class="  w3-margin-left" ng-show="invoice_form.hsn{{$index}}.$invalid">
                   <input-error> Please enter valid hsn number.</input-error>
                 </span>
               </td>
               <td ng-show="settings.qty">
-                <input type="number" ng-model="invoceProduct[$index].qty" ng-change="changeInvoceProductsData($index)" style="width: 60px;"
-                  required min="1" name="qty{{$index}}" />
-                <br/>
+                <input type="number" ng-model="invoceProduct[$index].qty" ng-change="changeInvoceProductsData($index)"
+                  style="width: 60px;" required min="1" name="qty{{$index}}" />
+                <br />
                 <span class="  w3-margin-left" ng-show="invoice_form.qty{{$index}}.$invalid">
                   <input-error>qty is required.</input-error>
                 </span>
               </td>
               <td>
-                <input type="number" ng-model="invoceProduct[$index].price" ng-change="changeInvoceProductsData($index)" style="width: 90px;"
-                  required min="0" name="price{{$index}}" />
-                <br/>
+                <input type="number" ng-model="invoceProduct[$index].price" ng-change="changeInvoceProductsData($index)"
+                  style="width: 90px;" required min="0" name="price{{$index}}" />
+                <br />
                 <span class=" w3-margin-left" ng-show="invoice_form.price{{$index}}.$invalid">
                   <input-error>price is required.</input-error>
                 </span>
@@ -405,7 +438,8 @@
 
               <td width='50px'></td>
               <td>
-                <input type="button" class="w3-left w3-margin-left" value="Create ..." ng-click="clickCreateProduct()" style="width: 100">
+                <input type="button" class="w3-left w3-margin-left" value="Create ..." ng-click="clickCreateProduct()"
+                  style="width: 100">
 
               </td>
               <td ng-show="settings.hsn"></td>
@@ -433,40 +467,40 @@
         <div class="w3-col w3-margin-top w3-margin-bottom">
           <table class="w3-right">
 
-            <tr ng-hide="settings.gstInProductWise " >
+            <tr ng-hide="settings.gstInProductWise ">
 
               <td>
                 <select ng-model="gsttype" style="width: 90px;    height: 37px;">
                   <option>GST</option>
                   <option>IGST</option>
-                </select> : 
+                </select> :
               </td>
-              <td >
-               
+              <td>
+
                 <!-- <input class="w3-input w3-border" type="text" ng-change="changeGst()" ng-model="gst" /> -->
-                <select ng-model="gst"  ng-change="changeGst()" style="width: 70px;    height: 37px;">
+                <select ng-model="gst" ng-change="changeGst()" style="width: 70px;    height: 37px;">
                   <option value="0">0%</option>
                   <option value="5">5%</option>
                   <option value="12">12%</option>
                   <option value="18">18%</option>
                   <option value="28">28%</option>
                 </select>
-                <br/>
+                <br />
 
               </td>
             </tr>
             <tr>
 
-             
-              <td >
+
+              <td>
 
                 <label class="w3-text-gray">
                   <b>Discount (%) : </b>
                 </label>
-                </td>
-                <td>
-                <input  name="discount" type="number" min="0" style="min-width: 200px;height: 37px;" max="100" ng-change="changeDiscount()" ng-model="invoceProductDescout"
-                />
+              </td>
+              <td>
+                <input name="discount" type="number" min="0" style="min-width: 200px;height: 37px;" max="100"
+                  ng-change="changeDiscount()" ng-model="invoceProductDescout" />
                 <span ng-show="invoice_form.discount.$invalid">
                   <input-error>Add Vaild Discount.</input-error>
                 </span>
@@ -477,14 +511,14 @@
             <tr>
 
               <td>
-                  <label class="w3-text-gray">
-                      <b>Total Amount : &nbsp;&nbsp;&nbsp;&nbsp;</b>
-                    </label>
+                <label class="w3-text-gray">
+                  <b>Total Amount : &nbsp;&nbsp;&nbsp;&nbsp;</b>
+                </label>
               </td>
 
               <td>
-              
-                <input  ng-model="invoceProductTotalWithDiscout" style="max-width: 200px;height: 37px;" type="number" />
+
+                <input ng-model="invoceProductTotalWithDiscout" style="max-width: 200px;height: 37px;" type="number" />
               </td>
             </tr>
 
@@ -505,7 +539,8 @@
             <strong> Add Other Details . . .
             </strong>
           </h4>
-          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;" ng-click="clickClearOtherDetail()">
+          <button class="w3-button w3-right w3-light-gray w3-circle" style="margin-top: -47px;"
+            ng-click="clickClearOtherDetail()">
             <i class="fa fa-refresh" style="font-size:24px"></i>
           </button>
         </div>
@@ -514,35 +549,36 @@
 
           <div class="w3-col s12 m12">
             <p>
-              <table width="100%">
-                <tr ng-show="settings.tprchage">
-                  <td>
-                    <label class="w3-text-gray">
-                      <b>Tax Is Payable On Reverse Charge :&nbsp; </b>
-                      <input type="checkbox" id="checkbox-1-2" ng-model="tprchage" class="regular-checkbox" />
-                      <label for="checkbox-1-2"></label>
-                    </label>
-                  </td>
-                </tr>
-                <tr ng-show="settings.paymethod">
-                  <td width="15%">
+            <table width="100%">
+              <tr ng-show="settings.tprchage">
+                <td>
+                  <label class="w3-text-gray">
+                    <b>Tax Is Payable On Reverse Charge :&nbsp; </b>
+                    <input type="checkbox" id="checkbox-1-2" ng-model="tprchage" class="regular-checkbox" />
+                    <label for="checkbox-1-2"></label>
+                  </label>
+                </td>
+              </tr>
+              <tr ng-show="settings.paymethod">
+                <td width="15%">
 
-                    <select ng-model="paymentMethrd" style="padding: 5px; margin-bottom: 5px">
-                      <option value="">Payment Method</option>
-                      <option value="Cash">Cash</option>
-                      <option value="Bank">Bank</option>
-                      <option value="Card">Card</option>
-                    </select>
+                  <select ng-model="paymentMethrd" style="padding: 5px; margin-bottom: 5px">
+                    <option value="">Payment Method</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Bank">Bank</option>
+                    <option value="Card">Card</option>
+                  </select>
 
-                  </td>
-                </tr>
+                </td>
+              </tr>
 
-                <tr ng-show="settings.discription">
-                  <td>
-                    <textarea cols="60" placeholder="Discription ..." ng-model="desciption" rows="5" name="desc" maxlength="200"></textarea>
-                  </td>
-                </tr>
-              </table>
+              <tr ng-show="settings.discription">
+                <td>
+                  <textarea cols="60" placeholder="Discription ..." ng-model="desciption" rows="5" name="desc"
+                    maxlength="200"></textarea>
+                </td>
+              </tr>
+            </table>
             </p>
           </div>
         </div>
@@ -563,7 +599,8 @@
               <error></error>
             </p>
             <p>
-              <button class="w3-button w3-custom-teal " ng-click="saveInvoce()" ng-disabled="invoice_form.$invalid" type="submit">SAVE
+              <button class="w3-button w3-custom-teal " ng-click="saveInvoce()" ng-disabled="invoice_form.$invalid"
+                type="submit">SAVE
                 & PRINT</button>
               <button class="w3-button w3-grey w3-margin-left" ng-click="clickToCancel()">CANCEL</button>
             </p>
@@ -606,8 +643,8 @@
           <strong>Customer Form </strong>
         </h3>
         <div class="w3-right w3-margin-right" style="margin-top: -44px;">
-          <input type="checkbox" ng-change="changeSettings()" ng-model="settings.fullcustomer" id="checkbox-0-1" class="regular-checkbox"
-          />
+          <input type="checkbox" ng-change="changeSettings()" ng-model="settings.fullcustomer" id="checkbox-0-1"
+            class="regular-checkbox" />
           <label for="checkbox-0-1"></label>
         </div>
       </header>
@@ -619,8 +656,8 @@
           <div class="w3-panel ">
             <span class="settingTag w3-left" style="padding: 8px;">Mobile Number</span>
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.phno" id="checkbox-14-2" class="regular-checkbox"
-              />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.phno" id="checkbox-14-2"
+                class="regular-checkbox" />
               <label for="checkbox-14-2"></label>
             </div>
           </div>
@@ -630,8 +667,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">GSTIN</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gstin" id="checkbox-1-3" class="regular-checkbox"
-              />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gstin" id="checkbox-1-3"
+                class="regular-checkbox" />
               <label for="checkbox-1-3"></label>
             </div>
           </div>
@@ -641,7 +678,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Billing Address</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.badr" id="checkbox-1-4" class="regular-checkbox" />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.badr" id="checkbox-1-4"
+                class="regular-checkbox" />
               <label for="checkbox-1-4"></label>
             </div>
           </div>
@@ -651,7 +689,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Delivery Address</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.dadr" id="checkbox-1-5" class="regular-checkbox" />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.dadr" id="checkbox-1-5"
+                class="regular-checkbox" />
               <label for="checkbox-1-5"></label>
             </div>
           </div>
@@ -678,7 +717,8 @@
           <div class="w3-panel ">
             <span class="settingTag w3-left" style="padding: 8px;">HSN</span>
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.hsn" id="checkbox-2-2" class="regular-checkbox" />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.hsn" id="checkbox-2-2"
+                class="regular-checkbox" />
               <label for="checkbox-2-2"></label>
             </div>
           </div>
@@ -689,7 +729,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Qty </span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.qty" id="checkbox-2-7" class="regular-checkbox" />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.qty" id="checkbox-2-7"
+                class="regular-checkbox" />
               <label for="checkbox-2-7"></label>
             </div>
           </div>
@@ -700,16 +741,16 @@
 
             <span>
               <label>
-                <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="false" ng-model="settings.gstInProductWise"
-                />
+                <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="false"
+                  ng-model="settings.gstInProductWise" />
                 <span class="settingTag " style="padding: 8px;">GST (apply in total invoice price) </span>
               </label>
               <span style="padding-left: 15px;padding-right: 15px">OR</span>
             </span>
             <span>
               <label>
-                <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="true" ng-model="settings.gstInProductWise"
-                />
+                <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="true"
+                  ng-model="settings.gstInProductWise" />
                 <span class="settingTag " style="padding: 8px;">GST (apply in products wise) </span>
               </label>
             </span>
@@ -730,8 +771,8 @@
           <strong>Other </strong>
         </h3>
         <div class="w3-right w3-margin-right" style=" margin-top: -44px;">
-          <input type="checkbox" ng-change="changeSettings()" ng-model="settings.fullother" id="checkbox-0-0" class="regular-checkbox"
-          />
+          <input type="checkbox" ng-change="changeSettings()" ng-model="settings.fullother" id="checkbox-0-0"
+            class="regular-checkbox" />
           <label for="checkbox-0-0"></label>
         </div>
       </header>
@@ -743,8 +784,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Discription</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.discription" id="checkbox-3-1" class="regular-checkbox"
-              />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.discription" id="checkbox-3-1"
+                class="regular-checkbox" />
               <label for="checkbox-3-1"></label>
             </div>
           </div>
@@ -754,8 +795,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Tax in Reverse Charge</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.tprchage" id="checkbox-3-2" class="regular-checkbox"
-              />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.tprchage" id="checkbox-3-2"
+                class="regular-checkbox" />
               <label for="checkbox-3-2"></label>
             </div>
           </div>
@@ -765,8 +806,8 @@
             <span class="settingTag w3-left" style="padding: 8px;">Payment Method</span>
 
             <div class="w3-right">
-              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.paymethod" id="checkbox-3-3" class="regular-checkbox"
-              />
+              <input type="checkbox" ng-change="changeSettings()" ng-model="settings.paymethod" id="checkbox-3-3"
+                class="regular-checkbox" />
               <label for="checkbox-3-3"></label>
             </div>
           </div>
