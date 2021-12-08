@@ -1,85 +1,82 @@
-var ProductModule = function () {
+var ProductModule = (function () {
+  return {
+    getProducts: (filter, callback) => {
+      knex
+        .select()
+        .from("products")
+        .orderBy("name", "asc")
+        .where((builder) => {
+          builder.where("name", "like", "%" + filter.searchInput + "%");
+          if (filter.catagory != null) {
+            // console.log(filter.catagory);
+            builder.andWhere("category", filter.catagory);
+          }
+        })
+        .limit(filter.limit)
+        .offset(filter.offset)
+        .then((result) => {
+          callback(result);
+        });
+    },
 
+    deleteProduct: (id, callback) => {
+      knex("products")
+        .where("id", id)
+        .del()
+        .then((result) => {
+          callback(result);
+        });
+    },
 
-    return {
+    insertProduct: (product, callback) => {
+      knex("products")
+        .insert(product)
+        .then((result) => {
+          callback(result);
+        })
+        .catch(function (e) {
+          if (e.message.indexOf("UNIQUE") >= 0) {
+            callback({
+              error:
+                "Items Already Exists. Items Name And Barcode Must Unique.",
+            });
+          }
+        });
+    },
 
-        getProducts: (filter, callback) => {
+    insertBatchProducts: (data, callback) => {
+      knex("products")
+        .insert(data)
+        .then((res) => {
+          callback(res);
+        })
+        .catch((e) => {
+          callback({
+            error: "CSV file is not Valid or Duplicate Content Found",
+          });
+        });
+    },
 
-           
-            knex.select().from('products').orderBy('name', 'asc').where((builder) => {
-                builder.where('name', 'like', '%' + filter.searchInput + '%')
-                if (filter.catagory != null) {
-                    console.log(filter.catagory)
-                    builder.andWhere('category', filter.catagory)
-                }
-            }).limit(filter.limit).offset(filter.offset).then((result) => {
-                callback(result);
-
-            })
-
-
-        },
-
-        deleteProduct: (id, callback) => {
-            knex('products')
-                .where('id', id)
-                .del().then((result) => {
-                    callback(result)
-                })
-        },
-
-        insertProduct: (product, callback) => {
-            knex('products').insert(product)
-                .then((result) => {
-                    callback(result)
-                }).catch(function (e) {
-                    if (e.message.indexOf("UNIQUE") >= 0) {
-                        callback({'error':"Items Already Exists. Items Name And Barcode Must Unique."});
-                    }
-                });
-        },
-
-        updateProduct: (product, id, callback) => {
-            knex('products')
-                .update(product).where('id', id).then((result) => {
-                    callback(result)
-                }).catch(function (e) {
-                    if (e.message.indexOf("UNIQUE") >= 0) {
-                        callback({'error':"Items Already Exists. Items Name And Barcode Must Unique."});
-                    }
-                });
-        }
-
-
-    }
-}();
+    updateProduct: (product, id, callback) => {
+      knex("products")
+        .update(product)
+        .where("id", id)
+        .then((result) => {
+          callback(result);
+        })
+        .catch(function (e) {
+          if (e.message.indexOf("UNIQUE") >= 0) {
+            callback({
+              error:
+                "Items Already Exists. Items Name And Barcode Must Unique.",
+            });
+          }
+        });
+    },
+  };
+})();
 
 module.exports = ProductModule;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // var MyObject = function() {
 
@@ -91,12 +88,12 @@ module.exports = ProductModule;
 
 //     var function1 = function(param1, callback) {
 //         ...
-//         callback(err, results);    
+//         callback(err, results);
 //     }
 
 //     var function2 = function(param1, param2, callback) {
 //         ...
-//         callback(err, results);    
+//         callback(err, results);
 //     }
 
 //     return {

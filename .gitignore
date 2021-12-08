@@ -2,3 +2,4 @@ node_modules
 
 store.sqlite
 /dist
+src/assets/invoices
