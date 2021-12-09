@@ -19,10 +19,11 @@
 
           <input type="file" ng-model="sharePdfFile" style="display: none;"
             onchange="angular.element(this).scope().shareOnSMS()" id="sharePdfFile" accept=".pdf" />
-          <label for="sharePdfFile" class="w3-button w3-light-grey share-icons share-whatsapp-btnl">Send SMS</label>
+          <label ng-show="!1" for="sharePdfFile" class="w3-button w3-light-grey share-icons share-whatsapp-btnl">Send
+            SMS</label>
         </td>
 
-        <td>
+        <td ng-show="!1">
           <select class="tempalte-select" style="width: 250px" ng-model="template"
             ng-options="t.name for t in templates"></select>
         </td>
@@ -38,5 +39,5 @@
     </div>
   </div>
 
-  <div class="print-view-bottom" ng-include="template.url"></div>
+  <div class="print-view-bottom w3-white" ng-include="template.url"></div>
 </div>

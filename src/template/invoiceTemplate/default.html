@@ -4,14 +4,15 @@
 
         <!-- <img class="w3-image " src="./assets/spyhunterLogo.png" style="max-width: 250px;" /> -->
         <b><big> {{storeInfo.storename}}</big>
-            <span ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' "><br/>
+            <span
+                ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' "><br />
                 <small>
                     <span ng-show="storeInfo.area!=''">{{storeInfo.area}}</span>
                     <span ng-show="storeInfo.city!=''">, {{storeInfo.city}}</span>
                     <span ng-show="storeInfo.state!=''"> ,{{storeInfo.state}}</span>
                     <span ng-show="storeInfo.pincode!=''"> - {{storeInfo.pincode}}</span>
 
-                    <span ng-show="storeInfo.gstin!='' || storeInfo.phno!=''"><br/></span>
+                    <span ng-show="storeInfo.gstin!='' || storeInfo.phno!=''"><br /></span>
                     <span ng-show="storeInfo.gstin!='' "> GSTIN :- {{storeInfo.gstin}}</span>
                     <span ng-show="storeInfo.phno!=''"> &nbsp;&nbsp;MO :- +91 {{storeInfo.phno}}</span>
                 </small>
@@ -47,36 +48,43 @@
 
         <div>
             <span ng-show="invoiceData.invoice.name!=''">
-                <b>&nbsp;&nbsp;&nbsp;Customer Name :-</b> {{invoiceData.invoice.name}}
-
+                <b>&nbsp;&nbsp;&nbsp;{{invoiceData.invoice.name}}</b>
             </span>
 
             <span ng-show="invoiceData.invoice.phno!='' && invoiceData.invoice.phno!=null">
-                <b><br/>&nbsp;&nbsp;&nbsp;Customer Mobile Number :- </b> +91 {{invoiceData.invoice.phno}} &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <b><br />&nbsp;&nbsp;&nbsp;+91 {{invoiceData.invoice.phno}} </b>
+                &nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span ng-show="invoiceData.invoice.email!='' && invoiceData.invoice.email!=null">
+                <b><br />&nbsp;&nbsp;&nbsp;{{invoiceData.invoice.email}} </b>
+                &nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span ng-show="invoiceData.invoice.gstin!=''">
                 <b>&nbsp;&nbsp;&nbsp;Customer GSTIN :-</b> {{invoiceData.invoice.gstin}}
 
             </span>
         </div>
 
-        <div class=" " style="width: 47%;display: inline-block;" ng-show="invoiceData.invoice.barea || invoiceData.invoice.bcity || invoiceData.invoice.bstate || invoiceData.invoice.bpincode">
+        <div class=" " style="width: 47%;display: inline-block;"
+            ng-show="invoiceData.invoice.barea || invoiceData.invoice.bcity || invoiceData.invoice.bstate || invoiceData.invoice.bpincode">
             <div class="w3-custom-gray w3-padding w3-margin-top">
-                <b>Billing Address</b>
+                <b>Billing To</b>
             </div>
             <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}} {{invoiceData.invoice.bpincode}}
+                {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}}
+                {{invoiceData.invoice.bpincode}}
 
             </div>
         </div>
 
         <div class="   " style="width: 2%;display: inline-block;"></div>
 
-        <div class="  w3-right" style="width: 48%;display: inline-block;" ng-show="invoiceData.invoice.darea || invoiceData.invoice.dcity || invoiceData.invoice.dstate || invoiceData.invoice.dpincode">
+        <div class="  w3-right" style="width: 48%;display: inline-block;"
+            ng-show="invoiceData.invoice.darea || invoiceData.invoice.dcity || invoiceData.invoice.dstate || invoiceData.invoice.dpincode">
             <div class="w3-custom-gray w3-padding w3-margin-top">
-                <b>Delivery Address</b>
+                <b>Delivery To</b>
             </div>
             <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                {{invoiceData.invoice.darea}}, {{invoiceData.invoice.dcity}}, {{invoiceData.invoice.dstate}} {{invoiceData.invoice.dpincode}}
+                {{invoiceData.invoice.darea}}, {{invoiceData.invoice.dcity}}, {{invoiceData.invoice.dstate}}
+                {{invoiceData.invoice.dpincode}}
 
             </div>
         </div>
@@ -119,47 +127,56 @@
         <!-- finl price -->
         <div class=" font-15 " style="margin-top: 5px">
 
-            
-                <!-- <div class="w3-right w3-margin-left"> -->
-                    <table class="font-15 w3-right w3-custom-gray-text">
-                        <tr ng-hide="invoiceData.invoice.gst==0">
-                                <td><b>{{invoiceData.invoice.gsttype}} (%) :-</b></td>
-                                <td class="w3-right"><b> {{invoiceData.invoice.gst}} %</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>DISCOUNT (%) :-</b></td>
-                            <td class="w3-right"><b>{{invoiceData.invoice.discount}} %</b></td>
-                        </tr>
-                        <tr>
-                            <td><b>TOTAL :-</b></td>
-                            <td class="w3-right"><b> {{invoiceData.invoice.total}} /-</b> </td>
-                        </tr>
-                    </table>
-                        <!-- <b></b> <br/>
+
+            <!-- <div class="w3-right w3-margin-left"> -->
+            <table class="font-15 w3-right w3-custom-gray-text">
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
+                    <td><b>{{invoiceData.invoice.gsttype}} (%) :-</b></td>
+                    <td class="w3-right"><b> {{invoiceData.invoice.gst}} %</b></td>
+                </tr>
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                    <td><b>CGST (%) :-</b></td>
+                    <td class="w3-right"><b> {{invoiceData.invoice.gst/2}} %</b></td>
+                </tr>
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                    <td><b>SGST (%) :-</b></td>
+                    <td class="w3-right"><b> {{invoiceData.invoice.gst/2}} %</b></td>
+                </tr>
+                <tr>
+                    <td><b>DISCOUNT (%) :-</b></td>
+                    <td class="w3-right"><b>{{invoiceData.invoice.discount}} %</b></td>
+                </tr>
+                <tr>
+                    <td><b>TOTAL :-</b></td>
+                    <td class="w3-right"><b> {{invoiceData.invoice.total}} /-</b> </td>
+                </tr>
+            </table>
+            <!-- <b></b> <br/>
                     <b></b></div> -->
-                <!-- <div class="w3-right w3-margin-left"> -->
-                    <!-- ng-show="invoiceData.invoice.discount!=0">-->
-                   <!-- </div> -->
-                <!-- <div class="w3-right w3-margin-left" >
+            <!-- <div class="w3-right w3-margin-left"> -->
+            <!-- ng-show="invoiceData.invoice.discount!=0">-->
+            <!-- </div> -->
+            <!-- <div class="w3-right w3-margin-left" >
                     <b>{{invoiceData.invoice.gsttype}} (%) :-</b> {{invoiceData.invoice.gst}} %</div>
                 <br> -->
-            
-          
-            
+
+
+
 
         </div>
         <div class="w3-left">
-                <small>
-                    <b> {{invoiceData.invoice.totalInWord.toUpperCase()}} ONLY /-</b>
-                </small>
-            </div>
+            <small>
+                <b> {{invoiceData.invoice.totalInWord.toUpperCase()}} ONLY /-</b>
+            </small>
+        </div>
 
     </div>
 
 
     <!-- payment desc -->
 
-    <div class="w3-col font-15 w3-margin-top" ng-show="invoiceData.invoice.paymentMethrd!=null || invoiceData.invoice.desciption!='' ||invoiceData.invoice.tprchage ">
+    <div class="w3-col font-15 w3-margin-top"
+        ng-show="invoiceData.invoice.paymentMethrd!=null || invoiceData.invoice.desciption!='' ||invoiceData.invoice.tprchage ">
         <div class="w3-custom-gray w3-padding ">
             <b>Other Details</b>
         </div>
@@ -167,11 +184,11 @@
             <b>Payment Methord :-</b> {{invoiceData.invoice.paymentMethrd}}
 
             <span ng-show="invoiceData.invoice.tprchage">
-                <br/>
+                <br />
                 <b>Tax In Reverse Change :-</b> {{(invoiceData.invoice.tprchage)? 'Yes':'No'}}</span>
 
             <span ng-show="invoiceData.invoice.desciption!='' ">
-                <br/><b>Desciption :-</b>{{" "+invoiceData.invoice.desciption}}</span>
+                <br /><b>Desciption :-</b>{{" "+invoiceData.invoice.desciption}}</span>
 
         </div>
     </div>
@@ -185,12 +202,12 @@
         <div class="w3-custom-gray-text w3-padding">
             <small>
                 1 . Goods once sold will not be taken back.
-                <br/> 2 . Any breakage,leakage,damage,loss,expiry will not be returnable once sold.
+                <br /> 2 . Any breakage,leakage,damage,loss,expiry will not be returnable once sold.
 
                 <div class="w3-right">
                     <b>Sing.____________________</b>
                 </div>
-                </small>
+            </small>
         </div>
     </div>
 
