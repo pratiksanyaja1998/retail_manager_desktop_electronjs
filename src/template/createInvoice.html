@@ -366,13 +366,13 @@
               <th ng-show="settings.qty">Qty</th>
 
               <th>Rate</th>
-              <!-- <th  ng-show="settings.discountInProductWise">Dis.(%)</th> -->
-              <!-- <th ng-show="settings.gstInProductWise">
+              <th  ng-show="settings.discountInProductWise">Dis.(%)</th>
+              <th ng-show="settings.gstInProductWise">
                 <select ng-model="gsttype" style=" margin-top: -10px;height: 33px; padding-top: 5px;">
                   <option>GST</option>
                   <option>IGST</option>
                 </select>
-              </th> -->
+              </th>
               <th>Total</th>
 
               <th width='50px'></th>
@@ -415,7 +415,7 @@
               </td>
 
 
-              <!-- <td ng-show="settings.gstInProductWise">
+              <td ng-show="settings.gstInProductWise">
                 <select ng-model="invoceProduct[$index].gst" ng-disabled="invoceProduct[$index].products" ng-change="changeInvoceProductsData($index)"
                   style="height: 30px;padding-top: 4px;margin-top: -5px;">
                   <option value="0">0%</option>
@@ -424,7 +424,7 @@
                   <option value="18">18%</option>
                   <option value="20">20%</option>
                 </select>
-              </td> -->
+              </td>
               <td>{{row.total}}</td>
               <td width='50px' class="w3-center" ng-click="deleteInvoiceProduct($index)">
                 <i class="w3-circle w3-button fa fa-trash fa-fw"></i>
