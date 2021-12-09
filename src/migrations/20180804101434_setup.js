@@ -4,10 +4,11 @@ exports.up = function (knex, Promise) {
     { name: "version", data: "1.0" },
     { name: "insrno", data: 1 },
     { name: "insrpre", data: "SROO" },
-    { name: "mailuser", data: "user" },
-    { name: "mailpass", data: "pass" },
-    { name: "mailhost", data: "host" },
-    { name: "mailport", data: "port" },
+    { name: "invoicesmsapi", data: "XrhyK25Niw4-3amrJULQYoVTm9vgPvNfLdQvZHmgL" },
+    { name: "mailuser", data: "rohit.spyhunteritsolution@gmail.com" },
+    { name: "mailpass", data: "Trypurpose@123" },
+    { name: "mailhost", data: "smtp.gmail.com" },
+    { name: "mailport", data: "587" },
 
     {
       name: "customer",
@@ -188,7 +189,7 @@ exports.up = function (knex, Promise) {
       .then(() => {
         knex("settings")
           .insert(Settings)
-          .then(() => {});
+          .then(() => { });
       }),
 
     knex.schema
@@ -200,7 +201,7 @@ exports.up = function (knex, Promise) {
       .then(() => {
         knex("template")
           .insert(Templates)
-          .then(() => {});
+          .then(() => { });
       }),
   ]);
 };

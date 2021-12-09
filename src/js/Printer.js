@@ -142,6 +142,10 @@ PrintApp.controller("invoiceController", [
       $scope.storeInfo = data;
     });
 
+    SettingModule.getInvoiceAPIcred((data) => {
+      $scope.invoicesmskey = data;
+    });
+
     SettingModule.getEmailCred((result) => {
       $scope.mailuser = result[0].data;
       $scope.mailpass = result[1].data;
@@ -172,11 +176,11 @@ PrintApp.controller("invoiceController", [
     $scope.print = () => {
       PrintPDF(
         $scope.invoiceData.invoice.yyyy +
-          "-" +
-          $scope.invoiceData.invoice.mm +
-          "-" +
-          $scope.invoiceData.invoice.srno +
-          ".pdf"
+        "-" +
+        $scope.invoiceData.invoice.mm +
+        "-" +
+        $scope.invoiceData.invoice.srno +
+        ".pdf"
       );
     };
 
@@ -224,6 +228,39 @@ PrintApp.controller("invoiceController", [
         alert("Invoice sent to the Email address successfully");
       }
     };
+
+    console.log($scope);
+
+    $scope.shareOnSMS = async () => {
+
+      let generatedPDF =
+        $scope.invoiceData.invoice.yyyy +
+        "-" +
+        $scope.invoiceData.invoice.mm +
+        "-" +
+        $scope.invoiceData.invoice.srno +
+        ".pdf";
+      SavePDF(generatedPDF);
+
+      let formData = new FormData();
+      let fileupload = document.getElementById('sharePdfFile');
+      formData.append("file", fileupload.files[0]);
+      let reqdata = {
+        mobile_no: $scope.invoiceData.invoice.phno,
+        email: $scope.invoiceData.invoice.email,
+        srno: $scope.invoiceData.invoice.srno,
+        storeName: $scope.storeInfo.storename,
+        storeEmail: $scope.storeInfo.email,
+        storeMobile: $scope.storeInfo.phno,
+        invoicesmskey: $scope.invoicesmskey,
+      }
+      formData.append("invoice", JSON.stringify(reqdata));
+      await fetch('http://localhost/php/spyhunteritsolution/api/retail/storeInvoice.php', {
+        method: "POST",
+        body: formData
+      });
+      alert('The file has been uploaded successfully.');
+    }
   },
 ]);
 
@@ -250,10 +287,10 @@ PrintApp.controller("customerController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-          "-" +
-          $scope.filter.mm +
-          "-" +
-          "reportsCustomer.pdf"
+        "-" +
+        $scope.filter.mm +
+        "-" +
+        "reportsCustomer.pdf"
       );
     };
 
@@ -352,10 +389,10 @@ PrintApp.controller("productsController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-          "-" +
-          $scope.filter.mm +
-          "-" +
-          "reportsProducts.pdf"
+        "-" +
+        $scope.filter.mm +
+        "-" +
+        "reportsProducts.pdf"
       );
     };
 
@@ -454,10 +491,10 @@ PrintApp.controller("IncomeExpanceController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-          "-" +
-          $scope.filter.mm +
-          "-" +
-          "reportsIncomeExpance.pdf"
+        "-" +
+        $scope.filter.mm +
+        "-" +
+        "reportsIncomeExpance.pdf"
       );
     };
 

@@ -1,11 +1,9 @@
 <div class="w3-row">
-  <div
-    class="
+  <div class="
       controlTopHome
       hide-print
       w3-center w3-card w3-custom-teal w3-padding
-    "
-  >
+    ">
     <table>
       <tr>
         <td style="width: 80%">
@@ -13,28 +11,20 @@
             PRINT
           </button>
 
-          <button
-            class="w3-button w3-light-grey share-icons share-email-btn"
-            ng-click="shareOnEmail();"
-            title="Send Email"
-          >
+          <button class="w3-button w3-light-grey share-icons share-email-btn" ng-click="shareOnEmail();"
+            title="Send Email">
             Send Mail
             <i class="fa fa-spin fa-spinner" ng-hide="showMailLoader"></i>
           </button>
-          <button
-            class="w3-button w3-light-grey share-icons share-whatsapp-btn"
-          >
-            <i class="fa fa-whatsapp opacity-5"></i>
-          </button>
+
+          <input type="file" ng-model="sharePdfFile" style="display: none;"
+            onchange="angular.element(this).scope().shareOnSMS()" id="sharePdfFile" accept=".pdf" />
+          <label for="sharePdfFile" class="w3-button w3-light-grey share-icons share-whatsapp-btnl">Send SMS</label>
         </td>
 
         <td>
-          <select
-            class="tempalte-select"
-            style="width: 250px"
-            ng-model="template"
-            ng-options="t.name for t in templates"
-          ></select>
+          <select class="tempalte-select" style="width: 250px" ng-model="template"
+            ng-options="t.name for t in templates"></select>
         </td>
       </tr>
     </table>

@@ -1,7 +1,9 @@
 <div class="productblock ">
 
     <div class="w3-row" ng-hide="isEditingProductSetting">
-        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-hide="isEditingProduct" ng-click="isEditingProduct  = true">New Products&nbsp;&nbsp; <small class="w3-right"><small>(ctrl+n)</small></small></button>
+        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-hide="isEditingProduct"
+            ng-click="isEditingProduct  = true">New Products&nbsp;&nbsp; <small
+                class="w3-right"><small>(ctrl+n)</small></small></button>
         <button class="  w3-margin-bottom  setting-btn w3-right" ng-click="isEditingProductSetting = true">
             <i class="fa fa-cog fa-fw"></i>
             </a>
@@ -18,7 +20,8 @@
                 <h3 class="w3-center">
                     <strong>Product</strong>
                 </h3>
-                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px" ng-click="clickClearProduct()">
+                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px"
+                    ng-click="clickClearProduct()">
                     <i class="fa fa-refresh" style="font-size:24px"></i>
                 </button>
             </header>
@@ -26,116 +29,122 @@
             <div class="w3-container w3-padding">
                 <form name="product_form">
                     <p>
-                        <table width="100%">
-                            <tr>
-                                <td width="50%">
-                                    <label class="w3-text-gray">
-                                        <b> Name</b>
-                                        <span class="w3-text-red" style="font-size: 30px;line-height: 0;">*</span>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-disabled='newProduct.isUpdate' focus-me="focusFrist" ng-model="newProduct.name" type="text" name="pname" >
-                                    <span ng-show="product_form.pname.$invalid">
-                                        <input-error> this field is required. </input-error>
-                                    </span>
-                                </td>
-                                <td style="padding-left: 5px" ng-if="settings.barcode">
-                                    <label class="w3-text-gray">
-                                        <b>Barcode</b>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-model="newProduct.barcode" type="text" name="barcode">
-                                </td>
-                                <td style="padding-left: 5px" ng-if="settings.hsn">
-                                    <label class="w3-text-gray">
-                                        <b>HSN</b>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-model="newProduct.hsn" type="text" pattern="[0-9]{6}" name="hsn" />
-                                    <span ng-show="product_form.hsn.$invalid">
-                                        <input-error> Please enter valid hsn number.</input-error>
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+                                <label class="w3-text-gray">
+                                    <b> Name</b>
+                                    <span class="w3-text-red" style="font-size: 30px;line-height: 0;">*</span>
+                                </label>
+                                <input class="w3-input w3-border" ng-disabled='newProduct.isUpdate'
+                                    focus-me="focusFrist" ng-model="newProduct.name" type="text" name="pname">
+                                <span ng-show="product_form.pname.$invalid">
+                                    <input-error> this field is required. </input-error>
+                                </span>
+                            </td>
+                            <td style="padding-left: 5px" ng-if="settings.barcode">
+                                <label class="w3-text-gray">
+                                    <b>Barcode</b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.barcode" type="text"
+                                    name="barcode">
+                            </td>
+                            <td style="padding-left: 5px" ng-if="settings.hsn">
+                                <label class="w3-text-gray">
+                                    <b>HSN</b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.hsn" type="text"
+                                    pattern="[0-9]{6}" name="hsn" />
+                                <span ng-show="product_form.hsn.$invalid">
+                                    <input-error> Please enter valid hsn number.</input-error>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
                     </p>
                     <p>
-                        <table>
-                            <tr>
-                                <td ng-show="settings.sprice" style="max-width: 240px;">
-                                    <label class="w3-text-gray">
-                                        <b>Seling Price</b>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-model="newProduct.price" type="number" name="price" min="0" />
-                                    <span ng-show="product_form.price.$invalid">
-                                        <input-error> Please enter valid price.</input-error>
-                                    </span>
-                                </td>
-                                <td style="padding-left: 5px;max-width: 240px; " ng-show="settings.bprice">
-                                    <label class="w3-text-gray">
-                                        <b>Buying Price</b>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-model="newProduct.bprice" type="number" name="bprice" min="0" />
-                                    <span ng-show="product_form.bprice.$invalid">
-                                        <input-error> Please enter valid price.</input-error>
-                                    </span>
-                                </td>
-                                <td style="padding-left: 5px" ng-show="settings.qty">
-                                    <label class="w3-text-gray">
-                                        <b>Qty
-                                            <small>
-                                                <small>Total Stock</small>
-                                            </small>
-                                        </b>
-                                    </label>
-                                    <input class="w3-input w3-border" ng-model="newProduct.qty" type="number" min="0" name="qty" />
-                                    <span ng-show="product_form.qty.$invalid">
-                                        <input-error>Please enter valid qty.</input-error>
-                                    </span>
-                                </td>
-
-                            
-                                <td style="padding-left: 5px">
-                                    <label class="w3-text-gray">
-                                        <b>Category</b>
-                                        <span class="w3-text-red" style="font-size: 30px;line-height: 0;">*</span>
-                                    </label>
-                                    <br/>
-                                    <span class="w3-button theme-btn-error " ng-show="productCategory.length == 0" 
-                                        ng-click="clickAddNewCateOption()">Add New Category</span>
-                                    <select ng-model="newProduct.category" ng-disabled='newProduct.isUpdate' name='category' ng-hide='productCategory.length == 0' ng-options="x for x in productCategory"
-                                        >
-                                        <option value="">Select Category</option>
-                                    </select>
-
-                                    <br/>
-                                    <span ng-show="product_form.category.$invalid" >
-                                        <input-error>Please select category.</input-error>
-                                    </span>
-                                </td>
-                                <td style="padding-left: 5px" ng-show="settings.gst">
-                                    <label class="w3-text-gray">
-                                        <b>GST(%)</b>
-                                    </label>
-                                    <br/>
-                                    <select ng-model="newProduct.gst" style="min-width: 130px;">
-                                        <option value="0">0%</option>
-                                        <option value="5">5%</option>
-                                        <option value="12">12%</option>
-                                        <option value="18">18%</option>
-                                        <option value="28">28%</option>
-                                    </select>
-                                </td>
+                    <table>
+                        <tr>
+                            <td ng-show="settings.sprice" style="max-width: 240px;">
+                                <label class="w3-text-gray">
+                                    <b>Seling Price</b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.price" type="number" name="price"
+                                    min="0" />
+                                <span ng-show="product_form.price.$invalid">
+                                    <input-error> Please enter valid price.</input-error>
+                                </span>
+                            </td>
+                            <td style="padding-left: 5px;max-width: 240px; " ng-show="settings.bprice">
+                                <label class="w3-text-gray">
+                                    <b>Buying Price</b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.bprice" type="number"
+                                    name="bprice" min="0" />
+                                <span ng-show="product_form.bprice.$invalid">
+                                    <input-error> Please enter valid price.</input-error>
+                                </span>
+                            </td>
+                            <td style="padding-left: 5px" ng-show="settings.qty">
+                                <label class="w3-text-gray">
+                                    <b>Qty
+                                        <small>
+                                            <small>Total Stock</small>
+                                        </small>
+                                    </b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.qty" type="number" min="0"
+                                    name="qty" />
+                                <span ng-show="product_form.qty.$invalid">
+                                    <input-error>Please enter valid qty.</input-error>
+                                </span>
+                            </td>
 
 
-                            </tr>
-                        </table>
+                            <td style="padding-left: 5px">
+                                <label class="w3-text-gray">
+                                    <b>Category</b>
+                                    <span class="w3-text-red" style="font-size: 30px;line-height: 0;">*</span>
+                                </label>
+                                <br />
+                                <span class="w3-button theme-btn-error " ng-show="productCategory.length == 0"
+                                    ng-click="clickAddNewCateOption()">Add New Category</span>
+                                <select ng-model="newProduct.category" ng-disabled='newProduct.isUpdate' name='category'
+                                    ng-hide='productCategory.length == 0' ng-options="x for x in productCategory">
+                                    <option value="">Select Category</option>
+                                </select>
+
+                                <br />
+                                <span ng-show="product_form.category.$invalid">
+                                    <input-error>Please select category.</input-error>
+                                </span>
+                            </td>
+                            <td style="padding-left: 5px" ng-show="settings.gst">
+                                <label class="w3-text-gray">
+                                    <b>GST(%)</b>
+                                </label>
+                                <br />
+                                <select ng-model="newProduct.gst" style="min-width: 130px;">
+                                    <option value="0">0%</option>
+                                    <option value="5">5%</option>
+                                    <option value="12">12%</option>
+                                    <option value="18">18%</option>
+                                    <option value="28">28%</option>
+                                </select>
+                            </td>
+
+
+                        </tr>
+                    </table>
                     </p>
                     <p ng-if="error">
-                                    <error></error>
-                                
+                        <error></error>
+
                     </p>
 
                     <p>
-                        <button class="w3-button w3-custom-teal-btn" ng-click="clickSaveProduct()" value="SAVE" ng-disabled="product_form.$invalid"
-                            type="submit">UPDATE & SAVE</button>
+                        <button class="w3-button w3-custom-teal-btn" ng-click="clickSaveProduct()" value="SAVE"
+                            ng-disabled="product_form.$invalid" type="submit">UPDATE & SAVE</button>
                         <button class="w3-button w3-grey " ng-click="clickCancelProduct()">CANCEL</button>
                     </p>
                 </form>
@@ -149,38 +158,40 @@
                 <tr>
                     <td width="100%">
                         <input type="text" class="w3-input w3-border searchbox-input " placeholder="Search Items..."
-                        ng-change="changeFilterData()" ng-model="filter.searchInput"
-                        />
+                            ng-change="changeFilterData()" ng-model="filter.searchInput" />
                     </td>
                     <td>
-                        <select ng-model="filter.catagory" class="w3-margin-right" ng-change="changeFilterData()"  ng-options="x for x in productCategory">
+                        <select ng-model="filter.catagory" class="w3-margin-right" ng-change="changeFilterData()"
+                            ng-options="x for x in productCategory">
                             <option value="">Select Category</option>
                         </select>
                     </td>
-                    <td >
+                    <td>
                         <strong>
-                            <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
-                        </strong>   
+                            <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0"
+                                ng-click="clickPrev()">&lt;</button>
+                        </strong>
                     </td>
                     <td>
                         <strong>
                             <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
-                        </strong>   
+                        </strong>
                     </td>
                     <td>
                         <strong>
-                            <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
-                        </strong>   
+                            <button class="w3-button w3-grey " ng-disabled='!filter.isNext'
+                                ng-click="clickNext()">&gt;</button>
+                        </strong>
                     </td>
                 </tr>
             </table>
         </div>
 
         <!-- table -->
-        <div class="w3-col w3-card" >
-          
+        <div class="w3-col w3-card">
 
-            <table class="w3-table-all w3-centered w3-hoverable " >
+
+            <table class="w3-table-all w3-centered w3-hoverable ">
 
                 <tr class="w3-custom-teal">
                     <th width="100px">Id</th>
@@ -197,7 +208,10 @@
                     <td>{{productRow.name}}</td>
                     <td ng-show="settings.hsn">{{productRow.hsn}}</td>
                     <td ng-show="settings.sprice">{{productRow.price}}</td>
-                    <td ng-show="settings.qty" ng-class=" productRow.qty<=5 ? ( productRow.qty<=0 ? 'product-warnings' : 'product-alert' ) : '' "><span>{{productRow.qty}}</span> </td>
+                    <td ng-show="settings.qty"
+                        ng-class=" productRow.qty<=5 ? ( productRow.qty<=0 ? 'product-warnings' : 'product-alert' ) : '' ">
+                        <span>{{productRow.qty}}</span>
+                    </td>
                     <td class="w3-center table-btn" width="100px" ng-click="editProduct(productRow)">
                         <i class="fa fa-edit fa-fw"></i>
                     </td>
@@ -211,11 +225,11 @@
 
         <div class=" w3-col w3-center " style="margin-top: 5px">
 
-                <div ng-show="products.length<=0" class="w3-center">
-                        Products is not found. please add ...
-                </div>
-
+            <div ng-show="products.length<=0" class="w3-center">
+                Products is not found. please add ...
             </div>
+
+        </div>
 
     </div>
 
@@ -223,7 +237,8 @@
     <div class="setting-block w3-row" ng-show="isEditingProductSetting">
 
         <div class="w3-col w3-margin-bottom">
-            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingProductSetting = false">Back &nbsp;&nbsp; <small class="w3-right"><small>(Esc)</small></small></button>
+            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingProductSetting = false">Back &nbsp;&nbsp;
+                <small class="w3-right"><small>(Esc)</small></small></button>
         </div>
 
         <!-- product catagory -->
@@ -236,39 +251,41 @@
             </header>
             <div class="w3-container">
                 <p>
-                    <form name="product_category">
-                        <table width='100%'>
-                            <tr>
-                                <td width='35%'>
-                                    <input class="w3-input w3-border "  name="newcatename" placeholder="New Category Name"
-                                     ng-model="newCategory" type="text" >
-                                     <span ng-show="product_category.newcatename.$invalid">
-                                        <input-error>Please Enter Category.</input-error>
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="w3-button w3-custom-teal-btn  w3-margin-left w3-margin-right" ng-disabled="product_category.$invalid" ng-click="clickAddCategory()">SAVE</button>
-                                </td>
-                                <td ng-if='newCategoryError.flag' width='80%'>
-                                    <div class="error w3-center">{{newCategoryError.message}}</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+                <form name="product_category">
+                    <table width='100%'>
+                        <tr>
+                            <td width='35%'>
+                                <input class="w3-input w3-border " name="newcatename" placeholder="New Category Name"
+                                    ng-model="newCategory" type="text">
+                                <span ng-show="product_category.newcatename.$invalid">
+                                    <input-error>Please Enter Category.</input-error>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="w3-button w3-custom-teal-btn  w3-margin-left w3-margin-right"
+                                    ng-disabled="product_category.$invalid" ng-click="clickAddCategory()">SAVE</button>
+                            </td>
+                            <td ng-if='newCategoryError.flag' width='80%'>
+                                <div class="error w3-center">{{newCategoryError.message}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
                 </p>
                 <p>
-                    <div class="categoryHolder w3-border l3" style="max-height: 200px;
+                <div class="categoryHolder w3-border l3" style="max-height: 200px;
                     overflow-y: auto;">
 
-                        <div class="w3-col l3 w3-center" ng-repeat="x in productCategory">
-                            <div class="block-serach-result">
-                                {{x}}
+                    <div class="w3-col l3 w3-center" ng-repeat="x in productCategory">
+                        <div class="block-serach-result">
+                            {{x}}
 
-                                <i class="fa fa-trash w3-right fa-fw" style="font-size: 25px" ng-click="deleteProductCategory(x)"></i>
-                            </div>
+                            <i class="fa fa-trash w3-right fa-fw" style="font-size: 25px"
+                                ng-click="deleteProductCategory(x)"></i>
                         </div>
-
                     </div>
+
+                </div>
                 </p>
             </div>
         </div>
@@ -280,8 +297,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">Barcode</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.barcode" id="checkbox-1-1" class="regular-checkbox"
-                            />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.barcode"
+                                id="checkbox-1-1" class="regular-checkbox" />
                             <label for="checkbox-1-1"></label>
                         </div>
                     </div>
@@ -290,7 +307,8 @@
                     <div class="w3-panel ">
                         <span class="settingTag w3-left" style="padding: 8px;">HSN</span>
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.hsn" id="checkbox-1-2" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.hsn"
+                                id="checkbox-1-2" class="regular-checkbox" />
                             <label for="checkbox-1-2"></label>
                         </div>
                     </div>
@@ -300,7 +318,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">GST</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gst" id="checkbox-1-3" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gst"
+                                id="checkbox-1-3" class="regular-checkbox" />
                             <label for="checkbox-1-3"></label>
                         </div>
                     </div>
@@ -310,8 +329,8 @@
                         <span class="settingTag w3-left" style="padding: 8px;">Buying Price </span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.bprice" id="checkbox-1-4" class="regular-checkbox"
-                            />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.bprice"
+                                id="checkbox-1-4" class="regular-checkbox" />
                             <label for="checkbox-1-4"></label>
                         </div>
                     </div>
@@ -321,20 +340,21 @@
                         <span class="settingTag w3-left" style="padding: 8px;">Selling Price</span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.sprice" id="checkbox-1-5" class="regular-checkbox"
-                            />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.sprice"
+                                id="checkbox-1-5" class="regular-checkbox" />
                             <label for="checkbox-1-5"></label>
                         </div>
                     </div>
                 </li>
-             
+
 
                 <li>
                     <div class="w3-panel ">
                         <span class="settingTag w3-left" style="padding: 8px;">Qty </span>
 
                         <div class="w3-right">
-                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.qty" id="checkbox-1-7" class="regular-checkbox" />
+                            <input type="checkbox" ng-change="changeSettings()" ng-model="settings.qty"
+                                id="checkbox-1-7" class="regular-checkbox" />
                             <label for="checkbox-1-7"></label>
                         </div>
                     </div>
@@ -351,16 +371,16 @@
                     <div class="w3-panel">
                         <div class="w3-row">
                             <div class="w3-third">
-                             Import CSV
+                                Import CSV
                             </div>
                             <div class="w3-w3-twothird w3-right-align">
-                                <input type="file" ng-model="csvFile" style="display: none;" onchange="angular.element(this).scope().importCSVFile()" id="csvFile" accept=".csv" />
-                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal"
-                                        >Import</label>
-                                    <button class="w3-button w3-circle w3-custom-teal"
-                                    ng-click="exportCSV()">Show CSV Demo</button>
+                                <input type="file" ng-model="csvFile" style="display: none;"
+                                    onchange="angular.element(this).scope().importCSVFile()" id="csvFile"
+                                    accept=".csv" />
+                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal">Import</label>
+                                <button class="w3-button w3-circle w3-custom-teal" ng-click="exportCSV()">Show CSV
+                                    Demo</button>
                             </div>
-                        
                         </div>
                     </div>
                 </li>

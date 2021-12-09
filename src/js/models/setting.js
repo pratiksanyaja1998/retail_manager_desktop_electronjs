@@ -8,8 +8,19 @@ var ProductModule = (function () {
         .from(TABLENAME)
         .where("name", "insrno")
         .orWhere("name", "insrpre")
+        .orWhere("name", "invoicesmsapi")
         .then((result) => {
           callback(result);
+        });
+    },
+
+    getInvoiceAPIcred: (callback) => {
+      knex
+        .select()
+        .from(TABLENAME)
+        .orWhere("name", "invoicesmsapi")
+        .then((result) => {
+          callback(result[0].data);
         });
     },
 
@@ -55,13 +66,17 @@ var ProductModule = (function () {
         });
     },
 
-    // insertSetting: (data, callback) => {
-    //   knex(TABLENAME)
-    //     .insert(data)
-    //     .then((result) => {
-    //       callback(result);
-    //     });
-    // },
+    getSingleSetting: (name, callback) => {
+      knex
+        .select("data")
+        .from(TABLENAME)
+        .where("name", name)
+        .then((rows) => {
+          callback(JSON.parse(rows));
+        });
+    },
+
+
 
     getAllSettings: (name, callback) => {
       knex

@@ -7,21 +7,24 @@
                     <strong>Business Information</strong>
                 </h3>
 
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditStoreInfo()" style="margin-top: -49px;margin-right: 65px;"
-                    ng-hide="!storeinfo_dis">edit</i>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveStoreInfo()" style="margin-top: -49px;margin-right: 65px;"
-                    ng-hide="storeinfo_dis">save</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditStoreInfo()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="!storeinfo_dis">edit</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveStoreInfo()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="storeinfo_dis">save</i>
 
 
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="getStoreDataEndSet()" style="margin-top: -49px;">refresh</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="getStoreDataEndSet()"
+                    style="margin-top: -49px;">refresh</i>
 
             </header>
             <div class="w3-container w3-padding">
                 <!-- store logo -->
                 <div class="w3-col w3-center l3 store-logo">
-                    <img class="w3-border  w3-image w3-margin-top" ng-src="{{storeInfo.logo}}" style="max-width: 200px; padding: 5px" />
+                    <img class="w3-border  w3-image w3-margin-top" ng-src="{{storeInfo.logo}}"
+                        style="max-width: 200px; padding: 5px" />
                     <div class="middle-image-edit" ng-disabled="storeinfo_dis">
-                        <i class="material-icons w3-circle  w3-button  w3-custom-deff" ng-click="storeLogoUpload()">edit</i>
+                        <i class="material-icons w3-circle  w3-button  w3-custom-deff"
+                            ng-click="storeLogoUpload()">edit</i>
                     </div>
 
                     <div class="error w3-margin" ng-if='changeLogoErrorMsg != null'>
@@ -40,7 +43,8 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.storename" name="sname" ng-disabled="storeinfo_dis" type="text" required>
+                                <input class="w3-input w3-border" ng-model="storeInfo.storename" name="sname"
+                                    ng-disabled="storeinfo_dis" type="text" required>
                                 <span ng-show="storeinfo_form.sname.$invalid">
                                     <input-error>Please enter business name.</input-error>
                                 </span>
@@ -54,8 +58,8 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.email" ng-disabled="storeinfo_dis" type="email" ng-disabled="storeinfo_dis"
-                                    name="email">
+                                <input class="w3-input w3-border" ng-model="storeInfo.email" ng-disabled="storeinfo_dis"
+                                    type="email" ng-disabled="storeinfo_dis" name="email">
                                 <span ng-show="storeinfo_form.email.$invalid">
                                     <input-error>Please enter valid Email.</input-error>
                                 </span>
@@ -68,7 +72,8 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.phno" type="text" ng-disabled="storeinfo_dis" pattern="[0-9]{10}" name="phno">
+                                <input class="w3-input w3-border" ng-model="storeInfo.phno" type="text"
+                                    ng-disabled="storeinfo_dis" pattern="[0-9]{10}" name="phno">
                                 <span ng-show="storeinfo_form.phno.$invalid">
                                     <input-error>Please enter valid Phone Number.</input-error>
                                 </span>
@@ -81,7 +86,8 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.gstin" style="text-transform:uppercase" type="text" ng-disabled="storeinfo_dis"
+                                <input class="w3-input w3-border" ng-model="storeInfo.gstin"
+                                    style="text-transform:uppercase" type="text" ng-disabled="storeinfo_dis"
                                     maxlength="15" pattern="[a-zA-Z0-9]{15}" name="gstin">
                                 <span ng-show="storeinfo_form.gstin.$invalid">
                                     <input-error>Please enter valid gstin number.</input-error>
@@ -96,34 +102,40 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.area" type="text" ng-disabled="storeinfo_dis">
+                                <input class="w3-input w3-border" ng-model="storeInfo.area" type="text"
+                                    ng-disabled="storeinfo_dis">
                             </td>
                         </tr>
 
                         <tr>
                             <td></td>
                             <td>
-                                <input class="w3-input w3-border" ng-model="storeInfo.city" style="width:32%" placeholder="city" type="text" ng-disabled="storeinfo_dis"
-                                    name="city" pattern="[a-zA-Z]+">
+                                <input class="w3-input w3-border" ng-model="storeInfo.city" style="width:32%"
+                                    placeholder="city" type="text" ng-disabled="storeinfo_dis" name="city"
+                                    pattern="[a-zA-Z]+">
                                 <span ng-show="storeinfo_form.city.$invalid">
                                     <input-error>Please enter valid City.</input-error>
                                 </span>
-                                <input class="w3-input w3-border" ng-model="storeInfo.state" style="width: 33%" placeholder="state" type="text" ng-disabled="storeinfo_dis"
-                                    name="state" pattern="[a-zA-Z]+">
+                                <input class="w3-input w3-border" ng-model="storeInfo.state" style="width: 33%"
+                                    placeholder="state" type="text" ng-disabled="storeinfo_dis" name="state"
+                                    pattern="[a-zA-Z]+">
                                 <span ng-show="storeinfo_form.state.$invalid">
                                     <input-error>Please enter valid State.</input-error>
                                 </span>
-                                <input class="w3-input w3-border" ng-model="storeInfo.pincode" style="width: 32%" placeholder="pincode" type="number" ng-disabled="storeinfo_dis"
-                                    name="pincode" pattern="[0-9]{6}"><br>
+                                <input class="w3-input w3-border" ng-model="storeInfo.pincode" style="width: 32%"
+                                    placeholder="pincode" type="number" ng-disabled="storeinfo_dis" name="pincode"
+                                    pattern="[0-9]{6}"><br>
                                 <span ng-show="storeinfo_form.pincode.$invalid">
-                                    <input-error class="pin-code-error-right">Please enter 6 digit Pincode.</input-error>
+                                    <input-error class="pin-code-error-right">Please enter 6 digit Pincode.
+                                    </input-error>
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <button type="submit" class=" w3-custom-teal w3-button w3-margin-top" ng-show="settingFstTime" ng-disabled="storeinfo_form.$invalid"
+                                <button type="submit" class=" w3-custom-teal w3-button w3-margin-top"
+                                    ng-show="settingFstTime" ng-disabled="storeinfo_form.$invalid"
                                     ng-click="clickToSaveStoreInfo()">SAVE & ACCESS SOFTWARE</button>
                             </td>
                         </tr>
@@ -142,17 +154,23 @@
                 <h3 class="w3-center">
                     <strong>Invoice Settings</strong>
                 </h3>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditInvoiceSR()" style="margin-top: -49px;margin-right: 65px;" ng-hide="!invoice_dis">edit</i>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveInvoiceSR()" style="margin-top: -49px;margin-right: 65px;" ng-hide="invoice_dis">save</i>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="getInvoiceSettingsAndSet()" style="margin-top: -49px;">refresh</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditInvoiceSR()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="!invoice_dis">edit</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveInvoiceSR()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="invoice_dis">save</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="getInvoiceSettingsAndSet()"
+                    style="margin-top: -49px;">refresh</i>
             </header>
 
             <div class="w3-container w3-padding">
                 <span class="settingTag w3-left" style="padding: 8px;">Invoice Serial Number</span>
                 <input class="w3-input w3-border" ng-model="invoicesrno" type="number" ng-disabled="invoice_dis" />
                 <span class="settingTag w3-left" style="padding: 8px;">Invoice Serial Number Prefix</span>
-
-                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="insrprefix" type="text" ng-disabled="invoice_dis" />
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="insrprefix" type="text"
+                    ng-disabled="invoice_dis" />
+                <span class="settingTag w3-left" style="padding: 8px;">Invoice SMS API Key</span>
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="invoicesmsapi" type="text"
+                    ng-disabled="invoice_dis" />
             </div>
         </form>
     </div>
@@ -163,20 +181,26 @@
                 <h3 class="w3-center">
                     <strong>Email Settings</strong>
                 </h3>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditEmailCred()" style="margin-top: -49px;margin-right: 65px;" ng-hide="!emailcred_dis">edit</i>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveEmailCred()" style="margin-top: -49px;margin-right: 65px;" ng-hide="emailcred_dis">save</i>
-                <i class="material-icons w3-right w3-circle w3-button" ng-click="getEmailSettingsAndSet()" style="margin-top: -49px;">refresh</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToEditEmailCred()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="!emailcred_dis">edit</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="clickToSaveEmailCred()"
+                    style="margin-top: -49px;margin-right: 65px;" ng-hide="emailcred_dis">save</i>
+                <i class="material-icons w3-right w3-circle w3-button" ng-click="getEmailSettingsAndSet()"
+                    style="margin-top: -49px;">refresh</i>
             </header>
 
             <div class="w3-container w3-padding">
                 <span class="settingTag w3-left" style="padding: 8px;">Mail User</span>
                 <input class="w3-input w3-border" ng-model="mailuser" ng-disabled="emailcred_dis" />
                 <span class="settingTag w3-left" style="padding: 8px;">Mail Password</span>
-                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailpass" type="text" ng-disabled="emailcred_dis" />
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailpass" type="text"
+                    ng-disabled="emailcred_dis" />
                 <span class="settingTag w3-left" style="padding: 8px;">Mail Host</span>
-                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailhost" type="text" ng-disabled="emailcred_dis" />
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailhost" type="text"
+                    ng-disabled="emailcred_dis" />
                 <span class="settingTag w3-left" style="padding: 8px;">Mail Port</span>
-                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailport" type="text" ng-disabled="emailcred_dis" />
+                <input class="w3-input w3-border w3-margin-bottom w3-right" ng-model="mailport" type="text"
+                    ng-disabled="emailcred_dis" />
             </div>
         </form>
     </div>
@@ -197,19 +221,20 @@
             <li>
                 <div class="w3-panel ">
                     <span class="settingTag w3-left" style="padding: 8px;">Database</span>
-                    <button class="w3-button w3-right w3-custom-teal w3-margin-left" ng-click="databaseImport()">Import</button>
+                    <button class="w3-button w3-right w3-custom-teal w3-margin-left"
+                        ng-click="databaseImport()">Import</button>
                     <button class="w3-button w3-right w3-custom-teal " ng-click="databaseExport()">Export</button>
                 </div>
 
                 <div class="error w3-panel " ng-if='DatabaseInExErrorMsg != null'>
-                        <small> {{DatabaseInExErrorMsg}}</small>
-                    </div>
+                    <small> {{DatabaseInExErrorMsg}}</small>
+                </div>
             </li>
             <li>
                 <div class="w3-panel ">
                     <span class="settingTag w3-left" style="padding: 8px;">Printer Settings</span>
-                    <button class="w3-button w3-right w3-custom-teal w3-margin-left" ng-click="clickOpenPrintSettings()"> <i
-                            class="fa fa-cog fa-fw"></i>
+                    <button class="w3-button w3-right w3-custom-teal w3-margin-left"
+                        ng-click="clickOpenPrintSettings()"> <i class="fa fa-cog fa-fw"></i>
                         </a></button>
                 </div>
             </li>
@@ -221,13 +246,13 @@
             <li>
                 <div class="w3-panel ">
                     <span class="settingTag w3-left" style="padding: 8px;">Software Version</span>
-                 
+
                     <div class="w3-right">
-                       <strong> 1.0.1 &nbsp;&nbsp;(Beta)</strong>
+                        <strong> 1.0.1 &nbsp;&nbsp;(Beta)</strong>
                     </div>
                 </div>
             </li>
-        
+
         </ul>
     </div>
 

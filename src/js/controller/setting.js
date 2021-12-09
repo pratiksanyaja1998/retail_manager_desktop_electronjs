@@ -19,6 +19,7 @@ module.exports = [
     $scope.getInvoiceSettingsAndSet = () => {
       SettingModule.getInvoiceSr((result) => {
         $scope.insrprefix = result[1].data;
+        $scope.invoicesmsapi = result[2].data;
         $scope.invoicesrno = Number(result[0].data);
         $scope.$apply();
       });
@@ -156,7 +157,12 @@ module.exports = [
         () => {
           SettingModule.updateSettingData(
             { name: "insrpre", data: $scope.insrprefix },
-            () => {}
+            () => {
+              SettingModule.updateSettingData(
+                { name: "invoicesmsapi", data: $scope.invoicesmsapi },
+                () => { }
+              );
+            }
           );
         }
       );
@@ -183,7 +189,7 @@ module.exports = [
                 () => {
                   SettingModule.updateSettingData(
                     { name: "mailport", data: $scope.mailport },
-                    () => {}
+                    () => { }
                   );
                 }
               );
