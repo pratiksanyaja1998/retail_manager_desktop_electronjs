@@ -16,7 +16,7 @@ module.exports = [
     });
 
     $scope.changeSettings = () => {
-      SettingModule.updateSettingJson("invoiceForm", $scope.settings, () => {});
+      SettingModule.updateSettingJson("invoiceForm", $scope.settings, () => { });
     };
 
     SettingModule.getInvoiceSr((result) => {
@@ -272,13 +272,13 @@ module.exports = [
       } else {
         $scope.invoceProductTotalWithGst = roundToTwo(
           $scope.invoceProductTotal +
-            ($scope.invoceProductTotal * $scope.gst) / 100
+          ($scope.invoceProductTotal * $scope.gst) / 100
         );
       }
 
       $scope.invoceProductTotalWithDiscout = roundToTwo(
         $scope.invoceProductTotalWithGst -
-          ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
+        ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
       );
 
       return productRow;
@@ -339,11 +339,11 @@ module.exports = [
     $scope.changeGst = () => {
       $scope.invoceProductTotalWithGst = roundToTwo(
         $scope.invoceProductTotal +
-          ($scope.invoceProductTotal * $scope.gst) / 100
+        ($scope.invoceProductTotal * $scope.gst) / 100
       );
       $scope.invoceProductTotalWithDiscout = roundToTwo(
         $scope.invoceProductTotalWithGst -
-          ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
+        ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
       );
     };
 
@@ -395,7 +395,8 @@ module.exports = [
         },
         (result) => {
           InvoiceModule.showInvoice(result.invoiceid);
-          $location.path("/invoice");
+          location.reload();
+          // $location.path("/create-invoice");
           $scope.$apply();
         }
       );
