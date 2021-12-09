@@ -1,3 +1,6 @@
+let UNIX_TIMESTAMP = Date.now();
+
+
 exports.up = function (knex, Promise) {
   const Settings = [
     { name: "storeInfo", data: null },
@@ -9,7 +12,7 @@ exports.up = function (knex, Promise) {
     { name: "mailpass", data: "Trypurpose@123" },
     { name: "mailhost", data: "smtp.gmail.com" },
     { name: "mailport", data: "587" },
-
+    { name: "UserID", data: UNIX_TIMESTAMP },
     {
       name: "customer",
       data: JSON.stringify({
@@ -67,8 +70,8 @@ exports.up = function (knex, Promise) {
 
   const Templates = [
     { name: "Default", url: "./template/invoiceTemplate/default.html" },
-    { name: "Responsive", url: "./template/invoiceTemplate/withImage.html" },
-    { name: "FixSizeA4", url: "./template/invoiceTemplate/fixSizeA4.html" },
+    { name: "Premium", url: "./template/invoiceTemplate/withImage.html" },
+    // { name: "FixSizeA4", url: "./template/invoiceTemplate/fixSizeA4.html" },
   ];
 
   return Promise.all([

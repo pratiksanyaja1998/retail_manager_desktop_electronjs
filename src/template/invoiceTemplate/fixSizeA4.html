@@ -12,21 +12,27 @@
                             <img style="max-width:100px" src="../../storeLogo.png" />
                         </td>
                         <td width="65%" class="w3-center">
-                            <span class="theme-red-text"> <strong><big><big> {{storeInfo.storename}}</big></big></strong></span><br/><br/>
-                            <small><span ng-show="storeInfo.gstin!='' "> <strong> GSTIN :- </strong> {{storeInfo.gstin}}</span>
-                                <span ng-show="storeInfo.phno!=''"> <br/> <strong> MO :-</strong> <i class="fa fa-phone"></i>
+                            <span class="theme-red-text"> <strong><big><big>
+                                            {{storeInfo.storename}}</big></big></strong></span><br /><br />
+                            <small><span ng-show="storeInfo.gstin!='' "> <strong> GSTIN :- </strong>
+                                    {{storeInfo.gstin}}</span>
+                                <span ng-show="storeInfo.phno!=''"> <br /> <strong> MO :-</strong> <i
+                                        class="fa fa-phone"></i>
                                     +91 {{storeInfo.phno}}</span></small>
                         </td>
                         <td>
-                            <small> <span class="theme-red-text"><b>INVOICE NO :-</b></span> {{invoiceData.invoice.srno}}<br/>
-                                <span class="theme-red-text"><b>DATE :-</b></span> {{invoiceData.invoice.dd}} / {{invoiceData.invoice.mm}}
+                            <small> <span class="theme-red-text"><b>INVOICE NO :-</b></span>
+                                {{invoiceData.invoice.srno}}<br />
+                                <span class="theme-red-text"><b>DATE :-</b></span> {{invoiceData.invoice.dd}} /
+                                {{invoiceData.invoice.mm}}
                                 / {{invoiceData.invoice.yyyy}}
 
-                                <span ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' ">
-                                    <br/><i class="material-icons" style="font-size:15px">edit_location</i>
-                                    <span ng-show="storeInfo.area!=''">{{storeInfo.area}},</span><br/>
+                                <span
+                                    ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' ">
+                                    <br /><i class="material-icons" style="font-size:15px">edit_location</i>
+                                    <span ng-show="storeInfo.area!=''">{{storeInfo.area}},</span><br />
                                     <span ng-show="storeInfo.city!=''"> {{storeInfo.city}},</span>
-                                    <span ng-show="storeInfo.state!=''"> {{storeInfo.state}}</span><br/>    
+                                    <span ng-show="storeInfo.state!=''"> {{storeInfo.state}}</span><br />
                                     <span ng-show="storeInfo.pincode!=''">-{{storeInfo.pincode}}</span>
 
                                 </span>
@@ -45,19 +51,19 @@
                     <!-- name info -->
                     <tr>
                         <td>
-                            <br/>
+                            <br />
                             <span class="w3-margin-top" ng-if="invoiceData.invoice.name!=''">
                                 <span class="theme-red-text"> <b>
-                                        Customer Name :-</b></span> {{invoiceData.invoice.name}}
+                                        Name :-</b></span> {{invoiceData.invoice.name}}
 
                             </span>
 
                             <span ng-if="invoiceData.invoice.phno!='' && invoiceData.invoice.phno!=null ">
-                                <span class="theme-red-text"><b><br/> Mobile Number :- </b></span> <i class="fa fa-phone"></i>
+                                <span class="theme-red-text"><b><br /> Mobile :- </b></span> <i class="fa fa-phone"></i>
                                 +91 {{invoiceData.invoice.phno}}
                             </span>
                             <span ng-if="invoiceData.invoice.gstin!=''">
-                                <span class="theme-red-text"><b><br/> Customer GSTIN :-</b></span> {{invoiceData.invoice.gstin}}
+                                <span class="theme-red-text"><b><br /> GSTIN :-</b></span> {{invoiceData.invoice.gstin}}
                             </span>
                         </td>
                         <td>
@@ -73,7 +79,8 @@
                                 <b>Billing Address</b>
                             </div>
                             <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                                {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}} {{invoiceData.invoice.bpincode}}
+                                {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}},
+                                {{invoiceData.invoice.bstate}} {{invoiceData.invoice.bpincode}}
 
                             </div>
                         </td>
@@ -82,7 +89,8 @@
                                 <b>Delivery Address</b>
                             </div>
                             <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                                {{invoiceData.invoice.darea}}, {{invoiceData.invoice.dcity}}, {{invoiceData.invoice.dstate}} {{invoiceData.invoice.dpincode}}
+                                {{invoiceData.invoice.darea}}, {{invoiceData.invoice.dcity}},
+                                {{invoiceData.invoice.dstate}} {{invoiceData.invoice.dpincode}}
 
                             </div>
                         </td>
@@ -118,9 +126,12 @@
                         <td>{{row.price}}</td>
                         <td>{{row.qty}}</td>
                         <!-- <td>{{row.discount}} %</td> -->
-                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %</td>
-                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %</td>
-                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">{{row.gst}} %</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">{{row.gst}} %
+                        </td>
                         <td>{{row.total}}</td>
                     </tr>
                     <tr height="100%">
@@ -158,18 +169,19 @@
                             color: #613b3b;   line-height: 1.4;">
                                 <tr>
                                     <td style="text-align: right; padding:10px ">
-                                        <span> <b>DISCOUNT(%) :-</b></span><br/>
-                                        <span ng-hide="invoiceData.invoice.gst==0"> <b>{{invoiceData.invoice.gsttype}}(%) :-</b><br/></span>
-                                        <span> <b>TOTAL :-</b></span><br/>
+                                        <span> <b>DISCOUNT(%) :-</b></span><br />
+                                        <span ng-hide="invoiceData.invoice.gst==0">
+                                            <b>{{invoiceData.invoice.gsttype}}(%) :-</b><br /></span>
+                                        <span> <b>TOTAL :-</b></span><br />
 
 
                                     </td>
                                     <td style="text-align: right; padding:10px ">
 
-                                        (-){{invoiceData.invoice.discount}}%<br/>
+                                        (-){{invoiceData.invoice.discount}}%<br />
                                         <span ng-hide="invoiceData.invoice.gst==0">
-                                            {{invoiceData.invoice.gst}} %<br/></span>
-                                        {{invoiceData.invoice.total}}/-<br/>
+                                            {{invoiceData.invoice.gst}} %<br /></span>
+                                        {{invoiceData.invoice.total}}/-<br />
 
 
 
@@ -192,8 +204,8 @@
                     <b>Discription</b>
                 </div>
                 <div class="theme-red-text w3-right " style="width: 100%">
-                    <br/>
-                    <br/><br/><br/><br/>
+                    <br />
+                    <br /><br /><br /><br />
                     <span class="w3-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________________________Sign</span>
                 </div>
 

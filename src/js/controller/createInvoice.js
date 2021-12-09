@@ -15,6 +15,10 @@ module.exports = [
       $scope.$apply();
     });
 
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
+
     $scope.changeSettings = () => {
       SettingModule.updateSettingJson("invoiceForm", $scope.settings, () => { });
     };
@@ -372,7 +376,9 @@ module.exports = [
       }
 
       $scope.isLoading = true;
-
+      mixpanel.track("Invoice Generated", {
+        user: $scope.UniqueUID
+      });
       InvoiceModule.insertInvoice(
         {
           invoice: {

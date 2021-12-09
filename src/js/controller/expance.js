@@ -18,6 +18,10 @@ module.exports = [
 
     getCategorys();
 
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
+
     var today = new Date();
 
     $scope.filter = {
@@ -90,6 +94,10 @@ module.exports = [
 
     $scope.clickSaveExpance = function () {
       if ($scope.newExpance.isUpdate) {
+        mixpanel.track("Expense Updated", {
+          user: $scope.UniqueUID
+        });
+
         ExpanceModule.updateExpance(
           {
             description: $scope.newExpance.description,
@@ -113,6 +121,10 @@ module.exports = [
 
           return;
         }
+
+        mixpanel.track("Expense Added", {
+          user: $scope.UniqueUID
+        });
 
         ExpanceModule.insertExpance($scope.newExpance, (result) => {
           getExpanceFromDatabase();

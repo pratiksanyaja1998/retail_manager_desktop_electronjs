@@ -13,13 +13,14 @@
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-change="generateReports()" ng-model="filter.mm"
-                            type="number" placeholder="MM" min="1" max="12" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px"
+                            ng-change="generateReports()" ng-model="filter.mm" type="number" placeholder="MM" min="1"
+                            max="12" />
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy" ng-change="generateReports()"
-                            type="number" placeholder="YYYY" min="1890" max="9999" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy"
+                            ng-change="generateReports()" type="number" placeholder="YYYY" min="1890" max="9999" />
                     </td>
                     <td style="color:white;padding-left: 10px;padding-right: 10px">
                         <strong>IN</strong>
@@ -29,7 +30,8 @@
                             display: inline-block;" placeholder="Search Customer ..." ng-model="filter.searchInput" />
                     </td>
                     <td>
-                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left" ng-click="generateReports()">Generate
+                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left"
+                            ng-click="generateReports()">Generate
                             Reports
                         </button>
                     </td>
@@ -49,7 +51,8 @@
         <div class="  w3-margin-top ">
             <span class="w3-right">
                 <strong>
-                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
+                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0"
+                        ng-click="clickPrev()">&lt;</button>
                     <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
                     <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
                 </strong>
@@ -61,9 +64,10 @@
         <div class="w3-col l12 w3-border w3-margin-top hide-print" style="overflow-y: auto;max-height:200px">
 
             <div class="w3-col l3 w3-center" ng-repeat="customerRow in customer">
-                <div class="block-serach-result" style="height: 66px;" ng-click="selectCustomerIntoSearchData(customerRow)">
+                <div class="block-serach-result" style="height: 66px;"
+                    ng-click="selectCustomerIntoSearchData(customerRow)">
                     <span class="nameCase">{{customerRow.name}}</span>
-                    <br/>
+                    <br />
                     <span>
                         <small>{{customerRow.phno}}</small>
                     </span>
@@ -81,43 +85,49 @@
         <!-- reports info -->
         <div class="w3-col">
 
-            <div class="w3-border w3-margin-top w3-custom-gray-text" ng-repeat="row in  reports track by $index " ng-if='reports'>
+            <div class="w3-border w3-margin-top w3-custom-gray-text" ng-repeat="row in  reports track by $index "
+                ng-if='reports'>
 
                 <!-- customer info -->
                 <div class="w3-padding">
 
                     <div class="nameCase">
                         <span ng-if="row.customer.name!=''">
-                            <b>Customer Name :-</b> {{row.customer.name}}
+                            <b>Name :-</b> {{row.customer.name}}
 
                         </span>
 
                         <span ng-if="row.customer.phno!=''">
-                            <b><br/>Customer Mobile Number :- </b> +91 {{row.customer.phno}} &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <b><br />Mobile Number :- </b> +91 {{row.customer.phno}}
+                            &nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <span ng-if="row.customer.gstin!=''">
-                            <b>Customer GSTIN :-</b> {{row.customer.gstin}}
+                            <b>GSTIN :-</b> {{row.customer.gstin}}
 
                         </span>
                     </div>
 
-                    <div class=" nameCase" style="width: 47%;display: inline-block;" ng-if="row.customer.barea || row.customer.bcity || row.customer.bstate || row.customer.bpincode">
+                    <div class=" nameCase" style="width: 47%;display: inline-block;"
+                        ng-if="row.customer.barea || row.customer.bcity || row.customer.bstate || row.customer.bpincode">
                         <div class="w3-custom-teal w3-padding w3-margin-top">
                             <b>Billing Address</b>
                         </div>
                         <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                            {{row.customer.barea}}, {{row.customer.bcity}}, {{row.customer.bstate}} {{row.customer.bpincode}}
+                            {{row.customer.barea}}, {{row.customer.bcity}}, {{row.customer.bstate}}
+                            {{row.customer.bpincode}}
 
                         </div>
                     </div>
 
-                    <div  style="width: 2%;display: inline-block;"></div>
+                    <div style="width: 2%;display: inline-block;"></div>
 
-                    <div class="nameCase w3-right" style="width: 48%;display: inline-block;" ng-if="row.customer.darea || row.customer.dcity || row.customer.dstate || row.customer.dpincode">
+                    <div class="nameCase w3-right" style="width: 48%;display: inline-block;"
+                        ng-if="row.customer.darea || row.customer.dcity || row.customer.dstate || row.customer.dpincode">
                         <div class="w3-custom-teal w3-padding w3-margin-top">
                             <b>Delivery Address</b>
                         </div>
                         <div class="w3-padding" style="padding-top: 5px;padding-left: 5px">
-                            {{row.customer.darea}}, {{row.customer.dcity}}, {{row.customer.dstate}} {{row.customer.dpincode}}
+                            {{row.customer.darea}}, {{row.customer.dcity}}, {{row.customer.dstate}}
+                            {{row.customer.dpincode}}
 
                         </div>
                     </div>

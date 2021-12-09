@@ -142,6 +142,9 @@ PrintApp.controller("invoiceController", [
       $scope.storeInfo = data;
     });
 
+
+
+
     SettingModule.getInvoiceAPIcred((data) => {
       $scope.invoicesmskey = data;
     });
@@ -186,6 +189,10 @@ PrintApp.controller("invoiceController", [
 
     $scope.showMailLoader = true;
 
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
+
     $scope.shareOnEmail = async () => {
       let generatedPDF =
         $scope.invoiceData.invoice.yyyy +
@@ -222,6 +229,11 @@ PrintApp.controller("invoiceController", [
         ],
       });
 
+      mixpanel.track("Email Invoice Generated", {
+        user: $scope.UniqueUID
+      });
+
+
       if (info) {
         $scope.showMailLoader = !$scope.showMailLoader;
         $scope.$apply();
@@ -229,7 +241,6 @@ PrintApp.controller("invoiceController", [
       }
     };
 
-    console.log($scope);
 
     $scope.shareOnSMS = async () => {
 

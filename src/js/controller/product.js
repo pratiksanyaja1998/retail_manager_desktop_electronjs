@@ -23,8 +23,12 @@ module.exports = [
       $scope.$apply();
     });
 
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
+
     $scope.changeSettings = () => {
-      SettingModule.updateSettingJson("products", $scope.settings, () => {});
+      SettingModule.updateSettingJson("products", $scope.settings, () => { });
     };
 
     // end settings
@@ -133,6 +137,11 @@ module.exports = [
 
     $scope.clickSaveProduct = function () {
       if ($scope.newProduct.isUpdate) {
+
+        mixpanel.track("Product Updated", {
+          user: $scope.UniqueUID
+        });
+
         ProductModule.updateProduct(
           {
             hsn: $scope.newProduct.hsn,
@@ -175,6 +184,9 @@ module.exports = [
 
         if ($scope.newProduct.barcode == "") $scope.newProduct.barcode = null;
 
+        mixpanel.track("New Product Added", {
+          user: $scope.UniqueUID
+        });
         ProductModule.insertProduct($scope.newProduct, (result) => {
           if (!result.error) {
             getProductFromDatabase();

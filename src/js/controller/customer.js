@@ -14,8 +14,12 @@ module.exports = [
     });
 
     $scope.changeSettings = () => {
-      SettingModule.updateSettingJson("customer", $scope.settings, (rs) => {});
+      SettingModule.updateSettingJson("customer", $scope.settings, (rs) => { });
     };
+
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
 
     $scope.isEditingCustomerSetting = false;
 
@@ -102,10 +106,14 @@ module.exports = [
       }
     };
 
+
     $scope.clickSaveCustomer = function () {
       $scope.error = false;
 
       if ($scope.newCustomer.isUpdate) {
+        mixpanel.track("Customer Information Updated", {
+          user: $scope.UniqueUID
+        });
         CustomerModule.updateCustomer(
           {
             phno: $scope.newCustomer.phno,
@@ -152,6 +160,11 @@ module.exports = [
         if ($scope.newCustomer.phno == "") $scope.newCustomer.phno = null;
 
         //save customer
+
+        mixpanel.track("New Customer Information Added", {
+          user: $scope.UniqueUID
+        });
+
         CustomerModule.insertCustomer($scope.newCustomer, (result) => {
           if (!result.error) {
             data = {

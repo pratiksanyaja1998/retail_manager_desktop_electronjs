@@ -85,6 +85,12 @@ module.exports = [
     $scope.storeInfoEdit = false;
     $scope.settingFstTime = false;
 
+
+    SettingModule.getSetting("UserID", (data) => {
+      $scope.UniqueUID = data;
+    });
+
+
     $scope.getStoreDataEndSet = () => {
       SettingModule.getSetting("storeInfo", (data) => {
         $scope.storeInfo = data;
@@ -127,8 +133,14 @@ module.exports = [
         $scope.storeInfo.gstin = $scope.storeInfo.gstin.toUpperCase();
       }
 
-      mixpanel.track("Update information", {
-        info: $scope.storeInfo,
+      mixpanel.track("Store Profile Information Updated", {
+        info:
+        {
+          store_name: $scope.storeInfo.storename,
+          email: $scope.storeInfo.email,
+          phone: $scope.storeInfo.phno,
+        },
+        user: $scope.UniqueUID
       });
 
       SettingModule.updateSettingJson(

@@ -48,18 +48,17 @@
 
         <div>
             <span ng-show="invoiceData.invoice.name!=''">
-                <b>&nbsp;&nbsp;&nbsp;{{invoiceData.invoice.name}}</b>
+                <b>&nbsp;&nbsp;&nbsp;Name </b> :- {{invoiceData.invoice.name}}
             </span>
 
             <span ng-show="invoiceData.invoice.phno!='' && invoiceData.invoice.phno!=null">
-                <b><br />&nbsp;&nbsp;&nbsp;+91 {{invoiceData.invoice.phno}} </b>
+                <b><br />&nbsp;&nbsp;&nbsp;Mobile </b> :- +91 {{invoiceData.invoice.phno}}
                 &nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span ng-show="invoiceData.invoice.email!='' && invoiceData.invoice.email!=null">
-                <b><br />&nbsp;&nbsp;&nbsp;{{invoiceData.invoice.email}} </b>
+                <b><br />&nbsp;&nbsp;&nbsp;Email </b> :- {{invoiceData.invoice.email}}
                 &nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span ng-show="invoiceData.invoice.gstin!=''">
-                <b>&nbsp;&nbsp;&nbsp;Customer GSTIN :-</b> {{invoiceData.invoice.gstin}}
-
+                <b>&nbsp;&nbsp;&nbsp;GSTIN :-</b> {{invoiceData.invoice.gstin}}
             </span>
         </div>
 
