@@ -126,6 +126,10 @@ module.exports = [
         $scope.storeInfo.gstin = $scope.storeInfo.gstin.toUpperCase();
       }
 
+      mixpanel.track("Update information", {
+        info: $scope.storeInfo,
+      });
+
       SettingModule.updateSettingJson(
         "storeInfo",
         $scope.storeInfo,
