@@ -46,11 +46,16 @@
             <span ng-show="invoiceData.invoice.phno!='' && invoiceData.invoice.phno!=null ">
                 <b>
                     <br />Mobile :- </b> +91 {{invoiceData.invoice.phno}} </span>
+
+            <span ng-show="invoiceData.invoice.email!='' && invoiceData.invoice.email!=null ">
+                <b>
+                    <br />Email :- </b> {{invoiceData.invoice.email}} </span>
             <span ng-show="invoiceData.invoice.gstin!=''">
                 <b>
                     <br />GSTIN :-</b> {{invoiceData.invoice.gstin}}
                 </br />
             </span>
+
 
         </div>
 
