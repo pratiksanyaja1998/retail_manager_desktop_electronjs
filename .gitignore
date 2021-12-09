@@ -3,3 +3,5 @@ node_modules
 store.sqlite
 /dist
 src/assets/invoices
+
+retail-manager-win32-x64
