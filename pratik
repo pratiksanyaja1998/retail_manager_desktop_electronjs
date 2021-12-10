@@ -1,4 +1,6 @@
+# Deploy step
 
-Deploy step
-==============
 https://medium.com/@johndyer24/creating-and-deploying-an-auto-updating-electron-app-for-mac-and-windows-using-electron-builder-6a3982c0cee6#:~:text=%20Creating%20and%20deploying%20an%20auto-updating%20Electron%20app,test%20auto-updating%20we%E2%80%99re%20going%20to%20release...%20More%20
+
+1. Create release on github
+2. run -> npm run deploy

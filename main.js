@@ -10,11 +10,19 @@ const path = require("path");
 const url = require("url");
 const ipc = require("electron").ipcMain;
 const fs = require("fs");
+const { autoUpdater } = require("electron-updater");
 
 let mainWindow,
   printWindow = null;
 
 let isFullScreen = false;
+
+autoUpdater.on("update-available", () => {
+  mainWindow.webContents.send("update_available");
+});
+autoUpdater.on("update-downloaded", () => {
+  mainWindow.webContents.send("update_downloaded");
+});
 
 function fullScrFun() {
   if (isFullScreen) {
@@ -63,6 +71,10 @@ function createWindow() {
       if (index === 0) win.reload();
       else win.close();
     });
+  });
+
+  mainWindow.once("ready-to-show", () => {
+    autoUpdater.checkForUpdatesAndNotify();
   });
 
   // developer shortcut
