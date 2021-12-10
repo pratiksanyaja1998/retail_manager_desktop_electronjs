@@ -11,30 +11,33 @@
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-change="generateReports()" ng-model="filter.mm"
-                            type="number" placeholder="MM" min="1" max="12" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px"
+                            ng-change="generateReports()" ng-model="filter.mm" type="number" placeholder="MM" min="1"
+                            max="12" />
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy" ng-change="generateReports()"
-                            type="number" placeholder="YYYY" min="1890" max="9999" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy"
+                            ng-change="generateReports()" type="number" placeholder="YYYY" min="1890" max="9999" />
                     </td>
                     <td style="color:white;padding-left: 10px;padding-right: 10px">
                         <strong>IN</strong>
                     </td>
                     <td>
-                        <select class="" ng-change="getProductsRepoToDatabase()" style="padding: 7px;border-radius: 5px;" ng-model="filter.catagory"
+                        <select class="" ng-change="getProductsRepoToDatabase()"
+                            style="padding: 7px;border-radius: 5px;" ng-model="filter.catagory"
                             ng-change="changeFilterData()" ng-options="x for x in productCategory">
                             <option value="">Select Category</option>
                         </select>
                     </td>
                     <td>
                         <input type="text" class="w3-input  " ng-change="getProductsRepoToDatabase()" style="width: 250px;
-                                display: inline-block;" placeholder="Search Products ..." ng-model="filter.searchInput"
-                        />
+                                display: inline-block;" placeholder="Search Products ..."
+                            ng-model="filter.searchInput" />
                     </td>
                     <td>
-                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left" ng-click="generateReports()">Generate
+                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left"
+                            ng-click="generateReports()">Generate
                             Reports
                         </button>
                     </td>
@@ -51,10 +54,11 @@
 
     <div class="print-view-bottom w3-padding ">
 
-        <div class="w3-col  ">
+        <div class="w3-col">
             <span class="w3-right">
                 <strong>
-                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
+                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0"
+                        ng-click="clickPrev()">&lt;</button>
                     <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
                     <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
                 </strong>
@@ -63,19 +67,36 @@
         </div>
 
 
-        <div class="w3-col l12 w3-border w3-margin-top hide-print" style="overflow-y: auto;max-height: 200px">
+        <div class="w3-col l12 w3-border w3-margin-top hide-print" ng-show="products.length > 0"
+            style="overflow-y: auto;max-height: 200px">
 
-            <div class="w3-col l3 w3-center" ng-repeat="productRow in products ">
+            <table class="w3-table-all w3-hoverable" id="ptable" style="cursor: pointer">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>Product Name</th>
+                        <th>Selling Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="productRow in products" ng-click="selectProducIntoSearchData(productRow)"
+                    class="{{productRow.isSelected == 1 ? 'selectedrow' : ''}}" id="prod_{{$index}}">
+                    <td>{{productRow.name}}</td>
+                    <td>{{productRow.price}}</td>
+                    <td>{{productRow.qty}}</td>
+                </tr>
+            </table>
+
+            <div ng-show="0" class="w3-col l3 w3-center" ng-repeat="productRow in products ">
                 <div class="block-serach-result" ng-click="selectProducIntoSearchData(productRow)">
                     <span>{{productRow.name}}</span>
-                    <br/>
+                    <br />
                     <span>
-                        <small ng-class="{ 'product-warnings': productRow.qty<=0 }">Rs. {{productRow.price}}/- &nbsp;&nbsp;
+                        <small ng-class="{ 'product-warnings': productRow.qty<=0 }">Rs. {{productRow.price}}/-
+                            &nbsp;&nbsp;
                             qty : <span>{{productRow.qty}} </span> </small>
                     </span>
                 </div>
             </div>
-
         </div>
 
 
@@ -94,7 +115,7 @@
 
                     <div>
                         <span>
-                            <b>Product Name :-</b> {{row.product.name}}<br/>
+                            <b>Product Name :-</b> {{row.product.name}}<br />
                         </span>
                         <span class="w3-margin-right " ng-if="row.product.barcode!=''">
                             <b>Barcode :- </b> {{row.product.barcode}}

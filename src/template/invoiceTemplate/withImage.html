@@ -1,4 +1,4 @@
-<div class="w3-row w3-padding w3-margin " style="background-image: url(./assets/bggray.jpg);">
+<div class="w3-row w3-padding w3-margin" style="background-image: url(./assets/bggray.jpg);">
 
     <!-- <div class="w3-col l12   w3-center " style="background-image: url(../../storeLogo.png);
     background-size: contain;
@@ -120,10 +120,7 @@
             <div class="w3-right w3-margin-left">
                 <b>TOTAL :-</b> {{invoiceData.invoice.total}} /-
             </div>
-            <div class="w3-right w3-margin-left">
-                <!-- ng-show="invoiceData.invoice.discount!=0">-->
-                <b>DISCOUNT (%) :-</b> {{invoiceData.invoice.discount}} %
-            </div>
+
             <div class="w3-right w3-margin-left"
                 ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
                 <b>{{invoiceData.invoice.gsttype}} (%) :-</b> {{invoiceData.invoice.gst}} %
@@ -131,11 +128,18 @@
 
             <div class="w3-right w3-margin-left"
                 ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
-                <b>SGST (%) :-</b> {{invoiceData.invoice.gst/2}} %
+                <b>SGST ({{invoiceData.invoice.gst/2}}%) :-</b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}}
+                ₹ /-
             </div>
             <div class="w3-right w3-margin-left"
                 ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
-                <b>CGST (%) :-</b> {{invoiceData.invoice.gst/2}} %
+                <b>CGST ({{invoiceData.invoice.gst/2}}%) :-</b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}}
+                ₹ /-
+            </div>
+            <div class="w3-right w3-margin-left">
+                <!-- ng-show="invoiceData.invoice.discount!=0">-->
+                <b>DISCOUNT ({{invoiceData.invoice.discount}}%) :-</b>
+                {{(sumOfProductPrice*invoiceData.invoice.discount)/100}} ₹ /-
             </div>
             <br>
             <div class="w3-right">

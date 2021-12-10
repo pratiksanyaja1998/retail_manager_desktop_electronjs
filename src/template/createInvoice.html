@@ -48,7 +48,7 @@
     </div>
     <!-- end date -->
 
-    <form name="invoice_form">
+    <myform id="invoice_form" name="invoice_form">
 
       <!--customer details-->
       <div class="customerblock " ng-show="settings.fullcustomer">
@@ -71,11 +71,9 @@
           <table width='100%'>
             <tr>
               <td width="100%">
-                <input class="w3-input w3-border searchbox-input   " placeholder="Search Customer..."
+                <input class="w3-input w3-border searchbox-input" id="search_Cust" placeholder="Search Customer..."
                   ng-change="chnageCustomerSearchData()" ng-model="CustomerFilter.searchInput" type="text" />
-
               </td>
-
 
               <td ng-if="isSearchingCustomer">
                 <strong>
@@ -99,9 +97,24 @@
 
         </div>
 
-        <div class="w3-col l12 w3-border" ng-if="isSearchingCustomer" style="overflow-y: auto;max-height:200px">
-
-          <div class="w3-col l3 w3-center" ng-repeat="customerRow in customer">
+        <div class="w3-col l12 w3-border" ng-show="customer.length > 0" ng-if="isSearchingCustomer"
+          style="overflow-y: auto;max-height:400px">
+          <table class="w3-table-all w3-hoverable w3-margin-to" id="ctable" style="cursor: pointer">
+            <thead>
+              <tr class="w3-light-grey">
+                <th>Customer Name</th>
+                <th>Mobile No.</th>
+                <th>GSTIN</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="customerRow in customer" ng-click="selectCustomerIntoSearchData(customerRow)"
+              class="{{customerRow.isSelected == 1 ? 'selectedrow' : ''}}" id="cust_{{$index}}">
+              <td>{{customerRow.name}}</td>
+              <td>{{customerRow.phno}}</td>
+              <td>{{customerRow.gstin}}</td>
+            </tr>
+          </table>
+          <div class="w3-col l3 w3-center" ng-show="0" ng-repeat="customerRow in customer">
             <div class="block-serach-result" style="height: 66px;" ng-click="selectCustomerIntoSearchData(customerRow)">
               <span>{{customerRow.name}}</span>
               <br />
@@ -331,9 +344,24 @@
         </div>
 
         <!-- search result block -->
-        <div class="w3-row  w3-border" style="overflow-y: auto;max-height: 200px" ng-if="isSearchingProduct">
-
-          <div class="w3-col l3 w3-center" ng-repeat="productRow in products ">
+        <div class="w3-row  w3-border w3-margin-top" ng-show="products.length > 0"
+          style="overflow-y: auto;max-height: 400px" ng-if="isSearchingProduct">
+          <table class="w3-table-all w3-hoverable" id="ptable" style="cursor: pointer">
+            <thead>
+              <tr class="w3-light-grey">
+                <th>Product Name</th>
+                <th>Selling Price</th>
+                <th>HSN</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="productRow in products" ng-click="selectProducIntoSearchData(productRow)"
+              class="{{productRow.isSelected == 1 ? 'selectedrow' : ''}}" id="prod_{{$index}}">
+              <td>{{productRow.name}}</td>
+              <td>{{productRow.price}}</td>
+              <td>{{productRow.hsn != '' ? productRow.hsn : '-'}}</td>
+            </tr>
+          </table>
+          <div class="w3-col l3 w3-center" ng-show="0" ng-repeat="productRow in products ">
             <div class="block-serach-result" ng-click="selectProducIntoSearchData(productRow)">
               <span>{{productRow.name}}</span>
               <br />
@@ -466,7 +494,21 @@
         <!-- total counter -->
         <div class="w3-col w3-margin-top w3-margin-bottom">
           <table class="w3-right">
+            <tr>
+              <td>
+                <label class="w3-text-gray">
+                  <b>Discount (%) : </b>
+                </label>
+              </td>
+              <td>
+                <input name="discount" type="number" min="0" style="min-width: 200px;height: 37px;" max="100"
+                  ng-change="changeDiscount()" ng-model="invoceProductDescout" />
+                <span ng-show="invoice_form.discount.$invalid">
+                  <input-error>Add Vaild Discount.</input-error>
+                </span>
+              </td>
 
+            </tr>
             <tr ng-hide="settings.gstInProductWise ">
 
               <td>
@@ -489,24 +531,7 @@
 
               </td>
             </tr>
-            <tr>
 
-
-              <td>
-
-                <label class="w3-text-gray">
-                  <b>Discount (%) : </b>
-                </label>
-              </td>
-              <td>
-                <input name="discount" type="number" min="0" style="min-width: 200px;height: 37px;" max="100"
-                  ng-change="changeDiscount()" ng-model="invoceProductDescout" />
-                <span ng-show="invoice_form.discount.$invalid">
-                  <input-error>Add Vaild Discount.</input-error>
-                </span>
-              </td>
-
-            </tr>
 
             <tr>
 
@@ -518,7 +543,8 @@
 
               <td>
 
-                <input ng-model="invoceProductTotalWithDiscout" style="max-width: 200px;height: 37px;" type="number" />
+                <input ng-disabled="1" ng-model="invoceProductTotalWithDiscout" style="max-width: 200px;height: 37px;"
+                  type="number" />
               </td>
             </tr>
 
@@ -621,7 +647,7 @@
       <!-- end s p v-->
 
 
-    </form>
+      </form>
 
   </div>
 

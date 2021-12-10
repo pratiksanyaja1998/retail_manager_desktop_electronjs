@@ -1,4 +1,4 @@
-<div class="w3-row w3-margin w3-card w3-padding w3-custom-gray-text">
+<div class="w3-row w3-margininvoiceDatainvoiceData w3-custom-gray-text">
 
     <div class="w3-col l12 w3-custom-gray  w3-center w3-padding">
 
@@ -128,26 +128,28 @@
 
 
             <!-- <div class="w3-right w3-margin-left"> -->
-            <table class="font-15 w3-right w3-custom-gray-text">
-                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
-                    <td><b>{{invoiceData.invoice.gsttype}} (%) :-</b></td>
-                    <td class="w3-right"><b> {{invoiceData.invoice.gst}} %</b></td>
-                </tr>
-                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
-                    <td><b>CGST (%) :-</b></td>
-                    <td class="w3-right"><b> {{invoiceData.invoice.gst/2}} %</b></td>
-                </tr>
-                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
-                    <td><b>SGST (%) :-</b></td>
-                    <td class="w3-right"><b> {{invoiceData.invoice.gst/2}} %</b></td>
-                </tr>
+            <table class="font-15 w3-right w3-custom-gray-text w3-margin-right">
+
                 <tr>
-                    <td><b>DISCOUNT (%) :-</b></td>
-                    <td class="w3-right"><b>{{invoiceData.invoice.discount}} %</b></td>
+                    <td><b>DISCOUNT ({{invoiceData.invoice.discount}}%) :-</b></td>
+                    <td class="w3-right"><b> {{(sumOfProductPrice*invoiceData.invoice.discount)/100}} ₹ /- </b></td>
                 </tr>
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
+                    <td><b>{{invoiceData.invoice.gsttype}} ({{invoiceData.invoice.gst}}%) :-</b></td>
+                    <td class="w3-right"><b> {{(sumOfProductPrice*invoiceData.invoice.gst)/100}} ₹ /-</b></td>
+                </tr>
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                    <td><b>CGST ({{invoiceData.invoice.gst/2}}%) :-</b></td>
+                    <td class="w3-right"><b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} ₹ /- </b></td>
+                </tr>
+                <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                    <td><b>SGST ({{invoiceData.invoice.gst/2}}%) :-</b></td>
+                    <td class="w3-right"><b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} ₹ /- </b></td>
+                </tr>
+
                 <tr>
                     <td><b>TOTAL :-</b></td>
-                    <td class="w3-right"><b> {{invoiceData.invoice.total}} /-</b> </td>
+                    <td class="w3-right"><b> {{invoiceData.invoice.total}} ₹ /-</b> </td>
                 </tr>
             </table>
             <!-- <b></b> <br/>
@@ -163,7 +165,7 @@
 
 
         </div>
-        <div class="w3-left">
+        <div class="w3-left w3-margin-left">
             <small>
                 <b> {{invoiceData.invoice.totalInWord.toUpperCase()}} ONLY /-</b>
             </small>
@@ -194,18 +196,18 @@
 
 
     <!-- t & c -->
-    <div class="w3-col font-15  w3-margin-top">
+    <div class="w3-col font-15 w3-section">
         <div class="w3-custom-gray w3-padding ">
             <b>Terms & Condition</b>
         </div>
         <div class="w3-custom-gray-text w3-padding">
-            <small>
+            <p>
                 1 . Goods once sold will not be taken back.
                 <br /> 2 . Any breakage,leakage,damage,loss,expiry will not be returnable once sold.
 
-                <div class="w3-right">
-                    <b>Sign.____________________</b>
-                </div>
+            <div class="w3-right">
+                <b>Sign.____________________</b>
+            </div>
             </small>
         </div>
     </div>

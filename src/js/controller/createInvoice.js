@@ -8,6 +8,9 @@ module.exports = [
 
     $scope.isLoading = false;
 
+    $scope.products = [];
+    $scope.customer = [];
+
     $scope.isEditingInvoiceFormSetting = false;
 
     SettingModule.getSetting("invoiceForm", (rs) => {
@@ -42,17 +45,35 @@ module.exports = [
       isNext: true,
     };
 
+    $scope.currentFilterfor = "";
+
     let getCustomerToDatabase = () =>
       CustomerModule.getCustomers($scope.CustomerFilter, (row) => {
+
         if (row.length < $scope.CustomerFilter.limit)
           $scope.CustomerFilter.isNext = false;
         else $scope.CustomerFilter.isNext = true;
 
         $scope.customer = row;
+        // console.log($scope.customer);
+
+        $scope.customer.forEach((element, index) => {
+          if (index == 0) {
+            element.isSelected = true;
+          } else {
+            element.isSelected = false;
+          }
+        });
+        $scope.currentFilterfor = "customer";
+
         $scope.$apply();
       });
 
     $scope.chnageCustomerSearchData = () => {
+      if ($scope.CustomerFilter.searchInput == '') {
+        $scope.customer = [];
+        return false;
+      }
       getCustomerToDatabase();
       $scope.isSearchingCustomer = true;
     };
@@ -91,12 +112,7 @@ module.exports = [
         dpincode: "",
       };
 
-      $scope.CustomerFilter = {
-        offset: 0,
-        limit: 16,
-        searchInput: "",
-        isNext: true,
-      };
+
 
       $scope.isSearchingCustomer = false;
       $scope.searchCustomerInput = "";
@@ -120,6 +136,8 @@ module.exports = [
 
     $scope.isSelectFromDatabaseCustomer = false;
     $scope.selectCustomerIntoSearchData = function (customer) {
+      console.log(customer);
+
       id = customer.id;
       delete customer.$$hashKey;
       delete customer.id;
@@ -157,12 +175,23 @@ module.exports = [
         if (row.length < $scope.ProductFilter.limit)
           $scope.ProductFilter.isNext = false;
         else $scope.ProductFilter.isNext = true;
-
+        $scope.products.forEach((element, index) => {
+          if (index == 0) {
+            element.isSelected = true;
+          } else {
+            element.isSelected = false;
+          }
+        });
         $scope.$apply();
+        $scope.currentFilterfor = "product"
       });
     };
 
     $scope.changeProductFilterData = () => {
+      if ($scope.ProductFilter.searchInput == '' && $scope.ProductFilter.catagory == '') {
+        $scope.products = [];
+        return false;
+      }
       $scope.isSearchingProduct = true;
       $scope.ProductFilter.offset = 0;
       getProductFromDatabase();
@@ -369,11 +398,14 @@ module.exports = [
 
     $scope.error = false;
     $scope.saveInvoce = () => {
+
+
       if ($scope.invoceProduct.length <= 0) {
         $scope.error = "One Items Must be Required.";
-
         return;
       }
+      $scope.invoceProduct = $scope.invoceProduct.map(({ isSelected, ...rest }) => rest);
+      delete $scope.newCustomer.isSelected;
 
       $scope.isLoading = true;
       mixpanel.track("Invoice Generated", {
@@ -414,6 +446,80 @@ module.exports = [
       $location.path("/invoice");
     };
 
+
+
+    document.onkeydown = function (event) {
+      // console.log(event.keyCode);
+      switch (event.keyCode) {
+        case 13:
+          if ($scope.currentFilterfor != "" && ($scope.customer.length > 0 || $scope.products.length > 0)) {
+            if ($scope.currentFilterfor == "customer") {
+              index = $scope.customer.findIndex(item => item.isSelected === true);
+              document.getElementById('cust_' + index).click();
+              $scope.CustomerFilter.searchInput = ''
+              $scope.$apply();
+            }
+            if ($scope.currentFilterfor == "product") {
+
+              index = $scope.products.findIndex(item => item.isSelected === true);
+              document.getElementById('prod_' + index).click();
+              $scope.ProductFilter.searchInput = "";
+              $scope.$apply();
+            }
+          }
+          break;
+        case 38:
+          if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
+            index = $scope.customer.findIndex(item => item.isSelected === true);
+            if (index != 0) {
+              $scope.customer[index].isSelected = false;
+              $scope.customer[index - 1].isSelected = true;
+              jumpRow('ctable', index - 1);
+
+            }
+          } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
+            index = $scope.products.findIndex(item => item.isSelected === true);
+            if (index != 0) {
+              $scope.products[index].isSelected = false;
+              $scope.products[index - 1].isSelected = true;
+              jumpRow('ptable', index - 1);
+
+            }
+          }
+
+          $scope.$apply();
+          break;
+        case 40:
+
+          if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
+            index = $scope.customer.findIndex(item => item.isSelected === true);
+
+            if ($scope.customer.length != index + 1) {
+              $scope.customer[index].isSelected = false;
+              $scope.customer[index + 1].isSelected = true;
+              jumpRow('ctable', index + 1);
+            }
+          } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
+            index = $scope.products.findIndex(item => item.isSelected === true);
+            if ($scope.products.length != index + 1) {
+              $scope.products[index].isSelected = false;
+              $scope.products[index + 1].isSelected = true;
+              jumpRow('ptable', index + 1);
+            }
+          }
+
+          $scope.$apply();
+          break;
+      }
+    };
+
+    function jumpRow(table, row) {
+      var rows = document.querySelectorAll('#' + table + ' tr');
+      rows[row].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
     document.addEventListener("keydown", (event) => {
       if (event.keyCode == "27") {
         $location.path("/invoice");

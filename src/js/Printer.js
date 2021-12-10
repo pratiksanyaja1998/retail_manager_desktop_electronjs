@@ -166,6 +166,13 @@ PrintApp.controller("invoiceController", [
       };
 
       console.log($scope.invoiceData);
+      $scope.sumOfProductPrice = 0;
+      $scope.invoiceData.invoiceProducts.forEach(element => {
+        $scope.sumOfProductPrice += element.price
+      });
+
+
+      console.log($scope.sumOfProductPrice);
 
       $scope.$apply();
     });

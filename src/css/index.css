@@ -674,5 +674,6 @@ td .material-icons {
   opacity: 0.5;
 }
 
-.share-whatsapp-btn {
+table .selectedrow{
+  background-color :#a09f9f !important;
 }
