@@ -136,7 +136,6 @@ module.exports = [
 
     $scope.isSelectFromDatabaseCustomer = false;
     $scope.selectCustomerIntoSearchData = function (customer) {
-      console.log(customer);
 
       id = customer.id;
       delete customer.$$hashKey;
@@ -188,7 +187,7 @@ module.exports = [
     };
 
     $scope.changeProductFilterData = () => {
-      if ($scope.ProductFilter.searchInput == '' && $scope.ProductFilter.catagory == '') {
+      if ($scope.ProductFilter.searchInput == '' && $scope.ProductFilter.catagory == null) {
         $scope.products = [];
         return false;
       }
@@ -446,9 +445,8 @@ module.exports = [
       $location.path("/invoice");
     };
 
-
-
     document.onkeydown = function (event) {
+
       // console.log(event.keyCode);
       switch (event.keyCode) {
         case 13:
@@ -460,7 +458,6 @@ module.exports = [
               $scope.$apply();
             }
             if ($scope.currentFilterfor == "product") {
-
               index = $scope.products.findIndex(item => item.isSelected === true);
               document.getElementById('prod_' + index).click();
               $scope.ProductFilter.searchInput = "";
@@ -469,13 +466,13 @@ module.exports = [
           }
           break;
         case 38:
+          event.preventDefault();
           if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
             index = $scope.customer.findIndex(item => item.isSelected === true);
             if (index != 0) {
               $scope.customer[index].isSelected = false;
               $scope.customer[index - 1].isSelected = true;
               jumpRow('ctable', index - 1);
-
             }
           } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
             index = $scope.products.findIndex(item => item.isSelected === true);
@@ -491,6 +488,7 @@ module.exports = [
           break;
         case 40:
 
+
           if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
             index = $scope.customer.findIndex(item => item.isSelected === true);
 
@@ -498,6 +496,7 @@ module.exports = [
               $scope.customer[index].isSelected = false;
               $scope.customer[index + 1].isSelected = true;
               jumpRow('ctable', index + 1);
+
             }
           } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
             index = $scope.products.findIndex(item => item.isSelected === true);
@@ -505,6 +504,7 @@ module.exports = [
               $scope.products[index].isSelected = false;
               $scope.products[index + 1].isSelected = true;
               jumpRow('ptable', index + 1);
+
             }
           }
 

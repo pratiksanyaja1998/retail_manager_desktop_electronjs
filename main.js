@@ -11,20 +11,20 @@ const {
 const path = require("path");
 const url = require("url");
 const ipc = require("electron").ipcMain;
-const fs = require("fs");
-const { autoUpdater } = require("electron-updater");
+// const fs = require("fs");
+// const { autoUpdater } = require("electron-updater");
 
-let mainWindow,
-  printWindow = null;
+// let mainWindow,
+//   printWindow = null;
 
-let isFullScreen = false;
+// let isFullScreen = false;
 
-autoUpdater.on("update-available", () => {
-  mainWindow.webContents.send("update_available");
-});
-autoUpdater.on("update-downloaded", () => {
-  mainWindow.webContents.send("update_downloaded");
-});
+// autoUpdater.on("update-available", () => {
+//   mainWindow.webContents.send("update_available");
+// });
+// autoUpdater.on("update-downloaded", () => {
+//   mainWindow.webContents.send("update_downloaded");
+// });
 
 function fullScrFun() {
   if (isFullScreen) {
@@ -74,6 +74,7 @@ function createWindow() {
       else win.close();
     });
   });
+
 
   mainWindow.once("ready-to-show", () => {
     autoUpdater.checkForUpdatesAndNotify();

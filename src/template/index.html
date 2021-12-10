@@ -8,13 +8,13 @@
             <tr>
                 <td>MM</td>
                 <td>
-                    <input class="w3-input w3-border" ng-model="mm" style="width: 65px ;" ng-change="changeDate()" type="number" placeholder="MM"
-                        min="1" max="12" />
+                    <input class="w3-input w3-border" ng-model="mm" style="width: 65px ;" ng-change="changeDate()"
+                        type="number" placeholder="MM" min="1" max="12" />
                 </td>
                 <td>YYYY</td>
                 <td>
-                    <input class="w3-input w3-border" ng-model="yyyy" style="width: 80px;" type="number" ng-change="changeDate()" placeholder="YYYY"
-                        min="1890" max="9999" />
+                    <input class="w3-input w3-border" ng-model="yyyy" style="width: 80px;" type="number"
+                        ng-change="changeDate()" placeholder="YYYY" min="1890" max="9999" />
                 </td>
 
             </tr>
@@ -26,15 +26,18 @@
     <div class="w3-card w3-col">
 
         <div class="w3-bar w3-custom-bar-block" style=" opacity: 0.7; color: white ">
-            <button class="w3-bar-item w3-button w3-gray active-overviewTab" onclick="openOverViewTab(this,'Home')" style="width: 50%">Overview
+            <button class="w3-bar-item w3-button w3-gray active-overviewTab" onclick="openOverViewTab(this,'Home')"
+                style="width: 50%">Overview
                 <small>(Selected Year)</small></button>
-            <button class="w3-bar-item w3-button w3-gray" onclick="openOverViewTab(this,'Total')" style="width: 50%">Total <small>(Selected
+            <button class="w3-bar-item w3-button w3-gray" onclick="openOverViewTab(this,'Total')"
+                style="width: 50%">Total <small>(Selected
                     Month)
                 </small></button>
         </div>
 
         <div id="Home" class="w3-container w3-border w3-display-container overviewTab">
-            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+            <span onclick="this.parentElement.style.display='none'"
+                class="w3-button w3-large w3-display-topright">&times;</span>
             <canvas id="myChart" width="100%" height="35px"></canvas>
 
 
@@ -42,7 +45,8 @@
 
 
         <div id="Total" class="w3-container w3-border w3-display-container overviewTab" style="display:none;">
-            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+            <span onclick="this.parentElement.style.display='none'"
+                class="w3-button w3-large w3-display-topright">&times;</span>
             <div class="overview-cal-div w3-center" style="    margin: 50px;">
                 <span class="income-label w3-button"> {{overView.income.toFixed(2)}} Rs./- </span>
 
@@ -67,7 +71,7 @@
                     <span class="settingTag w3-left" style="padding: 8px;">Products Reports</span>
 
                     <button class="w3-button w3-right w3-custom-teal w3-margin-left"
-                    onclick="clickOpenPrint('products')">Generate</button>
+                        onclick="clickOpenPrint('products')">Generate</button>
                 </div>
             </li>
             <li>
@@ -75,7 +79,7 @@
                     <span class="settingTag w3-left" style="padding: 8px;">Customer Reports</span>
 
                     <button class="w3-button w3-right w3-custom-teal w3-margin-left"
-                    onclick="clickOpenPrint('customer')">Generate</button>
+                        onclick="clickOpenPrint('customer')">Generate</button>
                 </div>
             </li>
         </ul>
@@ -89,13 +93,19 @@
                     <span class="settingTag w3-left" style="padding: 8px;">Income / Expenses Reports</span>
 
                     <button class="w3-button w3-right w3-custom-teal w3-margin-left"
-                    onclick="clickOpenPrint('income-expance')"
-                    >Generate</button>
+                        onclick="clickOpenPrint('income-expance')">Generate</button>
                 </div>
             </li>
-         
+
         </ul>
     </div>
 
+
+
+
+</div>
+<div class="w3-card w3-section w3-center" style="margin-top: 100px;" ng-click="OpenBLink(promoAds.main_panel_img.link)"
+    ng-show="promoAds.main_panel_img.src!=''" height="150px" width="100%">
+    <img ng-src="{{promoAds.main_panel_img.src}}" class="w3-image">
 
 </div>

@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "electron-updater": "^4.6.1",
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "knex": "^0.15.2",
     "mixpanel-browser": "^2.42.0",
