@@ -515,10 +515,11 @@ module.exports = [
 
     function jumpRow(table, row) {
       var rows = document.querySelectorAll('#' + table + ' tr');
-      rows[row].scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
+      // rows[row].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      rows[row].scrollIntoView({ block: 'center' });
+      // window.scroll({ top: rows[row].offsetTop, behavior: 'smooth' });
+
+      // rows[row].parentNode.scrollTop = rows[row].offsetTop;
     }
     document.addEventListener("keydown", (event) => {
       if (event.keyCode == "27") {

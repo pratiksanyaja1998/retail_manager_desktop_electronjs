@@ -63,7 +63,22 @@
 
         <div class="w3-col l12 w3-border w3-margin-top hide-print" style="overflow-y: auto;max-height:200px">
 
-            <div class="w3-col l3 w3-center" ng-repeat="customerRow in customer">
+            <table class="w3-table-all w3-hoverable" id="ptable" style="cursor: pointer">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>Customer Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="customerRow in customer" ng-click="selectCustomerIntoSearchData(customerRow)">
+                    <td>{{customerRow.name}}</td>
+                    <td>{{customerRow.phno}}</td>
+                    <td>{{customerRow.email}}</td>
+                </tr>
+            </table>
+
+            <div ng-show="0" class="w3-col l3 w3-center" ng-repeat="customerRow in customer">
                 <div class="block-serach-result" style="height: 66px;"
                     ng-click="selectCustomerIntoSearchData(customerRow)">
                     <span class="nameCase">{{customerRow.name}}</span>
@@ -94,7 +109,10 @@
                     <div class="nameCase">
                         <span ng-if="row.customer.name!=''">
                             <b>Name :-</b> {{row.customer.name}}
-
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <span ng-if="row.customer.email!='' && row.customer.email!=null">
+                            <b>Email :-</b> {{row.customer.email}}
                         </span>
 
                         <span ng-if="row.customer.phno!=''">
@@ -102,7 +120,6 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <span ng-if="row.customer.gstin!=''">
                             <b>GSTIN :-</b> {{row.customer.gstin}}
-
                         </span>
                     </div>
 
