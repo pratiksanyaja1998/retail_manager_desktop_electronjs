@@ -11,13 +11,13 @@ const {
 const path = require("path");
 const url = require("url");
 const ipc = require("electron").ipcMain;
-// const fs = require("fs");
+const fs = require("fs");
 // const { autoUpdater } = require("electron-updater");
 
-// let mainWindow,
-//   printWindow = null;
+let mainWindow,
+  printWindow = null;
 
-// let isFullScreen = false;
+let isFullScreen = false;
 
 // autoUpdater.on("update-available", () => {
 //   mainWindow.webContents.send("update_available");
@@ -76,9 +76,9 @@ function createWindow() {
   });
 
 
-  mainWindow.once("ready-to-show", () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  });
+  // mainWindow.once("ready-to-show", () => {
+  //   autoUpdater.checkForUpdatesAndNotify();
+  // });
 
   // developer shortcut
   globalShortcut.register("CommandOrControl+Alt+D", () => {
