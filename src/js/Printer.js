@@ -271,7 +271,7 @@ PrintApp.controller("invoiceController", [
         invoicesmskey: $scope.invoicesmskey,
       }
       formData.append("invoice", JSON.stringify(reqdata));
-      await fetch('http://localhost/php/spyhunteritsolution/api/retail/storeInvoice.php', {
+      await fetch('https://spyhunteritsolution.in/api/retail/storeInvoice.php', {
         method: "POST",
         body: formData
       });

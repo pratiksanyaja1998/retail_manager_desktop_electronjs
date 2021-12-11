@@ -82,10 +82,11 @@ storeApp.run(function ($rootScope, $location, $window) {
   $rootScope.isWaiting = true;
   $rootScope.isHideAuthNav = false;
 
-  fetch('http://localhost/php/spyhunteritsolution/api/retail/promotion.php')
+  fetch('https://spyhunteritsolution.in/api/retail/promotion.php')
     .then(response => response.json())
     .then((data) => {
       $rootScope.promoAds = data.data;
+      $rootScope.$apply();
     })
 
   $rootScope.OpenBLink = (link) => {
