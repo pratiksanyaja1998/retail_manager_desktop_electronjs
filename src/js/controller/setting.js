@@ -7,6 +7,7 @@ module.exports = [
 
     $rootScope.isWaiting = false;
 
+    $scope.AppVersion = AppVersion
     $scope.insrprefix;
     $scope.invoicesrno;
 
@@ -71,7 +72,7 @@ module.exports = [
 
               $rootScope.storeInfo.logo = RES_ROOT + "/storeLogo.png";
               $scope.storeInfo.logo = RES_ROOT + "/storeLogo.png";
-
+              
               $scope.clickToSaveStoreInfo();
 
               $scope.$apply();
@@ -274,9 +275,21 @@ module.exports = [
       });
     };
 
+    const { ipcRenderer } = require('electron');
+    const version = document.getElementById('version');
+
+    ipcRenderer.send('app_version');
+    ipcRenderer.on('app_version', (event, arg) => {
+      ipcRenderer.removeAllListeners('app_version');
+      console.log(arg.version)
+      // version.innerText = 'Version ' + arg.version;
+    });
+
     $scope.clickOpenPrintSettings = () =>
       ipc.send("show-print", {
         location: "settings",
       });
+
+ 
   },
 ];
