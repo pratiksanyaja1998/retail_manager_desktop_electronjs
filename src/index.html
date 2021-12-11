@@ -139,26 +139,27 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 200px;
+      width: fit-content;
       padding: 20px;
       border-radius: 5px;
       background-color: white;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      z-index: 999999;
     }
 
     .hidden {
-      display: none;
+      display: block;
     }
   </style>
 </head>
 
 <body class="w3-light-grey">
   <div id="notification" class="hidden">
-    <p id="message"></p>
-    <button id="close-button" onClick="closeNotification()">
+    <p id="message">Update Downloaded. It will be installed on restart. Restart now?</p>
+    <button class="w3-btn" id="close-button" onClick="closeNotification()">
       Close
     </button>
-    <button id="restart-button" onClick="restartApp()" class="hidden">
+    <button class="w3-btn" id="restart-button" onClick="restartApp()" class="hidden">
       Restart
     </button>
   </div>
