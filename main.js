@@ -12,19 +12,14 @@ const path = require("path");
 const url = require("url");
 const ipc = require("electron").ipcMain;
 const fs = require("fs");
-// const { autoUpdater } = require("electron-updater");
+const { autoUpdater } = require("electron-updater");
 
 let mainWindow,
   printWindow = null;
 
 let isFullScreen = false;
 
-// autoUpdater.on("update-available", () => {
-//   mainWindow.webContents.send("update_available");
-// });
-// autoUpdater.on("update-downloaded", () => {
-//   mainWindow.webContents.send("update_downloaded");
-// });
+
 
 function fullScrFun() {
   if (isFullScreen) {
@@ -76,9 +71,9 @@ function createWindow() {
   });
 
 
-  // mainWindow.once("ready-to-show", () => {
-  //   autoUpdater.checkForUpdatesAndNotify();
-  // });
+  mainWindow.once("ready-to-show", () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
 
   // developer shortcut
   globalShortcut.register("CommandOrControl+Alt+D", () => {
@@ -215,6 +210,10 @@ app.on("activate", function () {
 
 // services ipc
 
+ipc.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
 ipc.on("show-print", function (event, arg) {
   printWindow = new BrowserWindow({
     width: 1000,
@@ -281,4 +280,17 @@ ipc.on("save", (event, arg) => {
   });
 });
 
+
 ipc.on("show-full-screen", fullScrFun);
+
+
+autoUpdater.on("update-available", () => {
+  mainWindow.webContents.send("update_available");
+});
+autoUpdater.on("update-downloaded", () => {
+  mainWindow.webContents.send("update_downloaded");
+});
+
+ipc.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+});
