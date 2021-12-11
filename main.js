@@ -70,7 +70,7 @@ function createWindow() {
     });
   });
 
-  autoUpdater.checkForUpdatesAndNotify();
+   autoUpdater.checkForUpdatesAndNotify();
 
   mainWindow.once("ready-to-show", () => {
     console.log("CheckforUpdate");
@@ -286,16 +286,18 @@ ipc.on("save", (event, arg) => {
 ipc.on("show-full-screen", fullScrFun);
 
 
+
+ipc.on('restart_app', () => {
+  console.log("Restart App")
+  autoUpdater.quitAndInstall();
+});
+
+console.log(autoUpdater);
 autoUpdater.on("update-available", () => {
-  console.log("Update Available")
+  // console.log("Update Available")
   mainWindow.webContents.send("update_available");
 });
 autoUpdater.on("update-downloaded", () => {
   console.log("Update Downloaded")
   mainWindow.webContents.send("update_downloaded");
-});
-
-ipc.on('restart_app', () => {
-  console.log("Restart App")
-  autoUpdater.quitAndInstall();
 });
