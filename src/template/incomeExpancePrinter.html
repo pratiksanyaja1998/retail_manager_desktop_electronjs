@@ -11,16 +11,18 @@
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-change="generateReports()" ng-model="filter.mm"
-                            type="number" placeholder="MM" min="1" max="12" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px"
+                            ng-change="generateReports()" ng-model="filter.mm" type="number" placeholder="MM" min="1"
+                            max="12" />
                     </td>
 
                     <td>
-                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy" ng-change="generateReports()"
-                            type="number" placeholder="YYYY" min="1890" max="9999" />
+                        <input class="w3-input w3-border w3-margin-right" style="width: 80px" ng-model="filter.yyyy"
+                            ng-change="generateReports()" type="number" placeholder="YYYY" min="1890" max="9999" />
                     </td>
                     <td>
-                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left" ng-click="generateReports()">Generate
+                        <button class="w3-button  w3-light-grey w3-round-xlarge w3-margin-left"
+                            ng-click="generateReports()">Generate
                             Reports
                         </button>
                     </td>
@@ -40,7 +42,8 @@
         <div class="w3-col  ">
             <span class="w3-right">
                 <strong>
-                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
+                    <button class="w3-button w3-grey" ng-disabled="filter.offset<=0"
+                        ng-click="clickPrev()">&lt;</button>
                     <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
                     <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
                 </strong>
@@ -55,14 +58,15 @@
 
             <!-- <img class="w3-image " src="./assets/spyhunterLogo.png" style="max-width: 250px;" /> -->
             <b><big><big>{{storeInfo.storename}}</big> </big>
-                <span ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' "><br/></span>
+                <span
+                    ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' "><br /></span>
                 <small>
                     <span ng-show="storeInfo.area!=''">{{storeInfo.area}}</span>
                     <span ng-show="storeInfo.city!=''">, {{storeInfo.city}}</span>
                     <span ng-show="storeInfo.state!=''"> ,{{storeInfo.state}}</span>
                     <span ng-show="storeInfo.pincode!=''"> - {{storeInfo.pincode}}</span>
 
-                    <span ng-show="storeInfo.gstin!='' || storeInfo.phno!=''"><br/></span>
+                    <span ng-show="storeInfo.gstin!='' || storeInfo.phno!=''"><br /></span>
                     <span ng-show="storeInfo.gstin!='' "> GSTIN :- {{storeInfo.gstin}}</span>
                     <span ng-show="storeInfo.phno!=''"> &nbsp;&nbsp;MO :- +91 {{storeInfo.phno}}</span>
                 </small>
@@ -90,7 +94,8 @@
 
                         =
 
-                        <span class="total-label w3-button">{{(overView.income-overView.expance).toFixed(2)}} Rs./-</span>
+                        <span class="total-label w3-button">{{(overView.income-overView.expance).toFixed(2)}}
+                            Rs./-</span>
 
                     </div>
 
@@ -115,7 +120,7 @@
                         <tr ng-repeat="row in reports.expance  track by $index" ng-if="row">
                             <td class="w3-center" width="10%">{{$index+1}}</td>
                             <td width="27%" class="tooltip">{{row.description.substr(0, 40)}}...
-                                <br/>
+                                <br />
                                 <span class="tooltiptext">
                                     {{row.description}}
                                 </span>
@@ -148,7 +153,7 @@
                             <th>Sr.No</th>
                             <th>Customer Name</th>
                             <th>Mobile No.</th>
-                            <th>GST(%)</th>
+                            <th>Tax.(%)</th>
                             <th>Dis.(%)</th>
                             <th>Total</th>
                             <th>Created_At</th>

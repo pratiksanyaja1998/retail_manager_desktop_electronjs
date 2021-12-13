@@ -67,7 +67,9 @@
                         <tr>
                             <td ng-show="settings.sprice" style="max-width: 240px;">
                                 <label class="w3-text-gray">
-                                    <b>Seling Price</b>
+                                    <b>Seling Price <small>
+                                            <small>Not included tax.</small>
+                                        </small> </b>
                                 </label>
                                 <input class="w3-input w3-border" ng-model="newProduct.price" type="number" name="price"
                                     min="0" />
@@ -75,7 +77,7 @@
                                     <input-error> Please enter valid price.</input-error>
                                 </span>
                             </td>
-                            <td style="padding-left: 5px;max-width: 240px; " ng-show="settings.bprice">
+                            <td style="padding-left: 5px;max-width: 240px; " ng-show="settings.bprice && false">
                                 <label class="w3-text-gray">
                                     <b>Buying Price</b>
                                 </label>
@@ -121,7 +123,16 @@
                             </td>
                             <td style="padding-left: 5px" ng-show="settings.gst">
                                 <label class="w3-text-gray">
-                                    <b>GST(%)</b>
+                                    <b>Tax. (%)
+                                    </b>
+                                </label>
+                                <input class="w3-input w3-border" ng-model="newProduct.gst" type="number" min="0"
+                                    name="gst" />
+
+                            </td>
+                            <td style="padding-left: 5px" ng-show="settings.gst && 0">
+                                <label class="w3-text-gray">
+                                    <b>Tax.(%)</b>
                                 </label>
                                 <br />
                                 <select ng-model="newProduct.gst" style="min-width: 130px;">

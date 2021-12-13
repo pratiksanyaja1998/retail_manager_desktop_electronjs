@@ -1,0 +1,304 @@
+<style>
+    .fbold {
+        font-weight: bold !important;
+    }
+
+    .fnormal {
+        font-weight: normal !important;
+    }
+
+    .flight {
+        font-weight: light !important;
+    }
+
+    .border1px {
+        border: 1px solid black !important;
+        padding: 4px !important;
+    }
+
+    .border1pxr {
+        border-right: 1px solid black !important;
+        padding: 4px !important;
+    }
+
+    .border1pxl {
+        border-left: 1px solid black !important;
+        padding: 4px !important;
+    }
+
+    .border1pxb {
+        border-bottom: 1px solid black !important;
+        padding: 4px !important;
+    }
+
+    .border1pxt {
+        border-top: 1px solid black !important;
+        padding: 4px !important;
+    }
+
+    .btnone {
+        border-top: none !important;
+    }
+
+    .blnone {
+        border-left: none !important;
+    }
+
+    .brnone {
+        border-right: none !important;
+    }
+
+    .bbnone {
+        border-bottom: none !important;
+    }
+
+    .font-15 {
+        font-size: 15px !important;
+    }
+
+    .font-13 {
+        font-size: 13px !important;
+    }
+
+    .w3-col span {
+        line-height: 1.8;
+    }
+
+    .w3-half {
+        width: 50% !important;
+    }
+
+    .protable td {
+        border: 1px solid black !important;
+    }
+
+    .protable td {
+        border-top: 0px !important;
+    }
+
+    .protable tr td:first-child {
+        border-left: unset !important;
+    }
+
+    .protable tr td:last-child {
+        border-right: unset !important;
+    }
+
+    .calctable td {
+        border: none !important;
+    }
+</style>
+<div class="w3-row w3-margininvoiceDatainvoiceData">
+
+    <div class="w3-col l12 w3-text-black w3-padding fnormal font-15">
+        <div class="w3-row ">
+            <div class="w3-col w3-center w3-margin-top">
+                <h5 class="fbold"> Tax Invoice</h5>
+            </div>
+        </div>
+        <div class="w3-row border1px">
+            <div class="w3-col w3-half">
+                <span class="fbold">
+                    {{storeInfo.storename}} <br /> </span>
+                <span ng-show="storeInfo.gstin!=''">
+                    GSTIN/UIN: {{storeInfo.gstin}} <br />
+                </span>
+                <span
+                    ng-show=" storeInfo.area!='' || storeInfo.city!='' || storeInfo.state!='' || storeInfo.pincode!='' ">
+                    Address: {{storeInfo.area}} {{storeInfo.city}} {{storeInfo.state}} {{storeInfo.pincode}}. <br />
+                </span>
+                <span ng-show="storeInfo.phno!=''">Mobile No. {{ storeInfo.phno}} </span>
+
+            </div>
+            <div class="w3-col w3-half border1pxl">
+                <div class="w3-row">
+                    <div class="w3-col w3-half">
+                        <span>
+                            Invoice No.
+                        </span> <br />
+                        <span class="fbold">{{invoiceData.invoice.srno}}</span>
+                    </div>
+                    <div class="w3-col w3-half">
+                        Dated <br />
+                        <span class="fbold">{{invoiceData.invoice.dd}} / {{invoiceData.invoice.mm}} /
+                            {{invoiceData.invoice.yyyy}}</span>
+                    </div>
+                </div>
+                <div class="w3-row">
+                    <div class="w3-col w3-half" ng-show="invoiceData.invoice.billno != ''">
+                        <span>
+                            Chalan No.
+                        </span> <br />
+                        <span class="fbold">{{invoiceData.invoice.billno}}</span>
+                    </div>
+                    <div class="w3-col w3-half">
+                        Mode/Terms of Payment <br />
+                        <span class="fbold">{{invoiceData.invoice.paymentMethrd}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row border1px btnone">
+            <div class="w3-col w3-half">
+                <span class="fbold" ng-show="invoiceData.invoice.name!=''">
+                    {{invoiceData.invoice.name}}
+                    <br />
+                </span>
+
+                <span ng-show="invoiceData.invoice.phno!='' && invoiceData.invoice.phno!=null">
+                    Mobile :- +91 {{invoiceData.invoice.phno}}<br />
+                </span>
+                <span ng-show="invoiceData.invoice.email!='' && invoiceData.invoice.email!=null">
+                    Email :- {{invoiceData.invoice.email}}
+                </span><br />
+                <span ng-show="invoiceData.invoice.gstin!=''">
+                    GSTIN :- <span class="fbold"> {{invoiceData.invoice.gstin}} </span>
+                </span>
+            </div>
+            <div class="w3-col w3-half border1pxl">
+                <span class="fbold"> Terms of Delivery</span> <br>
+                <span class="">1 . Goods once sold will not be taken back. </span> <br />
+                <span class="">2
+                    .Any
+                    breakage,leakage,damage,loss,expiry will not be returnable once sold. </span>
+
+            </div>
+
+
+        </div>
+        <div class="w3-row border1px btnone">
+            <div class="w3-col w3-half">
+                <span class="fbold">Delivery Details </span> <br>
+                <span
+                    ng-show="invoiceData.invoice.barea || invoiceData.invoice.bcity || invoiceData.invoice.bstate || invoiceData.invoice.bpincode">Billing
+                    to:-
+                    {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}}
+                    {{invoiceData.invoice.bpincode}} <br />
+                </span>
+
+                <span>Delivery to:-
+                    {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}}
+                    {{invoiceData.invoice.bpincode}} <br />
+                </span>
+                <span>
+                </span>
+            </div>
+        </div>
+
+        <div class="w3-row border1px btnone protable">
+            <!-- table product -->
+            <div class="w3-col">
+
+                <table class="font-15 w3-table w3-border-bottom  w3-centered w3-text-black fnormal">
+
+                    <tr>
+                        <td>Sr. No</td>
+                        <td>Description of Goods</td>
+                        <td>HSN</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <!-- <th>DIS.(%)</th> -->
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">CGST(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">SGST(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">Tax.(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">IGST(%)</td>
+                        <td>Total</td>
+                    </tr>
+
+                    <tr ng-repeat="row in invoiceData.invoiceProducts">
+                        <td>{{$index+1}}</td>
+                        <td class="fbold">{{row.name}}</td>
+                        <td>{{row.hsn}}</td>
+                        <td>{{row.price}}</td>
+                        <td class="">{{row.qty}}</td>
+                        <!-- <td>{{row.discount}} %</td> -->
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">{{row.gst}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">{{row.gst}} %
+                        </td>
+                        <td class="">{{row.total}}</td>
+                    </tr>
+
+                </table>
+
+                <!-- finl price -->
+                <div class="font-15" style="margin-top: 5px">
+
+
+                    <!-- <div class="w3-right w3-margin-left"> -->
+                    <table class="font-15 w3-right w3-margin-right w3-text-black calctable">
+                        <tr>
+                            <td>Discount ({{invoiceData.invoice.discount}}%) :-</td>
+                            <td class="w3-right"> ₹ {{(sumOfProductPrice*invoiceData.invoice.discount)/100}} /-
+                            </td>
+                        </tr>
+                        <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
+                            <td>{{invoiceData.invoice.gsttype}} ({{invoiceData.invoice.gst}}%) :-</td>
+                            <td class="w3-right"> ₹ {{(sumOfProductPrice*invoiceData.invoice.gst)/100}} /-</td>
+                        </tr>
+                        <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                            <td>CGST ({{invoiceData.invoice.gst/2}}%) :-</td>
+                            <td class="w3-right"> ₹ {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} /-
+                            </td>
+                        </tr>
+                        <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
+                            <td>SGST ({{invoiceData.invoice.gst/2}}%) :-</td>
+                            <td class="w3-right"> ₹ {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} /-
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Total :-</b></td>
+                            <td class="w3-right"><b> ₹ {{invoiceData.invoice.total}} /-</b> </td>
+                        </tr>
+                    </table>
+                    <!-- <b></b> <br/>
+                    <b></b></div> -->
+                    <!-- <div class="w3-right w3-margin-left"> -->
+                    <!-- ng-show="invoiceData.invoice.discount!=0">-->
+                    <!-- </div> -->
+                    <!-- <div class="w3-right w3-margin-left" >
+                    <b>{{invoiceData.invoice.gsttype}} (%) :-</b> {{invoiceData.invoice.gst}} %</div>
+                <br> -->
+
+
+
+
+                </div>
+                <div class="w3-left w3-margin-left">
+                    Amount Chargeable (in words)
+                    <br />
+                    <small>
+                        <b> {{invoiceData.invoice.totalInWord.toUpperCase()}} ONLY /-</b>
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="w3-row border1px btnone">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="w3-col w3-twothird font-13">
+                We declare that this invoice shows the actual price of
+                the goods described and that all particulars are true
+                and correct.
+            </div>
+            <div class="w3-col w3-third w3-right">
+                <span class="w3-right">
+                    Sign_____________________
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+</div>

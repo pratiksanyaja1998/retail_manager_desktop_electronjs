@@ -140,10 +140,8 @@ PrintApp.controller("invoiceController", [
 
     SettingModule.getSetting("storeInfo", (data) => {
       $scope.storeInfo = data;
+      // console.log($scope);
     });
-
-
-
 
     SettingModule.getInvoiceAPIcred((data) => {
       $scope.invoicesmskey = data;

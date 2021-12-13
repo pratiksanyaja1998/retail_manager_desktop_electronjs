@@ -269,7 +269,7 @@ module.exports = [
       delete productRow.id;
 
       //default settings
-      productRow.gst = productRow.gst + "";
+      productRow.gst = productRow.gst;
       productRow.qty = 1;
 
       $scope.invoceProduct.push({
@@ -350,7 +350,7 @@ module.exports = [
       $scope.invoceProduct.push({
         name: "",
         // discount: 0,
-        gst: $scope.gst + "",
+        gst: $scope.gst,
         hsn: "",
         qty: 1,
         price: 0.0,
@@ -386,13 +386,13 @@ module.exports = [
     $scope.tprchage = false;
     $scope.desciption = "";
     $scope.paymentMethrd = null;
-    $scope.gsttype = "GST";
+    $scope.gsttype = "Tax.";
 
     $scope.clickClearOtherDetail = () => {
       $scope.tprchage = false;
       $scope.desciption = "";
       $scope.paymentMethrd = null;
-      $scope.gsttype = "GST";
+      $scope.gsttype = "Tax.";
     };
 
     $scope.error = false;
