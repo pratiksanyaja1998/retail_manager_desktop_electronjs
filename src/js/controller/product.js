@@ -121,7 +121,7 @@ module.exports = [
         name: "",
         hsn: "",
         price: 0,
-        gst: "0",
+        gst: 0,
         qty: 0,
         bprice: 0,
         category: null,
@@ -207,18 +207,20 @@ module.exports = [
     };
 
     $scope.deleteProduct = (id) => {
-      ProductModule.deleteProduct(id, () => {
-        $scope.products.find((o, i) => {
-          if (o) {
-            if (o.id === id) {
-              delete $scope.products[i];
-              $scope.$apply();
+      if (confirm("Are you sure you want to delete this product")) {
+        ProductModule.deleteProduct(id, () => {
+          $scope.products.find((o, i) => {
+            if (o) {
+              if (o.id === id) {
+                delete $scope.products[i];
+                $scope.$apply();
 
-              return i; // stop searching
+                return i; // stop searching
+              }
             }
-          }
+          });
         });
-      });
+      }
     };
 
     $scope.editProduct = (product) => {
@@ -227,7 +229,7 @@ module.exports = [
       $scope.products.find((o, i) => {
         if (o)
           if (o.id === product.id) {
-            product.gst = product.gst + "";
+            product.gst = product.gst;
             $scope.newProduct = {
               ...product,
               arrayid: i,
@@ -240,18 +242,21 @@ module.exports = [
     };
 
     $scope.deleteProductCategory = (name) => {
-      $scope.newCategoryError.flag = false;
+      if (confirm("Are you sure you want to delete this product category?")) {
+        $scope.newCategoryError.flag = false;
 
-      ProductCategoryModule.deleteProductCategory(name, (result) => {
-        if (!result.error) {
-          getProductCategorys();
-        } else {
-          $scope.newCategoryError.flag = true;
-          $scope.newCategoryError.message = result.error;
-        }
+        ProductCategoryModule.deleteProductCategory(name, (result) => {
+          if (!result.error) {
+            getProductCategorys();
+          } else {
+            $scope.newCategoryError.flag = true;
+            $scope.newCategoryError.message = result.error;
+          }
 
-        $scope.$apply();
-      });
+          $scope.$apply();
+        });
+      }
+
     };
 
     $scope.focusFrist = true;

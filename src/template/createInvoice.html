@@ -397,7 +397,7 @@
               <th ng-show="settings.discountInProductWise">Dis.(%)</th>
               <th ng-show="settings.gstInProductWise">
                 <select ng-model="gsttype" style=" margin-top: -10px;height: 33px; padding-top: 5px;">
-                  <option>GST</option>
+                  <option>Tax.</option>
                   <option>IGST</option>
                 </select>
               </th>
@@ -444,7 +444,7 @@
 
 
               <td ng-show="settings.gstInProductWise">
-                <select ng-model="invoceProduct[$index].gst" ng-disabled="invoceProduct[$index].products"
+                <select ng-if="0" ng-model="invoceProduct[$index].gst" ng-disabled="invoceProduct[$index].products"
                   ng-change="changeInvoceProductsData($index)" style="height: 30px;padding-top: 4px;margin-top: -5px;">
                   <option value="0">0%</option>
                   <option value="5">5%</option>
@@ -452,6 +452,8 @@
                   <option value="18">18%</option>
                   <option value="20">20%</option>
                 </select>
+                <input type="number" ng-disabled="invoceProduct[$index].products" ng-model="invoceProduct[$index].gst"
+                  ng-change="changeInvoceProductsData($index)" style="width: 60px;" min="0" name="tax{{$index}}" />
               </td>
               <td>{{row.total}}</td>
               <td width='50px' class="w3-center" ng-click="deleteInvoiceProduct($index)">
@@ -513,7 +515,7 @@
 
               <td>
                 <select ng-model="gsttype" style="width: 90px;    height: 37px;">
-                  <option>GST</option>
+                  <option>Tax.</option>
                   <option>IGST</option>
                 </select> :
               </td>
@@ -775,7 +777,7 @@
               <label>
                 <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="false"
                   ng-model="settings.gstInProductWise" />
-                <span class="settingTag " style="padding: 8px;">GST (apply in total invoice price) </span>
+                <span class="settingTag " style="padding: 8px;">Tax. (apply in total invoice price) </span>
               </label>
               <span style="padding-left: 15px;padding-right: 15px">OR</span>
             </span>
@@ -783,7 +785,7 @@
               <label>
                 <input type="radio" ng-change="changeSettings()" name="gstsettings" ng-value="true"
                   ng-model="settings.gstInProductWise" />
-                <span class="settingTag " style="padding: 8px;">GST (apply in products wise) </span>
+                <span class="settingTag " style="padding: 8px;">Tax. (apply in products wise) </span>
               </label>
             </span>
 

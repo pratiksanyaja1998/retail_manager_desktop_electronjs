@@ -24,7 +24,7 @@ module.exports = [
     });
 
     $scope.changeSettings = () => {
-      SettingModule.updateSettingJson("invoice", $scope.settings, () => {});
+      SettingModule.updateSettingJson("invoice", $scope.settings, () => { });
     };
 
     // end settings
@@ -84,17 +84,20 @@ module.exports = [
     $scope.invoice = false;
 
     $scope.deleteInvoice = function (invoice) {
-      InvoiceModule.deleteInvoice(invoice, () => {
-        $scope.invoice.find((o, i) => {
-          if (o) {
-            if (o.id === invoice.id) {
-              delete $scope.invoice[i];
-              $scope.$apply();
-              return; // stop searching
+      if (confirm("Are you sure you want to delete this invoice?")) {
+        InvoiceModule.deleteInvoice(invoice, () => {
+          $scope.invoice.find((o, i) => {
+            if (o) {
+              if (o.id === invoice.id) {
+                delete $scope.invoice[i];
+                $scope.$apply();
+                return; // stop searching
+              }
             }
-          }
+          });
         });
-      });
+      }
+
     };
 
     $scope.viewInvoice = (id) => {

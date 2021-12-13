@@ -51,9 +51,12 @@ var ProductModule = (function () {
           callback(res);
         })
         .catch((e) => {
-          callback({
-            error: "CSV file is not Valid or Duplicate Content Found",
-          });
+          if (e.message.indexOf("UNIQUE") >= 0) {
+            callback({
+              error:
+                "Items Already Exists. Items Name And Barcode Must Unique.",
+            });
+          }
         });
     },
 

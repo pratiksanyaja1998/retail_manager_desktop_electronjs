@@ -69,7 +69,7 @@
                     <th>Sr.No</th>
                     <th ng-show="settings.cname">Customer Name</th>
                     <th ng-show="settings.phno">Mobile No.</th>
-                    <th ng-show="settings.gst">GST(%)</th>
+                    <th ng-show="settings.gst">Tax.(%)</th>
                     <th ng-show="settings.discount">Dis.(%)</th>
                     <th ng-show="settings.total">Total</th>
                     <th>Created_At</th>
@@ -163,7 +163,7 @@
 
                 <li>
                     <div class="w3-panel ">
-                        <span class="settingTag w3-left" style="padding: 8px;">GST</span>
+                        <span class="settingTag w3-left" style="padding: 8px;">Tax.</span>
 
                         <div class="w3-right">
                             <input type="checkbox" ng-change="changeSettings()" ng-model="settings.gst"

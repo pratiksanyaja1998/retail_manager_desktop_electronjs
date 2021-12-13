@@ -104,6 +104,7 @@
                 <!-- <th>DIS.(%)</th> -->
                 <th ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">CGST(%)</th>
                 <th ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">SGST(%)</th>
+                <th ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">Tax.</th>
                 <th ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">IGST(%)</th>
                 <th>TOTAL</th>
             </tr>
@@ -117,6 +118,7 @@
                 <!-- <td>{{row.discount}} %</td> -->
                 <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %</td>
                 <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %</td>
+                <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">{{row.gst}} %</td>
                 <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">{{row.gst}} %</td>
                 <td>{{row.total}}</td>
             </tr>

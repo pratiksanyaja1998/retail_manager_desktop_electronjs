@@ -47,9 +47,12 @@ var CustomerModule = (function () {
           callback(res);
         })
         .catch((e) => {
-          callback({
-            error: "CSV file is not Valid or Duplicate Content Found",
-          });
+          if (e.message.indexOf("UNIQUE") >= 0) {
+            callback({
+              error:
+                "Customer Already Exists. Name Or Mobile Number Must Be Unique.",
+            });
+          }
         });
     },
 

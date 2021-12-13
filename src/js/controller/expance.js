@@ -157,18 +157,21 @@ module.exports = [
     };
 
     $scope.deleteExpance = (expance) => {
-      ExpanceModule.deleteExpance(expance, () => {
-        $scope.expance.find((o, i) => {
-          if (o) {
-            if (o.id === expance.id) {
-              delete $scope.expance[i];
-              $scope.$apply();
+      if (confirm("Are you sure you want to delete this expence?")) {
+        ExpanceModule.deleteExpance(expance, () => {
+          $scope.expance.find((o, i) => {
+            if (o) {
+              if (o.id === expance.id) {
+                delete $scope.expance[i];
+                $scope.$apply();
 
-              return; // stop searching
+                return; // stop searching
+              }
             }
-          }
+          });
         });
-      });
+      }
+
     };
 
     $scope.editExpance = (expance) => {
@@ -191,18 +194,21 @@ module.exports = [
     };
 
     $scope.deleteExpanceCategory = (name) => {
-      $scope.newCategoryError.flag = false;
+      if (confirm("Are you sure you want to delete this category?")) {
+        $scope.newCategoryError.flag = false;
 
-      CategoryModule.deleteCategory(name, (result) => {
-        if (!result.error) {
-          getCategorys();
-        } else {
-          $scope.newCategoryError.flag = true;
-          $scope.newCategoryError.message = result.error;
-        }
+        CategoryModule.deleteCategory(name, (result) => {
+          if (!result.error) {
+            getCategorys();
+          } else {
+            $scope.newCategoryError.flag = true;
+            $scope.newCategoryError.message = result.error;
+          }
 
-        $scope.$apply();
-      });
+          $scope.$apply();
+        });
+      }
+
     };
 
     $scope.focusFrist = true;
