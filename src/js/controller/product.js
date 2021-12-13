@@ -312,12 +312,12 @@ module.exports = [
             }
             custPartArray.name = item.Product_Name;
             custPartArray.barcode = item.Barcode;
-            custPartArray.hsn = item.HSN;
-            custPartArray.price = item.Selling_Price;
-            custPartArray.bprice = item.Buying_Price;
-            custPartArray.qty = item.Quantity;
+            custPartArray.hsn = parseInt(item.HSN);
+            custPartArray.price = parseFloat(item.Selling_Price);
+            custPartArray.bprice = parseFloat(item.Buying_Price);
+            custPartArray.qty = parseFloat(item.Quantity);
             custPartArray.category = item.Category;
-            custPartArray.gst = item.GST;
+            custPartArray.gst = parseFloat(item.GST);
             BatChData.push(custPartArray);
           }
         });
