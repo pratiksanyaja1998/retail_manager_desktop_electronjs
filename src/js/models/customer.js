@@ -4,7 +4,7 @@ var CustomerModule = (function () {
       knex
         .select("*")
         .from("customer")
-        .orderBy("name", "asc")
+        .orderBy("id", "asc")
         .where("name", "like", "%" + filter.searchInput + "%")
         .orWhere("phno", "like", "%" + filter.searchInput + "%")
         .orWhere("gstin", "like", "%" + filter.searchInput + "%")

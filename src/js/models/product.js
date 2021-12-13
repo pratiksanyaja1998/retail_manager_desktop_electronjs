@@ -4,7 +4,7 @@ var ProductModule = (function () {
       knex
         .select()
         .from("products")
-        .orderBy("name", "asc")
+        .orderBy("id", "asc")
         .where((builder) => {
           builder.where("name", "like", "%" + filter.searchInput + "%");
           if (filter.catagory != null) {

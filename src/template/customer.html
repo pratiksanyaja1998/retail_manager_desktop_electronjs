@@ -269,7 +269,7 @@
                     </tr>
 
                     <tr ng-repeat="customerRow in customer  track by $index " ng-if='customerRow'>
-                        <td width="100px">{{$index+1}}</td>
+                        <td width="100px">{{customerRow.id}}</td>
                         <td class="tooltip nameCase">{{customerRow.name}}
                             <br />
                             <span class="tooltiptext nameCase" ng-if="settings.badr || settings.dadr ">

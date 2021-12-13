@@ -221,7 +221,7 @@
                 </tr>
 
                 <tr ng-repeat="productRow in products  track by $index " ng-if='productRow '>
-                    <td width="100px">{{$index+1}}</td>
+                    <td width="100px">{{productRow.id}}</td>
                     <td>{{productRow.name}}</td>
                     <td ng-show="settings.hsn">{{productRow.hsn}}</td>
                     <td ng-show="settings.sprice">{{productRow.price}}</td>

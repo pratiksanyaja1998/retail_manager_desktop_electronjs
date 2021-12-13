@@ -1,7 +1,9 @@
 <div class="expanceblock">
 
     <div class="w3-row" ng-hide="isEditingExpanceSetting">
-        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-click="isEditingExpance=true" ng-hide="isEditingExpance">New Expense&nbsp;&nbsp; <small class="w3-right"><small>(ctrl+n)</small></small>  </button>
+        <button class="w3-button w3-custom-teal-btn w3-margin-bottom w3-left" ng-click="isEditingExpance=true"
+            ng-hide="isEditingExpance">New Expense&nbsp;&nbsp; <small class="w3-right"><small>(ctrl+n)</small></small>
+        </button>
         <button class="  w3-margin-bottom  setting-btn w3-right" ng-click="isEditingExpanceSetting = true">
             <i class="fa fa-cog fa-fw"></i>
             </a>
@@ -18,7 +20,8 @@
                 <h3 class="w3-center">
                     <strong>Expense</strong>
                 </h3>
-                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px" ng-click="clickClearExpance()">
+                <button class="w3-button w3-right w3-circle w3-custom-teal" style="margin-top: -51px"
+                    ng-click="clickClearExpance()">
                     <i class="fa fa-refresh" style="font-size:24px"></i>
                 </button>
             </header>
@@ -33,24 +36,27 @@
                                     <label class="w3-text-gray">
                                         <b>Date :</b>
                                     </label>
-                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate' ng-model="newExpance.dd" style="width: 65px ;" type="number" placeholder="DD" max="31"
-                                        min="1" />
+                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate'
+                                        ng-model="newExpance.dd" style="width: 65px ;" type="number" placeholder="DD"
+                                        max="31" min="1" />
                                 </td>
 
                                 <td>
                                     <label class="w3-text-gray">
                                         <b>-</b>
                                     </label>
-                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate' ng-model="newExpance.mm" style="width: 65px ;" type="number" placeholder="MM" max="12"
-                                        min="1" />
+                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate'
+                                        ng-model="newExpance.mm" style="width: 65px ;" type="number" placeholder="MM"
+                                        max="12" min="1" />
                                 </td>
 
                                 <td>
                                     <label class="w3-text-gray">
                                         <b>-</b>
                                     </label>
-                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate' ng-model="newExpance.yyyy" style="width: 80px;" type="number" placeholder="YYYY" min="1890"
-                                        max="9999" />
+                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate'
+                                        ng-model="newExpance.yyyy" style="width: 80px;" type="number" placeholder="YYYY"
+                                        min="1890" max="9999" />
                                 </td>
                             </tr>
                         </table>
@@ -60,48 +66,52 @@
 
                         <label class="w3-text-gray">
                             <b>Description</b>
-                            
+
                         </label>
-                        <textarea rows="3"  focus-me="focusFrist" cols="100%" class="w3-input w3-border" ng-model="newExpance.description" name="description" title="Enter only Text"
-                            ></textarea>
+                        <textarea rows="3" focus-me="focusFrist" cols="100%" class="w3-input w3-border"
+                            ng-model="newExpance.description" name="description" title="Enter only Text"></textarea>
                         <span ng-show="expance_form.description.$invalid">
                             <input-error>it's required.</input-error>
                         </span>
                         <p>
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%">
-                                        <label class="w3-text-gray">
-                                            <b>Reference Number</b>
-                                        </label>
-                                        <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate' ng-model="newExpance.refno" type="text" name="refno" />
-                                    </td>
-                                    <td style="padding-left: 5px" width="30%">
-                                        <label class="w3-text-gray">
-                                            <b>Cost</b>
-                                        </label>
-                                        <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate' ng-model="newExpance.price" type="number" min="0" name="price" />
-                                        <span ng-show="expance_form.price.$invalid">
-                                            <input-error>Please enter valid Cost.</input-error>
-                                        </span>
-                                    </td>
-                                    <td style="padding-left: 5px" width="30%">
-                                        <label class="w3-text-gray">
-                                            <b>Category<span class="w3-text-red" style="font-size: 30px;line-height: 0;">*</span></b>
-                                        </label>
-                                        <span class="w3-button theme-btn-error" ng-show="expanceCategory.length == 0"
-                                            ng-click="clickAddNewCateOption()">Add New Category</span>
-                                        <select style="min-width: 200px;
-                                            " ng-model="newExpance.category" ng-disabled='newExpance.isUpdate' name='category' ng-hide='expanceCategory.length == 0'
-                                            ng-options="x for x in expanceCategory" >
-                                            <option value="">Select Category</option>
-                                        </select>
-                                        <span ng-show="expance_form.category.$invalid">
-                                            <input-error>Please select category.</input-error>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <label class="w3-text-gray">
+                                        <b>Reference Number</b>
+                                    </label>
+                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate'
+                                        ng-model="newExpance.refno" type="text" name="refno" />
+                                </td>
+                                <td style="padding-left: 5px" width="30%">
+                                    <label class="w3-text-gray">
+                                        <b>Cost</b>
+                                    </label>
+                                    <input class="w3-input w3-border" ng-disabled='newExpance.isUpdate'
+                                        ng-model="newExpance.price" type="number" min="0" name="price" />
+                                    <span ng-show="expance_form.price.$invalid">
+                                        <input-error>Please enter valid Cost.</input-error>
+                                    </span>
+                                </td>
+                                <td style="padding-left: 5px" width="30%">
+                                    <label class="w3-text-gray">
+                                        <b>Category<span class="w3-text-red"
+                                                style="font-size: 30px;line-height: 0;">*</span></b>
+                                    </label>
+                                    <span class="w3-button theme-btn-error" ng-show="expanceCategory.length == 0"
+                                        ng-click="clickAddNewCateOption()">Add New Category</span>
+                                    <select style="min-width: 200px;
+                                            " ng-model="newExpance.category" ng-disabled='newExpance.isUpdate'
+                                        name='category' ng-hide='expanceCategory.length == 0'
+                                        ng-options="x for x in expanceCategory">
+                                        <option value="">Select Category</option>
+                                    </select>
+                                    <span ng-show="expance_form.category.$invalid">
+                                        <input-error>Please select category.</input-error>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
                         </p>
                     </div>
 
@@ -114,7 +124,8 @@
 
                     <div class="w3-col w3-left ">
                         <p>
-                            <button class="w3-button  w3-custom-teal-btn" ng-click="clickSaveExpance()" ng-disabled="expance_form.$invalid" type="submit">UPDATE & SAVE</button>
+                            <button class="w3-button  w3-custom-teal-btn" ng-click="clickSaveExpance()"
+                                ng-disabled="expance_form.$invalid" type="submit">UPDATE & SAVE</button>
                             <button class="w3-button  w3-grey " ng-click="clickCancelExpance()">CANCEL</button>
                         </p>
                     </div>
@@ -125,7 +136,7 @@
         </div>
 
         <!-- expance table -->
-        <div class="w3-col" >
+        <div class="w3-col">
 
             <!-- search bar -->
             <div class="w3-col">
@@ -133,22 +144,23 @@
                     <tr>
                         <td width="100%">
                             <input type="text" class="w3-input w3-border searchbox-input "
-                             placeholder="Search Expense..." ng-change="changeFilterData()" ng-model="filter.searchInput" />
+                                placeholder="Search Expense..." ng-change="changeFilterData()"
+                                ng-model="filter.searchInput" />
                         </td>
                         <td>
-                            <table class="w3-left" >
+                            <table class="w3-left">
                                 <tr>
                                     <td>MM</td>
                                     <td>
-                                        <input class="w3-input w3-border" ng-change="changeFilterData()" 
-                                        ng-model="filter.mm" style="width: 65px ;" type="number" placeholder="MM"
+                                        <input class="w3-input w3-border" ng-change="changeFilterData()"
+                                            ng-model="filter.mm" style="width: 65px ;" type="number" placeholder="MM"
                                             min="1" max="12" />
                                     </td>
                                     <td>YYYY</td>
                                     <td>
                                         <input class="w3-input w3-border" ng-model="filter.yyyy"
-                                         ng-change="changeFilterData()" style="width: 80px;" type="number" placeholder="YYYY"
-                                            min="1890" max="9999" />
+                                            ng-change="changeFilterData()" style="width: 80px;" type="number"
+                                            placeholder="YYYY" min="1890" max="9999" />
                                     </td>
                                     <td style="padding-left:20px ;padding-right: 20px">
                                         AND
@@ -157,26 +169,29 @@
                             </table>
                         </td>
                         <td>
-                            <select class="w3-margin-right" ng-model="filter.catagory"  ng-change="changeFilterData()"  ng-options="x for x in expanceCategory">
+                            <select class="w3-margin-right" ng-model="filter.catagory" ng-change="changeFilterData()"
+                                ng-options="x for x in expanceCategory">
                                 <option value="">Select Category</option>
                             </select>
                         </td>
-                        <td >
+                        <td>
                             <strong>
-                                <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0" ng-click="clickPrev()">&lt;</button>
-                            </strong>   
+                                <button class="w3-margin-left w3-button w3-grey" ng-disabled="filter.offset<=0"
+                                    ng-click="clickPrev()">&lt;</button>
+                            </strong>
                         </td>
                         <td>
                             <strong>
                                 <span class="w3-margin-left w3-margin-right">{{filter.offset}}</span>
-                            </strong>   
+                            </strong>
                         </td>
                         <td>
                             <strong>
-                                <button class="w3-button w3-grey " ng-disabled='!filter.isNext' ng-click="clickNext()">&gt;</button>
-                            </strong>   
+                                <button class="w3-button w3-grey " ng-disabled='!filter.isNext'
+                                    ng-click="clickNext()">&gt;</button>
+                            </strong>
                         </td>
-                       
+
                     </tr>
                 </table>
             </div>
@@ -196,11 +211,10 @@
                         <th width="13%" class="w3-center">Delete</th>
                     </tr>
 
-                    <tr ng-repeat="row in expance track by $index"
-                        ng-if="row">
-                        <td class="w3-center" width="10%">{{$index+1}}</td>
+                    <tr ng-repeat="row in expance track by $index" ng-if="row">
+                        <td class="w3-center" width="10%">{{row.id}}</td>
                         <td width="27%" class="tooltip">{{row.description.substr(0, 15)}}...
-                            <br/>
+                            <br />
                             <span class="tooltiptext">
                                 {{row.description}}
                             </span>
@@ -223,7 +237,7 @@
             <div class=" w3-col w3-center " style="margin-top: 5px">
 
                 <div ng-show="expance.length<=0" class="w3-center">
-                        Expense is not found. please add ...
+                    Expense is not found. please add ...
                 </div>
 
             </div>
@@ -238,7 +252,8 @@
     <!-- settings -->
     <div class="setting-block w3-row" ng-show="isEditingExpanceSetting">
         <div class="w3-col w3-margin-bottom">
-            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingExpanceSetting = false">Back&nbsp;&nbsp; <small class="w3-right"><small>(Esc)</small></small></button>
+            <button class="w3-button w3-custom-teal-btn" ng-click="isEditingExpanceSetting = false">Back&nbsp;&nbsp;
+                <small class="w3-right"><small>(Esc)</small></small></button>
         </div>
 
         <!-- expance category -->
@@ -250,37 +265,41 @@
             </header>
             <div class="w3-container">
                 <p>
-                    <form name="expance_category">
-                        <table>
-                            <tr>
-                                <td width='35%'>
-                                    <input class="w3-input w3-border " name="newcatename" placeholder="New Category Name" ng-model="newCategory" type="text" >
-                                    <span ng-show="expance_category.newcatename.$invalid">
-                                        <input-error>Please Enter Category.</input-error>
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="w3-button w3-custom-teal-btn  w3-margin-left" ng-disabled="expance_category.$invalid" ng-click="clickAddCategory()">Add New Category</button>
-                                </td>
-                                <td ng-if='newCategoryError.flag' width='80%'>
-                                    <div class="error w3-center">{{newCategoryError.message}}</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+                <form name="expance_category">
+                    <table>
+                        <tr>
+                            <td width='35%'>
+                                <input class="w3-input w3-border " name="newcatename" placeholder="New Category Name"
+                                    ng-model="newCategory" type="text">
+                                <span ng-show="expance_category.newcatename.$invalid">
+                                    <input-error>Please Enter Category.</input-error>
+                                </span>
+                            </td>
+                            <td>
+                                <button class="w3-button w3-custom-teal-btn  w3-margin-left"
+                                    ng-disabled="expance_category.$invalid" ng-click="clickAddCategory()">Add New
+                                    Category</button>
+                            </td>
+                            <td ng-if='newCategoryError.flag' width='80%'>
+                                <div class="error w3-center">{{newCategoryError.message}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
                 </p>
                 <p>
-                    <div class="categoryHolder w3-border l3" style="max-height: 200px;
+                <div class="categoryHolder w3-border l3" style="max-height: 200px;
                             overflow-y: auto;">
 
-                        <div class="w3-col l3 w3-center" ng-repeat="x in expanceCategory">
-                            <div class="block-serach-result">
-                                {{x}}
-                                <i class="fa fa-trash w3-right fa-fw" style="font-size: 25px" ng-click="deleteExpanceCategory(x)"></i>
-                            </div>
+                    <div class="w3-col l3 w3-center" ng-repeat="x in expanceCategory">
+                        <div class="block-serach-result">
+                            {{x}}
+                            <i class="fa fa-trash w3-right fa-fw" style="font-size: 25px"
+                                ng-click="deleteExpanceCategory(x)"></i>
                         </div>
-
                     </div>
+
+                </div>
                 </p>
             </div>
         </div>
@@ -292,14 +311,15 @@
                     <div class="w3-panel">
                         <div class="w3-row">
                             <div class="w3-third">
-                             Import CSV
+                                Import CSV
                             </div>
                             <div class="w3-w3-twothird w3-right-align">
-                                <input type="file" ng-model="csvFile" style="display: none;" onchange="angular.element(this).scope().importCSVFile()" id="csvFile" accept=".csv" />
-                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal"
-                                        >Import</label>
-                                    <button class="w3-button w3-circle w3-custom-teal"
-                                    ng-click="exportCSV()">Show CSV Demo</button>
+                                <input type="file" ng-model="csvFile" style="display: none;"
+                                    onchange="angular.element(this).scope().importCSVFile()" id="csvFile"
+                                    accept=".csv" />
+                                <label for="csvFile" class="w3-button w3-circle w3-custom-teal">Import</label>
+                                <button class="w3-button w3-circle w3-custom-teal" ng-click="exportCSV()">Show CSV
+                                    Demo</button>
                             </div>
                         </div>
                     </div>
