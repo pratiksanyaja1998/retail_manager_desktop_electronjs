@@ -70,7 +70,7 @@ function createWindow() {
     });
   });
 
-   autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify();
 
   mainWindow.once("ready-to-show", () => {
     console.log("CheckforUpdate");
@@ -204,6 +204,13 @@ app.on("window-all-closed", function () {
   }
 });
 
+process.env.APPIMAGE = path.join(__dirname, 'dist', `Installar_Mapeo_${app.getVersion()}_linux.AppImage`)
+Object.defineProperty(app, 'isPackaged', {
+  get() {
+    return true;
+  }
+});
+
 app.on("activate", function () {
   if (mainWindow === null) {
     createWindow();
@@ -292,7 +299,7 @@ ipc.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
 
-console.log(autoUpdater);
+// console.log(autoUpdater);
 autoUpdater.on("update-available", () => {
   // console.log("Update Available")
   mainWindow.webContents.send("update_available");

@@ -1,6 +1,6 @@
 {
   "name": "retail-manager",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Manager Your Retail Shope ...",
   "main": "main.js",
   "email": "pratiksanyaja1998@gmail.com",
@@ -12,7 +12,7 @@
     "rebuild": "electron-rebuild -f -w sqlite3",
     "pack": "build --dir",
     "dist": "build",
-    "deploy": "electron-builder build --win --publish always"
+    "deploy": "electron-builder build --publish always"
   },
   "keywords": [
     "retail manager",
