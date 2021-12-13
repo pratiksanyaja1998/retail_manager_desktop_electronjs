@@ -12,14 +12,12 @@ const path = require("path");
 const url = require("url");
 const ipc = require("electron").ipcMain;
 const fs = require("fs");
-const { autoUpdater } = require("electron-updater");
+// const { autoUpdater } = require("electron-updater");
 
 let mainWindow,
   printWindow = null;
 
 let isFullScreen = false;
-
-
 
 function fullScrFun() {
   if (isFullScreen) {
@@ -39,8 +37,6 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
-
-
   });
   mainWindow.maximize();
   mainWindow.show();
@@ -72,10 +68,6 @@ function createWindow() {
     });
   });
 
-  autoUpdater.checkForUpdatesAndNotify();
-
-
-
   // developer shortcut
   globalShortcut.register("CommandOrControl+Alt+D", () => {
     mainWindow.webContents.openDevTools();
@@ -84,121 +76,118 @@ function createWindow() {
     }
   });
 
-  mainWindow.once("ready-to-show", () => {
-    console.log("CheckforUpdate");
-    autoUpdater.checkForUpdatesAndNotify();
-  });
+  // mainWindow.once("ready-to-show", () => {
+  //   console.log("CheckforUpdate");
+  //   autoUpdater.checkForUpdatesAndNotify();
+  // });
 }
 
-const isMac = process.platform === 'darwin'
+const isMac = process.platform === "darwin";
 
 const template = [
   // { role: 'appMenu' }
-  ...(isMac ? [{
-    label: app.name,
-    submenu: [
-      { role: 'about' },
-      { type: 'separator' },
-      { role: 'services' },
-      { type: 'separator' },
-      { role: 'hide' },
-      { role: 'hideOthers' },
-      { role: 'unhide' },
-      { type: 'separator' },
-      { role: 'quit' }
-    ]
-  }] : []),
+  ...(isMac
+    ? [
+        {
+          label: app.name,
+          submenu: [
+            { role: "about" },
+            { type: "separator" },
+            { role: "services" },
+            { type: "separator" },
+            { role: "hide" },
+            { role: "hideOthers" },
+            { role: "unhide" },
+            { type: "separator" },
+            { role: "quit" },
+          ],
+        },
+      ]
+    : []),
   // { role: 'fileMenu' }
   {
-    label: 'File',
-    submenu: [
-      isMac ? { role: 'close' } : { role: 'quit' }
-    ]
+    label: "File",
+    submenu: [isMac ? { role: "close" } : { role: "quit" }],
   },
   // { role: 'editMenu' }
   {
-    label: 'Edit',
+    label: "Edit",
     submenu: [
-      { role: 'undo' },
-      { role: 'redo' },
-      { type: 'separator' },
-      { role: 'cut' },
-      { role: 'copy' },
-      { role: 'paste' },
-      ...(isMac ? [
-        { role: 'pasteAndMatchStyle' },
-        { role: 'delete' },
-        { role: 'selectAll' },
-        { type: 'separator' },
-        {
-          label: 'Speech',
-          submenu: [
-            { role: 'startSpeaking' },
-            { role: 'stopSpeaking' }
+      { role: "undo" },
+      { role: "redo" },
+      { type: "separator" },
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      ...(isMac
+        ? [
+            { role: "pasteAndMatchStyle" },
+            { role: "delete" },
+            { role: "selectAll" },
+            { type: "separator" },
+            {
+              label: "Speech",
+              submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
+            },
           ]
-        }
-      ] : [
-        { role: 'delete' },
-        { type: 'separator' },
-        { role: 'selectAll' }
-      ])
-    ]
+        : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+    ],
   },
   // { role: 'viewMenu' }
   {
-    label: 'View',
+    label: "View",
     submenu: [
-      { role: 'reload' },
-      { role: 'forceReload' },
-      { role: 'toggleDevTools' },
-      { type: 'separator' },
-      { role: 'resetZoom' },
-      { role: 'zoomIn' },
-      { role: 'zoomOut' },
-      { type: 'separator' },
-      { role: 'togglefullscreen' }
-    ]
+      { role: "reload" },
+      { role: "forceReload" },
+      { role: "toggleDevTools" },
+      { type: "separator" },
+      { role: "resetZoom" },
+      { role: "zoomIn" },
+      { role: "zoomOut" },
+      { type: "separator" },
+      { role: "togglefullscreen" },
+    ],
   },
   // { role: 'windowMenu' }
   {
-    label: 'Window',
+    label: "Window",
     submenu: [
-      { role: 'minimize' },
-      { role: 'zoom' },
-      ...(isMac ? [
-        { type: 'separator' },
-        { role: 'front' },
-        { type: 'separator' },
-        { role: 'window' }
-      ] : [
-        { role: 'close' }
-      ])
-    ]
+      { role: "minimize" },
+      { role: "zoom" },
+      ...(isMac
+        ? [
+            { type: "separator" },
+            { role: "front" },
+            { type: "separator" },
+            { role: "window" },
+          ]
+        : [{ role: "close" }]),
+    ],
   },
   {
     lable: "Contact Us",
     role: "help",
     submenu: [
       {
-        label: 'Website',
+        label: "Website",
         click: async () => {
-          const { shell } = require('electron')
-          await shell.openExternal('https://spyhunteritsolution.in/')
-        }
+          const { shell } = require("electron");
+          await shell.openExternal("https://spyhunteritsolution.in/");
+        },
       },
       {
-        label: 'Whatsapp',
+        label: "Whatsapp",
         click: async () => {
-          const { shell } = require('electron')
-          await shell.openExternal('https://wa.me/message/ASVAFGFR4VTNL1')
-        }
+          const { shell } = require("electron");
+          await shell.openExternal("https://wa.me/message/ASVAFGFR4VTNL1");
+        },
       },
-    ]
-  }
-]
+    ],
+  },
+];
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
 
 app.on("ready", createWindow);
 
@@ -208,11 +197,15 @@ app.on("window-all-closed", function () {
   }
 });
 
-process.env.APPIMAGE = path.join(__dirname, 'dist', `Installar_Mapeo_${app.getVersion()}_linux.AppImage`)
-Object.defineProperty(app, 'isPackaged', {
+process.env.APPIMAGE = path.join(
+  __dirname,
+  "dist",
+  `Installar_Mapeo_${app.getVersion()}_linux.AppImage`
+);
+Object.defineProperty(app, "isPackaged", {
   get() {
     return true;
-  }
+  },
 });
 
 app.on("activate", function () {
@@ -223,8 +216,8 @@ app.on("activate", function () {
 
 // services ipc
 
-ipc.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
+ipc.on("app_version", (event) => {
+  event.sender.send("app_version", { version: app.getVersion() });
 });
 
 ipc.on("show-print", function (event, arg) {
@@ -293,22 +286,20 @@ ipc.on("save", (event, arg) => {
   });
 });
 
-
 ipc.on("show-full-screen", fullScrFun);
 
-
-
-ipc.on('restart_app', () => {
-  console.log("Restart App")
+ipc.on("restart_app", () => {
+  console.log("Restart App");
   autoUpdater.quitAndInstall();
 });
 
 // console.log(autoUpdater);
-autoUpdater.on("update-available", () => {
-  // console.log("Update Available")
-  mainWindow.webContents.send("update_available");
-});
-autoUpdater.on("update-downloaded", () => {
-  console.log("Update Downloaded")
-  mainWindow.webContents.send("update_downloaded");
-});
+// autoUpdater.on("update-available", () => {
+//   // console.log("Update Available")
+//   mainWindow.webContents.send("update_available");
+// });
+
+// autoUpdater.on("update-downloaded", () => {
+//   console.log("Update Downloaded");
+//   mainWindow.webContents.send("update_downloaded");
+// });
