@@ -39,6 +39,8 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
+
+
   });
   mainWindow.maximize();
   mainWindow.show();
@@ -72,10 +74,7 @@ function createWindow() {
 
   autoUpdater.checkForUpdatesAndNotify();
 
-  mainWindow.once("ready-to-show", () => {
-    console.log("CheckforUpdate");
-    autoUpdater.checkForUpdatesAndNotify();
-  });
+
 
   // developer shortcut
   globalShortcut.register("CommandOrControl+Alt+D", () => {
@@ -83,6 +82,11 @@ function createWindow() {
     if (printWindow) {
       printWindow.webContents.openDevTools();
     }
+  });
+
+  mainWindow.once("ready-to-show", () => {
+    console.log("CheckforUpdate");
+    autoUpdater.checkForUpdatesAndNotify();
   });
 }
 
