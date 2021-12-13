@@ -64,12 +64,14 @@ var dataModule = (function () {
     },
 
     insertBatchExpense: (data, callback) => {
+
       knex(TABLENAME)
         .insert(data)
         .then((res) => {
           callback(res);
         })
         .catch((e) => {
+          console.log(e.message)
           callback({
             error: "CSV file is not Valid or Duplicate Content Found",
           });

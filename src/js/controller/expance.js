@@ -232,6 +232,7 @@ module.exports = [
 
     $scope.csvToArray = (str, delimiter = ",") => {
       const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
+      console.log(headers);
       const rows = str.slice(str.indexOf("\n") + 1).split("\n");
       const arr = rows.map(function (row) {
         const values = row.split(delimiter);
@@ -255,12 +256,13 @@ module.exports = [
       reader.onload = function (e) {
         const text = e.target.result;
         let jsonData = $scope.csvToArray(text);
+        console.log(jsonData)
         let BatChData = [];
         let newCategories = [];
 
         jsonData.forEach((item) => {
           let custPartArray = {};
-          if (item.Cost != "" && item.Cost != undefined) {
+          if (item.Cost != "" && item.Cost != undefined && item.Refno != "" && item.Refno != undefined) {
             if (
               !$scope.expanceCategory.includes(item.Category) &&
               !newCategories.includes(item.Category)
@@ -273,11 +275,12 @@ module.exports = [
             custPartArray.mm = item.Month;
             custPartArray.yyyy = item.Year;
             custPartArray.price = item.Cost;
-            custPartArray.refno = item.Reference_No;
+            custPartArray.refno = item.Refno;
 
             BatChData.push(custPartArray);
           }
         });
+        console.log(BatChData);
 
         insertBatch(BatChData);
         if (newCategories.length > 0) {
@@ -299,7 +302,7 @@ module.exports = [
         Month: "12",
         Year: "2021",
         Cost: "1200",
-        Reference_No: "12133234343",
+        Refno: "12133234343",
       },
       {
         Description: "Paid last month Rate",
@@ -308,7 +311,7 @@ module.exports = [
         Month: "12",
         Year: "2021",
         Cost: "5000",
-        Reference_No: "32423434",
+        Refno: "32423434",
       },
     ];
 

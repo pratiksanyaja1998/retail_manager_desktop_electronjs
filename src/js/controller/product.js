@@ -51,7 +51,6 @@ module.exports = [
         // console.log(row);
         if (row.length < $scope.filter.limit) $scope.filter.isNext = false;
         else $scope.filter.isNext = true;
-
         $scope.$apply();
       });
     };
@@ -305,7 +304,6 @@ module.exports = [
         let jsonData = $scope.csvToArray(text);
         let BatChData = [];
         let newCategories = [];
-
         jsonData.forEach((item) => {
           let custPartArray = {};
           if (item.Product_Name != "" && item.Category != "") {
@@ -317,14 +315,15 @@ module.exports = [
             }
             custPartArray.name = item.Product_Name;
             custPartArray.barcode = item.Barcode;
-            custPartArray.hsn = parseInt(item.HSN);
             custPartArray.price = parseFloat(item.Selling_Price);
             custPartArray.bprice = parseFloat(item.Buying_Price);
             custPartArray.qty = parseFloat(item.Quantity);
             custPartArray.category = item.Category;
-            custPartArray.gst = parseFloat(item.GST);
+            custPartArray.gst = parseFloat(item.Tax);
+
             BatChData.push(custPartArray);
           }
+
         });
 
         insertBatch(BatChData);
@@ -347,7 +346,7 @@ module.exports = [
         Buying_Price: "13000",
         Quantity: "50",
         Category: "Smartphone",
-        GST: "5",
+        Tax: "5",
       },
       {
         Product_Name: "Samsung S20",
@@ -357,7 +356,7 @@ module.exports = [
         Buying_Price: "100000",
         Quantity: "25",
         Category: "Smartphone",
-        GST: "18",
+        Tax: "18",
       },
     ];
 
