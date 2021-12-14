@@ -168,7 +168,7 @@
         </div>
         <div class="w3-row border1px btnone">
             <div class="w3-col w3-half">
-                <span class="fbold">Delivery Details </span> <br>
+                <span class="fbold">Delivery Details:- </span> <br>
                 <span
                     ng-show="invoiceData.invoice.barea || invoiceData.invoice.bcity || invoiceData.invoice.bstate || invoiceData.invoice.bpincode">Billing
                     to:-
@@ -176,7 +176,9 @@
                     {{invoiceData.invoice.bpincode}} <br />
                 </span>
 
-                <span>Delivery to:-
+                <span
+                    ng-show="invoiceData.invoice.darea || invoiceData.invoice.dcity || invoiceData.invoice.dstate || invoiceData.invoice.dpincode">Delivery
+                    to:-
                     {{invoiceData.invoice.barea}}, {{invoiceData.invoice.bcity}}, {{invoiceData.invoice.bstate}}
                     {{invoiceData.invoice.bpincode}} <br />
                 </span>

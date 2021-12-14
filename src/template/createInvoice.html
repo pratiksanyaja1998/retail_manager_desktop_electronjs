@@ -396,9 +396,10 @@
               <th>Rate</th>
               <th ng-show="settings.discountInProductWise">Dis.(%)</th>
               <th ng-show="settings.gstInProductWise">
-                <select ng-model="gsttype" style=" margin-top: -10px;height: 33px; padding-top: 5px;">
+                Tax.
+                <select ng-show="0" ng-model="gsttype" style=" margin-top: -10px;height: 33px; padding-top: 5px;">
                   <option>Tax.</option>
-                  <option>IGST</option>
+                  <!-- <option>IGST</option> -->
                 </select>
               </th>
               <th>Total</th>
@@ -514,9 +515,12 @@
             <tr ng-hide="settings.gstInProductWise ">
 
               <td>
-                <select ng-model="gsttype" style="width: 90px;    height: 37px;">
+                <label class="w3-text-gray">
+                  <b>Tax. </b>
+                </label>
+                <select ng-show="0" ng-model="gsttype" style="width: 90px;    height: 37px;">
                   <option>Tax.</option>
-                  <option>IGST</option>
+                  <!-- <option>IGST</option> -->
                 </select> :
               </td>
               <td>

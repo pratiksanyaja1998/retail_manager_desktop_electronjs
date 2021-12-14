@@ -111,7 +111,8 @@
                                 <br />
                                 <span class="w3-button theme-btn-error " ng-show="productCategory.length == 0"
                                     ng-click="clickAddNewCateOption()">Add New Category</span>
-                                <select ng-model="newProduct.category" ng-disabled='newProduct.isUpdate' name='category'
+                                <select style="width: 300px" ng-model="newProduct.category"
+                                    ng-disabled='newProduct.isUpdate' name='category'
                                     ng-hide='productCategory.length == 0' ng-options="x for x in productCategory">
                                     <option value="">Select Category</option>
                                 </select>
