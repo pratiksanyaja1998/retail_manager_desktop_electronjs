@@ -396,7 +396,7 @@
               <th>Rate</th>
               <th ng-show="settings.discountInProductWise">Dis.(%)</th>
               <th ng-show="settings.gstInProductWise">
-                Tax.
+                Tax. (%)
                 <select ng-show="0" ng-model="gsttype" style=" margin-top: -10px;height: 33px; padding-top: 5px;">
                   <option>Tax.</option>
                   <!-- <option>IGST</option> -->
@@ -516,7 +516,7 @@
 
               <td>
                 <label class="w3-text-gray">
-                  <b>Tax. </b>
+                  <b>Tax. (%) </b>
                 </label>
                 <select ng-show="0" ng-model="gsttype" style="width: 90px;    height: 37px;">
                   <option>Tax.</option>
@@ -524,9 +524,12 @@
                 </select> :
               </td>
               <td>
+              
 
-                <!-- <input class="w3-input w3-border" type="text" ng-change="changeGst()" ng-model="gst" /> -->
-                <select ng-model="gst" ng-change="changeGst()" style="width: 70px;    height: 37px;">
+                <!-- <input class=" w3-border" style="min-width: 200px;height: 37px;" type="text" ng-change="changeGst()" ng-model="gst" /> -->
+                <input name="gst" type="number" min="0" style="min-width: 200px;height: 37px;" max="100"
+                ng-change="changeGst()" ng-model="gst" />
+                <!-- <select ng-model="gst" ng-change="changeGst()" style="width: 70px; height: 37px;">
                   <option value="0">0%</option>
                   <option value="0.1">0.1%</option>
                   <option value="0.25">0.25%</option>
@@ -538,7 +541,7 @@
                   <option value="12">12%</option>
                   <option value="18">18%</option>
                   <option value="28">28%</option>
-                </select>
+                </select> -->
                 <br />
 
               </td>
@@ -597,7 +600,7 @@
                   </label>
                 </td>
               </tr>
-              <tr ng-show="settings.paymethod">
+              <tr ng-show="settings.paymethod && false">
                 <td width="15%">
 
                   <select ng-model="paymentMethrd" style="padding: 5px; margin-bottom: 5px">

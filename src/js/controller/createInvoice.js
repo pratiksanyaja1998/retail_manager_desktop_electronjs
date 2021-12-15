@@ -23,7 +23,7 @@ module.exports = [
     });
 
     $scope.changeSettings = () => {
-      SettingModule.updateSettingJson("invoiceForm", $scope.settings, () => { });
+      SettingModule.updateSettingJson("invoiceForm", $scope.settings, () => {});
     };
 
     SettingModule.getInvoiceSr((result) => {
@@ -49,7 +49,6 @@ module.exports = [
 
     let getCustomerToDatabase = () =>
       CustomerModule.getCustomers($scope.CustomerFilter, (row) => {
-
         if (row.length < $scope.CustomerFilter.limit)
           $scope.CustomerFilter.isNext = false;
         else $scope.CustomerFilter.isNext = true;
@@ -70,7 +69,7 @@ module.exports = [
       });
 
     $scope.chnageCustomerSearchData = () => {
-      if ($scope.CustomerFilter.searchInput == '') {
+      if ($scope.CustomerFilter.searchInput == "") {
         $scope.customer = [];
         return false;
       }
@@ -112,8 +111,6 @@ module.exports = [
         dpincode: "",
       };
 
-
-
       $scope.isSearchingCustomer = false;
       $scope.searchCustomerInput = "";
     };
@@ -136,7 +133,6 @@ module.exports = [
 
     $scope.isSelectFromDatabaseCustomer = false;
     $scope.selectCustomerIntoSearchData = function (customer) {
-
       id = customer.id;
       delete customer.$$hashKey;
       delete customer.id;
@@ -182,12 +178,15 @@ module.exports = [
           }
         });
         $scope.$apply();
-        $scope.currentFilterfor = "product"
+        $scope.currentFilterfor = "product";
       });
     };
 
     $scope.changeProductFilterData = () => {
-      if ($scope.ProductFilter.searchInput == '' && $scope.ProductFilter.catagory == null) {
+      if (
+        $scope.ProductFilter.searchInput == "" &&
+        $scope.ProductFilter.catagory == null
+      ) {
         $scope.products = [];
         return false;
       }
@@ -304,13 +303,13 @@ module.exports = [
       } else {
         $scope.invoceProductTotalWithGst = roundToTwo(
           $scope.invoceProductTotal +
-          ($scope.invoceProductTotal * $scope.gst) / 100
+            ($scope.invoceProductTotal * $scope.gst) / 100
         );
       }
 
       $scope.invoceProductTotalWithDiscout = roundToTwo(
         $scope.invoceProductTotalWithGst -
-        ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
+          ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
       );
 
       return productRow;
@@ -371,17 +370,17 @@ module.exports = [
     $scope.changeGst = () => {
       $scope.invoceProductTotalWithGst = roundToTwo(
         $scope.invoceProductTotal +
-        ($scope.invoceProductTotal * $scope.gst) / 100
+          ($scope.invoceProductTotal * $scope.gst) / 100
       );
       $scope.invoceProductTotalWithDiscout = roundToTwo(
         $scope.invoceProductTotalWithGst -
-        ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
+          ($scope.invoceProductTotalWithGst * $scope.invoceProductDescout) / 100
       );
     };
 
     //product table counter end
 
-    $scope.gst = "0";
+    $scope.gst = 0;
 
     $scope.tprchage = false;
     $scope.desciption = "";
@@ -397,18 +396,18 @@ module.exports = [
 
     $scope.error = false;
     $scope.saveInvoce = () => {
-
-
       if ($scope.invoceProduct.length <= 0) {
         $scope.error = "One Items Must be Required.";
         return;
       }
-      $scope.invoceProduct = $scope.invoceProduct.map(({ isSelected, ...rest }) => rest);
+      $scope.invoceProduct = $scope.invoceProduct.map(
+        ({ isSelected, ...rest }) => rest
+      );
       delete $scope.newCustomer.isSelected;
 
       $scope.isLoading = true;
       mixpanel.track("Invoice Generated", {
-        user: $scope.UniqueUID
+        user: $scope.UniqueUID,
       });
       InvoiceModule.insertInvoice(
         {
@@ -446,20 +445,26 @@ module.exports = [
     };
 
     document.onkeydown = function (event) {
-
       // console.log(event.keyCode);
       switch (event.keyCode) {
         case 13:
-          if ($scope.currentFilterfor != "" && ($scope.customer.length > 0 || $scope.products.length > 0)) {
+          if (
+            $scope.currentFilterfor != "" &&
+            ($scope.customer.length > 0 || $scope.products.length > 0)
+          ) {
             if ($scope.currentFilterfor == "customer") {
-              index = $scope.customer.findIndex(item => item.isSelected === true);
-              document.getElementById('cust_' + index).click();
-              $scope.CustomerFilter.searchInput = ''
+              index = $scope.customer.findIndex(
+                (item) => item.isSelected === true
+              );
+              document.getElementById("cust_" + index).click();
+              $scope.CustomerFilter.searchInput = "";
               $scope.$apply();
             }
             if ($scope.currentFilterfor == "product") {
-              index = $scope.products.findIndex(item => item.isSelected === true);
-              document.getElementById('prod_' + index).click();
+              index = $scope.products.findIndex(
+                (item) => item.isSelected === true
+              );
+              document.getElementById("prod_" + index).click();
               $scope.ProductFilter.searchInput = "";
               $scope.$apply();
             }
@@ -467,44 +472,59 @@ module.exports = [
           break;
         case 38:
           event.preventDefault();
-          if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
-            index = $scope.customer.findIndex(item => item.isSelected === true);
+          if (
+            $scope.currentFilterfor == "customer" &&
+            $scope.customer.length > 0
+          ) {
+            index = $scope.customer.findIndex(
+              (item) => item.isSelected === true
+            );
             if (index != 0) {
               $scope.customer[index].isSelected = false;
               $scope.customer[index - 1].isSelected = true;
-              jumpRow('ctable', index - 1);
+              jumpRow("ctable", index - 1);
             }
-          } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
-            index = $scope.products.findIndex(item => item.isSelected === true);
+          } else if (
+            $scope.currentFilterfor == "product" &&
+            $scope.products.length > 0
+          ) {
+            index = $scope.products.findIndex(
+              (item) => item.isSelected === true
+            );
             if (index != 0) {
               $scope.products[index].isSelected = false;
               $scope.products[index - 1].isSelected = true;
-              jumpRow('ptable', index - 1);
-
+              jumpRow("ptable", index - 1);
             }
           }
 
           $scope.$apply();
           break;
         case 40:
-
-
-          if ($scope.currentFilterfor == "customer" && $scope.customer.length > 0) {
-            index = $scope.customer.findIndex(item => item.isSelected === true);
+          if (
+            $scope.currentFilterfor == "customer" &&
+            $scope.customer.length > 0
+          ) {
+            index = $scope.customer.findIndex(
+              (item) => item.isSelected === true
+            );
 
             if ($scope.customer.length != index + 1) {
               $scope.customer[index].isSelected = false;
               $scope.customer[index + 1].isSelected = true;
-              jumpRow('ctable', index + 1);
-
+              jumpRow("ctable", index + 1);
             }
-          } else if ($scope.currentFilterfor == "product" && $scope.products.length > 0) {
-            index = $scope.products.findIndex(item => item.isSelected === true);
+          } else if (
+            $scope.currentFilterfor == "product" &&
+            $scope.products.length > 0
+          ) {
+            index = $scope.products.findIndex(
+              (item) => item.isSelected === true
+            );
             if ($scope.products.length != index + 1) {
               $scope.products[index].isSelected = false;
               $scope.products[index + 1].isSelected = true;
-              jumpRow('ptable', index + 1);
-
+              jumpRow("ptable", index + 1);
             }
           }
 
@@ -514,9 +534,9 @@ module.exports = [
     };
 
     function jumpRow(table, row) {
-      var rows = document.querySelectorAll('#' + table + ' tr');
+      var rows = document.querySelectorAll("#" + table + " tr");
       // rows[row].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      rows[row].scrollIntoView({ block: 'center' });
+      rows[row].scrollIntoView({ block: "center" });
       // window.scroll({ top: rows[row].offsetTop, behavior: 'smooth' });
 
       // rows[row].parentNode.scrollTop = rows[row].offsetTop;

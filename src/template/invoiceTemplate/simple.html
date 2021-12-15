@@ -131,7 +131,7 @@
                         </span> <br />
                         <span class="fbold">{{invoiceData.invoice.billno}}</span>
                     </div>
-                    <div class="w3-col w3-half">
+                    <div class="w3-col w3-half" ng-show="invoiceData.invoice.paymentMethrd != ''">
                         Mode/Terms of Payment <br />
                         <span class="fbold">{{invoiceData.invoice.paymentMethrd}}</span>
                     </div>
