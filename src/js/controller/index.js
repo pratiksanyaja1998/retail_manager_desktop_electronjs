@@ -1,3 +1,5 @@
+const OverViewModule = require("../models/overview");
+
 module.exports = [
   "$scope",
   "$rootScope",
@@ -63,12 +65,13 @@ module.exports = [
         incomeData = [];
         labelsMonth = [];
         expanceData = [];
-
+        // console.log(result);
         result.forEach((overView) => {
           incomeData.push(overView.income);
           expanceData.push(overView.expance);
           labelsMonth.push(monthStr[overView.mm - 1]);
         });
+        // console.log(expanceData);
 
         var myChart = new Chart(ctx, {
           type: "bar",

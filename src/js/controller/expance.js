@@ -164,7 +164,6 @@ module.exports = [
               if (o.id === expance.id) {
                 delete $scope.expance[i];
                 $scope.$apply();
-
                 return; // stop searching
               }
             }
@@ -216,7 +215,8 @@ module.exports = [
     const insertBatch = (BatchInsertData) =>
       ExpanceModule.insertBatchExpense(BatchInsertData, (res) => {
         if (!res.error) {
-          alert("File Imported Successfully");
+          // alert("File Imported Successfully");
+          // swal("File Imported Successfully","success");
           getExpanceFromDatabase();
           $scope.$apply();
         } else {
@@ -232,7 +232,6 @@ module.exports = [
 
     $scope.csvToArray = (str, delimiter = ",") => {
       const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
-      console.log(headers);
       const rows = str.slice(str.indexOf("\n") + 1).split("\n");
       const arr = rows.map(function (row) {
         const values = row.split(delimiter);
@@ -256,11 +255,11 @@ module.exports = [
       reader.onload = function (e) {
         const text = e.target.result;
         let jsonData = $scope.csvToArray(text);
-        console.log(jsonData)
         let BatChData = [];
         let newCategories = [];
-
+        let cnt = 0;
         jsonData.forEach((item) => {
+          cnt++;
           let custPartArray = {};
           if (item.Cost != "" && item.Cost != undefined && item.Refno != "" && item.Refno != undefined) {
             if (
@@ -276,11 +275,10 @@ module.exports = [
             custPartArray.yyyy = item.Year;
             custPartArray.price = item.Cost;
             custPartArray.refno = item.Refno;
-
+            $scope.addToOverView({price : item.Cost,mm: item.Month,yyyy:item.Year},cnt);
             BatChData.push(custPartArray);
           }
         });
-        console.log(BatChData);
 
         insertBatch(BatChData);
         if (newCategories.length > 0) {
@@ -293,6 +291,25 @@ module.exports = [
 
       reader.readAsText(input);
     };
+
+    $scope.addToOverView = (data,cnt) => {
+      setTimeout(() => {
+
+        OverViewModule.updateOverView(
+          "+",
+          {
+            name: "expance",
+            data: data.price,
+            mm: Number(data.mm),
+            yyyy: Number(data.yyyy),
+          },
+          (ovres) => {
+            console.log(ovres)
+          }
+        );
+      }, cnt*50);
+      
+    }
 
     $scope.sampleJsonCSVData = [
       {

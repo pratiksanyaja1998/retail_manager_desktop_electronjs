@@ -17,7 +17,6 @@ var OverViewModule = function () {
                 })
         }
         ,
-
         updateOverView: (sign, overview, callback) => {
 
             // rowname = overview.name
@@ -54,11 +53,8 @@ var OverViewModule = function () {
                             .then((result) =>
                                 callback(result)
                             )
-
                     } else {
-
                         callback(result)
-
                     }
 
                 })
