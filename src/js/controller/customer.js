@@ -61,19 +61,32 @@ module.exports = [
     };
 
     $scope.deleteCustomer = (id) => {
-      if (confirm('Are you sure you want to delete this customer')) {
-        CustomerModule.deleteCustomer(id, () => {
-          $scope.customer.find((o, i) => {
-            if (o) {
-              if (o.id === id) {
-                delete $scope.customer[i];
-                $scope.$apply();
-                return; // stop searching
-              }
-            }
-          });
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this Customer?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            CustomerModule.deleteCustomer(id, () => {
+              $scope.customer.find((o, i) => {
+                if (o) {
+                  if (o.id === id) {
+                    delete $scope.customer[i];
+                    $scope.$apply();
+                    return; // stop searching
+                  }
+                }
+              });
+            });
+            $scope.$apply();
+          } else {
+            // swal("Your imaginary file is safe!");
+          }
         });
-      }
+
 
     };
 

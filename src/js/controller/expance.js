@@ -1,3 +1,5 @@
+const  swal = require("sweetalert");
+
 module.exports = [
   "$scope",
   "$rootScope",
@@ -157,20 +159,32 @@ module.exports = [
     };
 
     $scope.deleteExpance = (expance) => {
-      if (confirm("Are you sure you want to delete this expence?")) {
-        ExpanceModule.deleteExpance(expance, () => {
-          $scope.expance.find((o, i) => {
-            if (o) {
-              if (o.id === expance.id) {
-                delete $scope.expance[i];
-                $scope.$apply();
-                return; // stop searching
-              }
-            }
-          });
-        });
-      }
-
+      
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this Expense?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            ExpanceModule.deleteExpance(expance, () => {
+              $scope.expance.find((o, i) => {
+                if (o) {
+                  if (o.id === expance.id) {
+                    delete $scope.expance[i];
+                    $scope.$apply();
+                    return; // stop searching
+                  }
+                }
+              });
+            });
+            $scope.$apply();
+          } else {
+            // swal("Your imaginary file is safe!");
+          }
+        });  
     };
 
     $scope.editExpance = (expance) => {
@@ -193,20 +207,34 @@ module.exports = [
     };
 
     $scope.deleteExpanceCategory = (name) => {
-      if (confirm("Are you sure you want to delete this category?")) {
-        $scope.newCategoryError.flag = false;
+      
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this Category?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            $scope.newCategoryError.flag = false;
 
-        CategoryModule.deleteCategory(name, (result) => {
-          if (!result.error) {
-            getCategorys();
+            CategoryModule.deleteCategory(name, (result) => {
+              if (!result.error) {
+                getCategorys();
+              } else {
+                $scope.newCategoryError.flag = true;
+                $scope.newCategoryError.message = result.error;
+              }
+            });
+            $scope.$apply();
           } else {
-            $scope.newCategoryError.flag = true;
-            $scope.newCategoryError.message = result.error;
+            // swal("Your imaginary file is safe!");
           }
-
-          $scope.$apply();
         });
-      }
+  
+        
+   
 
     };
 

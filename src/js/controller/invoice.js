@@ -1,3 +1,5 @@
+const swal = require("sweetalert");
+
 module.exports = [
   "$scope",
   "$location",
@@ -84,19 +86,30 @@ module.exports = [
     $scope.invoice = false;
 
     $scope.deleteInvoice = function (invoice) {
-      if (confirm("Are you sure you want to delete this invoice?")) {
-        InvoiceModule.deleteInvoice(invoice, () => {
-          $scope.invoice.find((o, i) => {
-            if (o) {
-              if (o.id === invoice.id) {
-                delete $scope.invoice[i];
-                $scope.$apply();
-                return; // stop searching
-              }
-            }
-          });
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this Invoice?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            InvoiceModule.deleteInvoice(invoice, () => {
+              $scope.invoice.find((o, i) => {
+                if (o) {
+                  if (o.id === invoice.id) {
+                    delete $scope.invoice[i];
+                    $scope.$apply();
+                    return; // stop searching
+                  }
+                }
+              });
+            });
+          } else {
+            // swal("Your imaginary file is safe!");
+          }
         });
-      }
 
     };
 

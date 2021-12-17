@@ -1,3 +1,5 @@
+const swal = require("sweetalert");
+
 module.exports = [
   "$scope",
   "$rootScope",
@@ -206,20 +208,33 @@ module.exports = [
     };
 
     $scope.deleteProduct = (id) => {
-      if (confirm("Are you sure you want to delete this product")) {
-        ProductModule.deleteProduct(id, () => {
-          $scope.products.find((o, i) => {
-            if (o) {
-              if (o.id === id) {
-                delete $scope.products[i];
-                $scope.$apply();
-
-                return i; // stop searching
-              }
-            }
-          });
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this product?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            ProductModule.deleteProduct(id, () => {
+              $scope.products.find((o, i) => {
+                if (o) {
+                  if (o.id === id) {
+                    delete $scope.products[i];
+                    $scope.$apply();
+    
+                    return i; // stop searching
+                  }
+                }
+              });
+            });
+            $scope.$apply();
+          } else {
+            // swal("Your imaginary file is safe!");
+          }
         });
-      }
+      
     };
 
     $scope.editProduct = (product) => {
@@ -241,20 +256,37 @@ module.exports = [
     };
 
     $scope.deleteProductCategory = (name) => {
-      if (confirm("Are you sure you want to delete this product category?")) {
-        $scope.newCategoryError.flag = false;
+      swal({
+        title: "Are you sure?",
+        text: "You want to delete this product category?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            $scope.newCategoryError.flag = false;
 
-        ProductCategoryModule.deleteProductCategory(name, (result) => {
-          if (!result.error) {
-            getProductCategorys();
+            ProductCategoryModule.deleteProductCategory(name, (result) => {
+              if (!result.error) {
+                getProductCategorys();
+                $scope.$apply();
+              
+              } else {
+                $scope.newCategoryError.flag = true;
+                $scope.newCategoryError.message = result.error;
+                $scope.$apply();
+
+              }
+
+            });
+            $scope.$apply();
           } else {
-            $scope.newCategoryError.flag = true;
-            $scope.newCategoryError.message = result.error;
+            // swal("Your imaginary file is safe!");
           }
-
-          $scope.$apply();
         });
-      }
+
+    
 
     };
 
