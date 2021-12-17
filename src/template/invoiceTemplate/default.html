@@ -38,7 +38,8 @@
 
         <div class="w3-right w3-col s4 m4 l4">
             <span class="w3-right">
-                <b>DATE :-</b> {{invoiceData.invoice.dd}} / {{invoiceData.invoice.mm}} / {{invoiceData.invoice.yyyy}}
+                <b>DATE :-</b> {{invoiceData.invoice.dd}}/{{invoiceData.invoice.mm}}/{{invoiceData.invoice.yyyy}} {{ctime}}
+                
             </span>
         </div>
     </div>
@@ -134,24 +135,24 @@
 
                 <tr>
                     <td><b>DISCOUNT ({{invoiceData.invoice.discount}}%) :-</b></td>
-                    <td class="w3-right"><b> {{(sumOfProductPrice*invoiceData.invoice.discount)/100}} ₹ /- </b></td>
+                    <td class="w3-right"><b> {{currencysymbol}} {{(sumOfProductPrice*invoiceData.invoice.discount)/100}}  /- </b></td>
                 </tr>
                 <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
                     <td><b>{{invoiceData.invoice.gsttype}} ({{invoiceData.invoice.gst}}%) :-</b></td>
-                    <td class="w3-right"><b> {{(sumOfProductPrice*invoiceData.invoice.gst)/100}} ₹ /-</b></td>
+                    <td class="w3-right"><b> {{currencysymbol}} {{(sumOfProductPrice*invoiceData.invoice.gst)/100}}  /-</b></td>
                 </tr>
                 <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
                     <td><b>CGST ({{invoiceData.invoice.gst/2}}%) :-</b></td>
-                    <td class="w3-right"><b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} ₹ /- </b></td>
+                    <td class="w3-right"><b> {{currencysymbol}} {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}}  /- </b></td>
                 </tr>
                 <tr ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype=='GST'">
                     <td><b>SGST ({{invoiceData.invoice.gst/2}}%) :-</b></td>
-                    <td class="w3-right"><b> {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} ₹ /- </b></td>
+                    <td class="w3-right"><b> {{currencysymbol}} {{(sumOfProductPrice*(invoiceData.invoice.gst/2))/100}} /- </b></td>
                 </tr>
 
                 <tr>
                     <td><b>TOTAL :-</b></td>
-                    <td class="w3-right"><b> {{invoiceData.invoice.total}} ₹ /-</b> </td>
+                    <td class="w3-right"><b> {{currencysymbol}} {{invoiceData.invoice.total}} /-</b> </td>
                 </tr>
             </table>
             <!-- <b></b> <br/>

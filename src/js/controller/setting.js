@@ -7,7 +7,7 @@ module.exports = [
 
     $rootScope.isWaiting = false;
 
-    $scope.AppVersion = AppVersion
+    $scope.AppVersion = AppVersion;
     $scope.insrprefix;
     $scope.invoicesrno;
 
@@ -21,6 +21,7 @@ module.exports = [
       SettingModule.getInvoiceSr((result) => {
         $scope.insrprefix = result[1].data;
         $scope.invoicesmsapi = result[2].data;
+        $scope.currencysymbol = result[3].data;
         $scope.invoicesrno = Number(result[0].data);
         $scope.$apply();
       });
@@ -72,7 +73,7 @@ module.exports = [
 
               $rootScope.storeInfo.logo = RES_ROOT + "/storeLogo.png";
               $scope.storeInfo.logo = RES_ROOT + "/storeLogo.png";
-              
+
               $scope.clickToSaveStoreInfo();
 
               $scope.$apply();
@@ -86,11 +87,9 @@ module.exports = [
     $scope.storeInfoEdit = false;
     $scope.settingFstTime = false;
 
-
     SettingModule.getSetting("UserID", (data) => {
       $scope.UniqueUID = data;
     });
-
 
     $scope.getStoreDataEndSet = () => {
       SettingModule.getSetting("storeInfo", (data) => {
@@ -135,13 +134,12 @@ module.exports = [
       }
 
       mixpanel.track("Store Profile Information Updated", {
-        info:
-        {
+        info: {
           store_name: $scope.storeInfo.storename,
           email: $scope.storeInfo.email,
           phone: $scope.storeInfo.phno,
         },
-        user: $scope.UniqueUID
+        user: $scope.UniqueUID,
       });
 
       SettingModule.updateSettingJson(
@@ -177,7 +175,12 @@ module.exports = [
             () => {
               SettingModule.updateSettingData(
                 { name: "invoicesmsapi", data: $scope.invoicesmsapi },
-                () => { }
+                () => {
+                  SettingModule.updateSettingData(
+                    { name: "currencysymbol", data: $scope.currencysymbol },
+                    () => {}
+                  );
+                }
               );
             }
           );
@@ -206,7 +209,7 @@ module.exports = [
                 () => {
                   SettingModule.updateSettingData(
                     { name: "mailport", data: $scope.mailport },
-                    () => { }
+                    () => {}
                   );
                 }
               );
@@ -275,13 +278,13 @@ module.exports = [
       });
     };
 
-    const { ipcRenderer } = require('electron');
-    const version = document.getElementById('version');
+    const { ipcRenderer } = require("electron");
+    const version = document.getElementById("version");
 
-    ipcRenderer.send('app_version');
-    ipcRenderer.on('app_version', (event, arg) => {
-      ipcRenderer.removeAllListeners('app_version');
-      console.log(arg.version)
+    ipcRenderer.send("app_version");
+    ipcRenderer.on("app_version", (event, arg) => {
+      ipcRenderer.removeAllListeners("app_version");
+      console.log(arg.version);
       // version.innerText = 'Version ' + arg.version;
     });
 
@@ -289,7 +292,5 @@ module.exports = [
       ipc.send("show-print", {
         location: "settings",
       });
-
- 
   },
 ];

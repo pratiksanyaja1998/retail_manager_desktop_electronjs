@@ -21,7 +21,7 @@ var ProductCategoryModule = (function () {
           if (rows.length > 0) {
             callback({
               error:
-                "Please Delete Frist Product Which Contain " +
+                "Please Delete First Product Which Contain " +
                 name +
                 " Category.",
             });

@@ -1,6 +1,5 @@
 let UNIX_TIMESTAMP = Date.now();
 
-
 exports.up = function (knex, Promise) {
   const Settings = [
     { name: "storeInfo", data: null },
@@ -8,6 +7,7 @@ exports.up = function (knex, Promise) {
     { name: "insrno", data: 1 },
     { name: "insrpre", data: "SROO" },
     { name: "invoicesmsapi", data: "" },
+    { name: "currencysymbol", data: "₹" },
     { name: "mailuser", data: "" },
     { name: "mailpass", data: "" },
     { name: "mailhost", data: "" },
@@ -192,7 +192,7 @@ exports.up = function (knex, Promise) {
       .then(() => {
         knex("settings")
           .insert(Settings)
-          .then(() => { });
+          .then(() => {});
       }),
 
     knex.schema
@@ -204,7 +204,7 @@ exports.up = function (knex, Promise) {
       .then(() => {
         knex("template")
           .insert(Templates)
-          .then(() => { });
+          .then(() => {});
       }),
   ]);
 };

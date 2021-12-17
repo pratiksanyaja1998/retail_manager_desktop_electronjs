@@ -9,6 +9,7 @@ var ProductModule = (function () {
         .where("name", "insrno")
         .orWhere("name", "insrpre")
         .orWhere("name", "invoicesmsapi")
+        .orWhere("name", "currencysymbol")
         .then((result) => {
           callback(result);
         });
@@ -62,7 +63,18 @@ var ProductModule = (function () {
         .from(TABLENAME)
         .where("name", name)
         .then((rows) => {
+          // console.log(rows);
           callback(JSON.parse(rows[0].data));
+        });
+    },
+
+    getCurrencySymbol: ({}, callback) => {
+      knex
+        .select("data")
+        .from(TABLENAME)
+        .where("name", "currencysymbol")
+        .then((rows) => {
+          callback(rows[0]);
         });
     },
 
@@ -75,8 +87,6 @@ var ProductModule = (function () {
           callback(JSON.parse(rows));
         });
     },
-
-
 
     getAllSettings: (name, callback) => {
       knex

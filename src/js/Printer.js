@@ -138,6 +138,19 @@ PrintApp.controller("invoiceController", [
 
     $scope.newTemplateName = "";
 
+    var currentdate = new Date();
+    function formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      var strTime = hours + ":" + minutes + " " + ampm;
+      return strTime;
+    }
+
+    $scope.ctime = formatAMPM(new Date());
     SettingModule.getSetting("storeInfo", (data) => {
       $scope.storeInfo = data;
       // console.log($scope);
@@ -164,11 +177,9 @@ PrintApp.controller("invoiceController", [
       };
 
       $scope.sumOfProductPrice = 0;
-      $scope.invoiceData.invoiceProducts.forEach(element => {
-        $scope.sumOfProductPrice += element.price
+      $scope.invoiceData.invoiceProducts.forEach((element) => {
+        $scope.sumOfProductPrice += element.price;
       });
-
-
 
       $scope.$apply();
     });
@@ -182,11 +193,11 @@ PrintApp.controller("invoiceController", [
     $scope.print = () => {
       PrintPDF(
         $scope.invoiceData.invoice.yyyy +
-        "-" +
-        $scope.invoiceData.invoice.mm +
-        "-" +
-        $scope.invoiceData.invoice.srno +
-        ".pdf"
+          "-" +
+          $scope.invoiceData.invoice.mm +
+          "-" +
+          $scope.invoiceData.invoice.srno +
+          ".pdf"
       );
     };
 
@@ -195,6 +206,12 @@ PrintApp.controller("invoiceController", [
     SettingModule.getSetting("UserID", (data) => {
       $scope.UniqueUID = data;
     });
+
+    SettingModule.getCurrencySymbol({}, (data) => {
+      $scope.currencysymbol = data.data;
+    });
+
+    console.log($scope);
 
     $scope.shareOnEmail = async () => {
       let generatedPDF =
@@ -233,9 +250,8 @@ PrintApp.controller("invoiceController", [
       });
 
       mixpanel.track("Email Invoice Generated", {
-        user: $scope.UniqueUID
+        user: $scope.UniqueUID,
       });
-
 
       if (info) {
         $scope.showMailLoader = !$scope.showMailLoader;
@@ -244,9 +260,7 @@ PrintApp.controller("invoiceController", [
       }
     };
 
-
     $scope.shareOnSMS = async () => {
-
       let generatedPDF =
         $scope.invoiceData.invoice.yyyy +
         "-" +
@@ -257,7 +271,7 @@ PrintApp.controller("invoiceController", [
       SavePDF(generatedPDF);
 
       let formData = new FormData();
-      let fileupload = document.getElementById('sharePdfFile');
+      let fileupload = document.getElementById("sharePdfFile");
       formData.append("file", fileupload.files[0]);
       let reqdata = {
         mobile_no: $scope.invoiceData.invoice.phno,
@@ -267,14 +281,17 @@ PrintApp.controller("invoiceController", [
         storeEmail: $scope.storeInfo.email,
         storeMobile: $scope.storeInfo.phno,
         invoicesmskey: $scope.invoicesmskey,
-      }
+      };
       formData.append("invoice", JSON.stringify(reqdata));
-      await fetch('https://spyhunteritsolution.in/api/retail/storeInvoice.php', {
-        method: "POST",
-        body: formData
-      });
-      alert('The file has been uploaded successfully.');
-    }
+      await fetch(
+        "https://spyhunteritsolution.in/api/retail/storeInvoice.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      alert("The file has been uploaded successfully.");
+    };
   },
 ]);
 
@@ -301,10 +318,10 @@ PrintApp.controller("customerController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-        "-" +
-        $scope.filter.mm +
-        "-" +
-        "reportsCustomer.pdf"
+          "-" +
+          $scope.filter.mm +
+          "-" +
+          "reportsCustomer.pdf"
       );
     };
 
@@ -403,10 +420,10 @@ PrintApp.controller("productsController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-        "-" +
-        $scope.filter.mm +
-        "-" +
-        "reportsProducts.pdf"
+          "-" +
+          $scope.filter.mm +
+          "-" +
+          "reportsProducts.pdf"
       );
     };
 
@@ -505,10 +522,10 @@ PrintApp.controller("IncomeExpanceController", [
     $scope.print = () => {
       PrintPDF(
         $scope.filter.yyyy +
-        "-" +
-        $scope.filter.mm +
-        "-" +
-        "reportsIncomeExpance.pdf"
+          "-" +
+          $scope.filter.mm +
+          "-" +
+          "reportsIncomeExpance.pdf"
       );
     };
 

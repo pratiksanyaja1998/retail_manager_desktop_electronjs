@@ -351,6 +351,7 @@
               <tr class="w3-light-grey">
                 <th>Product Name</th>
                 <th>Selling Price</th>
+                <th>Available Quantity</th>
                 <th>HSN</th>
               </tr>
             </thead>
@@ -358,6 +359,7 @@
               class="{{productRow.isSelected == 1 ? 'selectedrow' : ''}}" id="prod_{{$index}}">
               <td>{{productRow.name}}</td>
               <td>{{productRow.price}}</td>
+              <td>{{productRow.qty}}</td>
               <td>{{productRow.hsn != '' ? productRow.hsn : '-'}}</td>
             </tr>
           </table>
@@ -427,6 +429,7 @@
                 </span>
               </td>
               <td ng-show="settings.qty">
+                
                 <input type="number" ng-model="invoceProduct[$index].qty" ng-change="changeInvoceProductsData($index)"
                   style="width: 60px;" required min="1" name="qty{{$index}}" />
                 <br />
