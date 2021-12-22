@@ -1,0 +1,187 @@
+<style>
+    .fbold {
+        font-weight: bold !important;
+    }
+
+    .fnormal {
+        font-weight: normal !important;
+    }
+
+    .flight {
+        font-weight: light !important;
+    }
+
+    .w3-col span {
+        line-height: 1.8;
+    }
+
+    .w3-half {
+        width: 50% !important;
+    }
+
+    .calctable td {
+        border: none !important;
+    }
+
+    body,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    w3-col,
+    w3-row,
+    w3-half {
+        font-size: 12px !important;
+        margin: 0px;
+        font-family: monospace;
+        color: 000 !important;
+    }
+
+    table,
+    td,
+    tr {
+        font-size: 12px !important;
+
+        padding: 2px !important;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .w3-col {
+        margin-top: 0 !important;
+    }
+
+    .w3-table th:first-child,
+    .w3-table td:first-child,
+    .w3-table-all th:first-child,
+    .w3-table-all td:first-child {
+        padding: 0px !important;
+    }
+
+    .w3-padding {
+        padding: 5px !important;
+    }
+
+    .d-block {
+        display: block !important;
+    }
+
+    .w3-table {
+        border: 0px !important;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+</style>
+<div class="w3-center thermal w3-row w3-margin invoiceDatainvoiceData">
+
+    <div class="w3-center w3-col l12 w3-text-black w3-padding fnormal">
+        <div class="w3-row w3-section">
+            <div class="w3-col w3-center">
+                <h5 class="fbold w3-margin"> <span> {{storeInfo.storename}}
+                    </span> </h5>
+            </div>
+            <div class="w3-col w3-center">
+                <p> {{storeInfo.area}} {{storeInfo.city}} <br />{{storeInfo.state}} {{storeInfo.pincode}} </p>
+            </div>
+            <div class="w3-col w3-center">
+                <p> Mobile No. {{ storeInfo.phno}} </p>
+            </div>
+            <div class="w3-col w3-center" ng-show="storeInfo.gstin!=''">
+                <h5 class="fbold"> GSTIN/UIN: {{storeInfo.gstin}}</h5>
+            </div>
+            <div class="w3-row">
+                <div class="w3-half">
+                    <h5>
+                        Bill No:{{invoiceData.invoice.srno}}
+                    </h5>
+                </div>
+                <div class="w3-half text-right">
+                    <h5>
+                        {{invoiceData.invoice.dd}}/{{invoiceData.invoice.mm}}/{{invoiceData.invoice.yyyy}}
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="w3-row btnone protable">
+            <!-- table product -->
+            <div class="w3-col w3-margin-top" style="border-top: 1px dashed;border-bottom: 1px dashed;">
+                <table class="w3-section w3-table w3-border-bottom w3-text-black fnormal ">
+
+                    <tr>
+                        <td>Item</td>
+                        <td>Qty</td>
+                        <td>Price</td>
+                        <!-- <th>DIS.(%)</th> -->
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">CGST(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">SGST(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">Tax.(%)</td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">IGST(%)</td>
+                        <td>Total</td>
+                    </tr>
+
+                    <tr ng-repeat="row in invoiceData.invoiceProducts">
+                        <td>{{row.name}}</td>
+                        <td>{{row.qty}}</td>
+                        <td>{{row.price}}</td>
+                        <!-- <td>{{row.discount}} %</td> -->
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='GST'">{{row.gst/2}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='Tax.'">{{row.gst}} %
+                        </td>
+                        <td ng-show="invoiceData.invoice.gst==0 && invoiceData.invoice.gsttype=='IGST'">{{row.gst}} %
+                        </td>
+                        <td class="">{{row.total}}</td>
+                    </tr>
+
+
+
+                </table>
+
+
+                <!-- finl price -->
+
+            </div>
+            <div class="w3-col w3-section w3-padding" style="border-bottom: 1px dashed;">
+                <div class="w3-row" ng-show="invoiceData.invoice.gst!=0 && invoiceData.invoice.gsttype!='GST'">
+                    <div align="left" class="w3-half">
+                        <p>{{invoiceData.invoice.gsttype}} ({{invoiceData.invoice.gst}}%) :- </p>
+                    </div>
+                    <div align="right" class="w3-half">
+                        <p>{{currencysymbol}}{{(sumOfProductPrice*invoiceData.invoice.gst)/100}} </p>
+                    </div>
+                </div>
+                <div class="w3-row" ng-show="invoiceData.invoice.discount != '0'">
+                    <div align="left" class="w3-half">
+                        <p>Discount :-</p>
+                    </div>
+                    <div align="right" class="w3-half">
+                        {{currencysymbol}}{{(sumOfProductPrice*invoiceData.invoice.discount)/100}}
+                    </div>
+                </div>
+                <div class="w3-row">
+                    <div align="left" class="w3-half">
+                        <p>Total :- </p>
+                    </div>
+                    <div align="right" class="w3-half"> {{currencysymbol}}{{invoiceData.invoice.total}}
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col w3-section w3-margin-top">
+                <h4 align="center" class="w3-centered">
+                    Thank You 🤝
+                </h4>
+            </div>
+        </div>
+
+    </div>
+
+</div>

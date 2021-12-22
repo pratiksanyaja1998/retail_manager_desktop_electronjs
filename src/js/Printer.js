@@ -186,7 +186,8 @@ PrintApp.controller("invoiceController", [
 
     TemplateModule.getTemplates((template) => {
       $scope.templates = template;
-      $scope.template = $scope.templates[0];
+      console.log($scope.templates);
+      $scope.template = $scope.templates[2];
       $scope.$apply();
     });
 
@@ -211,7 +212,7 @@ PrintApp.controller("invoiceController", [
       $scope.currencysymbol = data.data;
     });
 
-    console.log($scope);
+    // console.log($scope);
 
     $scope.shareOnEmail = async () => {
       let generatedPDF =

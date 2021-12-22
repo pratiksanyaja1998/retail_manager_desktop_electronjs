@@ -71,6 +71,7 @@ exports.up = function (knex, Promise) {
   const Templates = [
     { name: "Default", url: "./template/invoiceTemplate/default.html" },
     { name: "Premium", url: "./template/invoiceTemplate/withImage.html" },
+    { name: "Thermal", url: "./template/invoiceTemplate/thermal.html" },
     // { name: "FixSizeA4", url: "./template/invoiceTemplate/fixSizeA4.html" },
   ];
 
