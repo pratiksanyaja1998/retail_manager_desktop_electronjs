@@ -187,7 +187,7 @@ PrintApp.controller("invoiceController", [
     TemplateModule.getTemplates((template) => {
       $scope.templates = template;
       console.log($scope.templates);
-      $scope.template = $scope.templates[2];
+      $scope.template = $scope.templates[0];
       $scope.$apply();
     });
 
